@@ -12,3 +12,8 @@ Boilerplate for create Yii 2 application
 # Nginx config
 
 - Create link dev/nginx.conf to sites-enabled/
+
+
+# Install dependencies
+
+- composer install
