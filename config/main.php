@@ -1,9 +1,10 @@
 <?php
 
-$config = [
-    'id' => 'k4nuj8ProjectName',
-    'basePath' => dirname(__DIR__),
-    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+return [
+    'id' => 'boilerplate-yii2-k4nuj8',
+    'basePath' => dirname(__DIR__) . '/app',
+    'vendorPath' => dirname(__DIR__) . '/vendor',
+    'runtimePath' => dirname(__DIR__) . '/files/log/runtime',
     'bootstrap' => ['log'],
     'language' => 'ru',
     'components' => [
@@ -25,23 +26,16 @@ $config = [
         ],
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2basic',
+            'dsn' => 'mysql:host=localhost;dbname=boilerplate-yii2-k4nuj8',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
         ],
     ],
+    'modules' => [
+        'site' => 'app\site\Module'
+    ],
     'params' => [
         'adminEmail' => '',
     ],
 ];
-
-if (YII_ENV_DEV) {
-    $config['bootstrap'][] = 'debug';
-    $config['modules']['debug'] = 'yii\debug\Module';
-
-    $config['bootstrap'][] = 'gii';
-    $config['modules']['gii'] = 'yii\gii\Module';
-}
-
-return $config;

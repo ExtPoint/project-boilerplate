@@ -27,7 +27,7 @@
     },
     "config": {
         "process-timeout": 1800,
-        "vendor-dir": "../vendor"
+        "vendor-dir": "vendor"
     },
     "scripts": {
         "post-create-project-cmd": [
@@ -48,8 +48,8 @@
             ]
         },
         "asset-installer-paths": {
-            "npm-asset-library": "../vendor/npm",
-            "bower-asset-library": "../vendor/bower"
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
         }
     }
 }

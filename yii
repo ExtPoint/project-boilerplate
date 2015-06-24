@@ -1,0 +1,14 @@
+#!/usr/bin/env php
+<?php
+
+defined('STDIN') or define('STDIN', fopen('php://stdin', 'r'));
+defined('STDOUT') or define('STDOUT', fopen('php://stdout', 'w'));
+
+// Load config
+$config = require __DIR__ . '/bootstrap.php';
+$config = \yii\helpers\ArrayHelper::merge(require __DIR__ . '/config/console.php', $config);
+
+// Run application
+$application = new yii\console\Application($config);
+$exitCode = $application->run();
+exit($exitCode);

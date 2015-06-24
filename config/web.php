@@ -3,16 +3,17 @@
 return \yii\helpers\ArrayHelper::merge(
     require 'main.php',
     [
+        'defaultRoute' => 'site/site/index',
         'components' => [
             'request' => [
                 'cookieValidationKey' => 'q2%s2~5twSe2OkBJ8H6k6wUI@fe~Ah9|',
             ],
             'user' => [
-                'identityClass' => 'app\models\User',
+                'identityClass' => 'app\site\models\User',
                 'enableAutoLogin' => true,
             ],
             'errorHandler' => [
-                'errorAction' => 'site/error',
+                'errorAction' => 'site/site/error',
             ],
             'urlManager'=> [
                 'showScriptName' => false,
@@ -20,7 +21,7 @@ return \yii\helpers\ArrayHelper::merge(
                 //'enableStrictParsing' => true,
                 'suffix' => '/',
                 'rules' => [
-                    '' => 'site/index',
+                    '' => 'site/site/index',
                 ],
             ],
         ],
