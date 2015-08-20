@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\site\assets\AppAsset;
+use app\core\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -35,12 +35,12 @@ AppAsset::register($this);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Главная', 'url' => ['/site/site/index']],
-                    ['label' => 'About', 'url' => ['/site/site/about']],
+                    ['label' => 'Главная', 'url' => ['/core/site/index']],
+                    ['label' => 'About', 'url' => ['/core/site/about']],
                     Yii::$app->user->isGuest ?
-                        ['label' => 'Вход', 'url' => ['/site/site/login']] :
+                        ['label' => 'Вход', 'url' => ['/core/site/login']] :
                         ['label' => 'Выход (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/site/logout'],
+                            'url' => ['/core/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
             ]);

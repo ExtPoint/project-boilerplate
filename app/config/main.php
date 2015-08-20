@@ -2,9 +2,9 @@
 
 return [
     'id' => 'boilerplate-yii2-k4nuj8',
-    'basePath' => dirname(__DIR__) . '/app',
-    'vendorPath' => dirname(__DIR__) . '/vendor',
-    'runtimePath' => dirname(__DIR__) . '/files/log/runtime',
+    'basePath' => dirname(__DIR__),
+    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
+    'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
     'bootstrap' => ['log'],
     'language' => 'ru',
     'components' => [
@@ -31,9 +31,21 @@ return [
             'password' => '',
             'charset' => 'utf8',
         ],
+        'assetManager' => [
+            'forceCopy' => true,
+        ],
+        'urlManager'=> [
+            'showScriptName' => false,
+            'enablePrettyUrl' => true,
+            //'enableStrictParsing' => true,
+            'suffix' => '/',
+            'rules' => [
+                '' => 'core/site/index',
+            ],
+        ],
     ],
     'modules' => [
-        'site' => 'app\site\Module'
+        'core' => 'app\core\Module',
     ],
     'params' => [
         'adminEmail' => '',

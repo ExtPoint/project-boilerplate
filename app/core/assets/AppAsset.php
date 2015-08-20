@@ -5,7 +5,7 @@
  * @license http://www.yiiframework.com/license/
  */
 
-namespace app\site\assets;
+namespace app\core\assets;
 
 use yii\web\AssetBundle;
 
@@ -24,10 +24,6 @@ class AppAsset extends AssetBundle {
 
     public $js = [
         'js/main.js'
-    ];
-
-    public $publishOptions = [
-        'forceCopy' => true,
     ];
 
     public $depends = [

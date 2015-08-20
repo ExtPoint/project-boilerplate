@@ -1,5 +1,11 @@
 # phpstorm project files
-.idea
+/.idea/workspace.xml
+/.idea/modules.xml
+/.idea/*.iml
+/.idea/dictionaries/
+/.idea/dataSources.*
+/.idea/libraries/
+/.idea/jsLibraryMappings.xml
 
 # netbeans project files
 nbproject

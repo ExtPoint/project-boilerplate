@@ -20,7 +20,7 @@ require(__DIR__ . '/vendor/autoload.php');
 require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
 
 // Load environment config
-$environmentConfigPath = __DIR__ . '/config/environment/' . $config['profile'] . '.php';
+$environmentConfigPath = __DIR__ . '/app/config/environment/' . $config['profile'] . '.php';
 if (file_exists($environmentConfigPath)) {
     $config = \yii\helpers\ArrayHelper::merge(require $environmentConfigPath, $config);
 }
