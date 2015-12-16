@@ -17,7 +17,7 @@ defined('YII_ENV') || define('YII_ENV', isset($profiles[$config['profile']]) ? $
 
 // Init Yii autoloader
 require(__DIR__ . '/vendor/autoload.php');
-require(__DIR__ . '/vendor/yiisoft/yii2/Yii.php');
+require(__DIR__ . '/app/core/base/Yii.php');
 
 // Load environment config
 $environmentConfigPath = __DIR__ . '/app/config/environment/' . $config['profile'] . '.php';

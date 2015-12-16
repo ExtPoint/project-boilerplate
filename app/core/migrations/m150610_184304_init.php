@@ -9,7 +9,7 @@ class m150610_184304_init extends Migration
     {
         $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
 
-        $this->createTable('{{%products}}', [
+        $this->createTable('products', [
             'id' => Schema::TYPE_PK,
             'title' => Schema::TYPE_STRING . ' NOT NULL',
             'description' => Schema::TYPE_TEXT,
@@ -20,6 +20,6 @@ class m150610_184304_init extends Migration
 
     public function down()
     {
-        $this->dropTable('{{%products}}');
+        $this->dropTable('products');
     }
 }

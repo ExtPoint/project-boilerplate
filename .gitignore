@@ -38,3 +38,6 @@ phpunit.phar
 
 /config.php
 /config.js
+
+public/assets/*
+node_modules

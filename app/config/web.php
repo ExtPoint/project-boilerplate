@@ -13,7 +13,7 @@ return \yii\helpers\ArrayHelper::merge(
                 'enableAutoLogin' => true,
             ],
             'errorHandler' => [
-                'errorAction' => 'core/site/error',
+                'errorAction' => 'site/site/error',
             ],
         ],
     ]

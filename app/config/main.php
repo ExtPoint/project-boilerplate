@@ -7,6 +7,12 @@ return [
     'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
     'bootstrap' => ['log'],
     'language' => 'ru',
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationPath' => '@app/core/migrations',
+        ],
+    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -33,6 +39,22 @@ return [
         ],
         'assetManager' => [
             'forceCopy' => true,
+            'bundles' => [
+                // Disables Yii jQuery
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,
+                    'js' => [],
+                ],
+                'yii\bootstrap\BootstrapAsset' => [
+                    'sourcePath' => null,
+                    'css' => [],
+                ],
+                'yii\bootstrap\BootstrapPluginAsset' => [
+                    'sourcePath' => null,
+                    'js' => [],
+                    'css' => [],
+                ],
+            ],
         ],
         'urlManager'=> [
             'showScriptName' => false,
@@ -40,12 +62,13 @@ return [
             //'enableStrictParsing' => true,
             'suffix' => '/',
             'rules' => [
-                '' => 'core/site/index',
+                '' => 'site/site/index',
             ],
         ],
     ],
     'modules' => [
-        'core' => 'app\core\Module',
+        'core' => 'app\core\CoreModule',
+        'site' => 'app\site\SiteModule',
     ],
     'params' => [
         'adminEmail' => '',

@@ -2,9 +2,9 @@
 
 namespace app\core;
 
-class Module extends \yii\base\Module {
+class CoreModule extends \yii\base\Module {
 
-    public $layout = 'main';
+    public $layout = '@app/core/layouts/web';
 
     public function init() {
         parent::init();
