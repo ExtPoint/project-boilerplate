@@ -3,12 +3,12 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use app\core\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-AppAsset::register($this);
+$this->registerJsFile('@web/assets/main.js');
+$this->registerCssFile('@web/assets/main.css');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -38,9 +38,9 @@ AppAsset::register($this);
                     ['label' => 'Главная', 'url' => ['/site/site/index']],
                     ['label' => 'About', 'url' => ['/site/site/about']],
                     Yii::$app->user->isGuest ?
-                        ['label' => 'Вход', 'url' => ['/site/site/login']] :
-                        ['label' => 'Выход (' . Yii::$app->user->identity->username . ')',
-                            'url' => ['/site/site/logout'],
+                        ['label' => 'Вход', 'url' => ['/auth/auth/login']] :
+                        ['label' => 'Выход (' . Yii::$app->user->model->name . ')',
+                            'url' => ['/auth/auth/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
             ]);
@@ -51,6 +51,14 @@ AppAsset::register($this);
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
             ]) ?>
+            <?php
+                foreach (Yii::$app->session->getAllFlashes() as $key => $messages) {
+                    $messages = is_array($messages) ? $messages : [$messages];
+                    foreach ($messages as $message) {
+                        echo '<div class="alert alert-' . $key . '">' . $message . '</div>';
+                    }
+                }
+            ?>
             <?= $content ?>
         </div>
     </div>

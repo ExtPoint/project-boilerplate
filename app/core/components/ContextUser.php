@@ -2,18 +2,19 @@
 
 namespace app\core\components;
 
+use app\profile\enums\UserRole;
 use yii\web\User;
 
 /**
  * Class ContextUser
- * @property \app\core\models\User $model
+ * @property \app\profile\models\User $model
  * @property string $uid
  * @package app\core\components
  */
 class ContextUser extends User {
 
     /**
-     * @return \app\core\models\User
+     * @return \app\profile\models\User
      */
     public function getModel() {
         return $this->identity;
@@ -29,7 +30,7 @@ class ContextUser extends User {
     public function can($permissionName, $params = [], $allowCaching = true)
     {
         return !$this->getIsGuest() && $this->getModel() && (
-            $this->getModel()->role === \app\core\models\User::ROLE_ADMIN
+            $this->getModel()->role === UserRole::ADMIN
             || $this->getModel()->role === $permissionName
         );
     }
