@@ -8,6 +8,6 @@ require('gulp-easy')(require('gulp'))
             }
         }
     })
-    .js('app/core/index.js', 'main.js')
+    .js('app/*/client.js', 'main.js')
     .less(['app/*/less/index.less'], 'main.css')
     .files('node_modules/bootstrap/fonts/*', 'public/fonts/');

@@ -9,7 +9,8 @@ return \yii\helpers\ArrayHelper::merge(
                 'cookieValidationKey' => 'q2%s2~5twSe2OkBJ8H6k6wUI@fe~Ah9|',
             ],
             'user' => [
-                'identityClass' => 'app\core\models\User',
+                'class' => '\app\core\components\ContextUser',
+                'identityClass' => 'app\profile\models\User',
                 'enableAutoLogin' => true,
             ],
             'errorHandler' => [

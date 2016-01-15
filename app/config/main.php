@@ -1,25 +1,24 @@
 <?php
 
+require_once __DIR__ . '/../core/components/ModuleLoader.php';
+
 return [
     'id' => 'boilerplate-yii2-k4nuj8',
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
-    'bootstrap' => ['log'],
+    'bootstrap' => \app\core\components\ModuleLoader::getBootstrap() + ['log'],
     'language' => 'ru',
-    'controllerMap' => [
-        'migrate' => [
-            'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => '@app/core/migrations',
-        ],
-    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => true,
+            'htmlLayout' => '@app/core/layouts/mail',
+            'messageConfig' => [
+                'from' => 'noreply@example.com'
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -61,15 +60,9 @@ return [
             'enablePrettyUrl' => true,
             //'enableStrictParsing' => true,
             'suffix' => '/',
-            'rules' => [
-                '' => 'site/site/index',
-            ],
         ],
     ],
-    'modules' => [
-        'core' => 'app\core\CoreModule',
-        'site' => 'app\site\SiteModule',
-    ],
+    'modules' => \app\core\components\ModuleLoader::getConfig(),
     'params' => [
         'adminEmail' => '',
     ],

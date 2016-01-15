@@ -2,13 +2,22 @@
 
 namespace app\site;
 
-class SiteModule extends \yii\base\Module {
+use app\core\base\AppModule;
 
-    public $layout = '@app/core/layouts/web';
+class SiteModule extends AppModule {
 
-    public function init() {
-        parent::init();
+    /**
+     * @inheritdoc
+     */
+    public function bootstrap($app) {
+        $app->defaultRoute = '/site/site/index';
+        parent::bootstrap($app);
+    }
 
+    protected function coreUrlRules() {
+        return [
+            '' => $this->id . '/site/index',
+        ];
     }
 
 }

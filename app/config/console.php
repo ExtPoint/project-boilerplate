@@ -6,5 +6,10 @@ return \yii\helpers\ArrayHelper::merge(
     require 'main.php',
     [
         'controllerNamespace' => 'app\commands',
+        'controllerMap' => [
+            'migrate' => [
+                'class' => '\app\core\commands\MigrationCommand',
+            ],
+        ],
     ]
 );
