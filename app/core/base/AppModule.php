@@ -64,7 +64,7 @@ class AppModule extends Module implements BootstrapInterface {
             } elseif (is_array($this->$id)) {
                 $config = ArrayHelper::merge($config, $this->$id);
             }
-            $config['module'] = $this;
+            //$config['module'] = $this;
             $this->$id = \Yii::createObject($config);
         }
     }

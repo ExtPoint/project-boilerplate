@@ -36,6 +36,7 @@ $this->registerCssFile('@web/assets/main.css');
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
                     ['label' => 'Главная', 'url' => ['/site/site/index']],
+                    ['label' => 'Comet', 'url' => ['/comet/comet/index']],
                     ['label' => 'About', 'url' => ['/site/site/about']],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Вход', 'url' => ['/auth/auth/login']] :
