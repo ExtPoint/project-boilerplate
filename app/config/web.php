@@ -10,7 +10,7 @@ return \yii\helpers\ArrayHelper::merge(
             ],
             'user' => [
                 'class' => '\app\core\components\ContextUser',
-                'identityClass' => 'app\profile\models\User',
+                'identityClass' => 'app\core\models\User',
                 'enableAutoLogin' => true,
             ],
             'errorHandler' => [

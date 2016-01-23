@@ -4,6 +4,7 @@ require_once __DIR__ . '/../core/components/ModuleLoader.php';
 
 return [
     'id' => 'boilerplate-yii2-k4nuj8',
+    'name' => 'Boilerplate Yii 2 k4nuj8',
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
@@ -60,6 +61,9 @@ return [
             'enablePrettyUrl' => true,
             //'enableStrictParsing' => true,
             'suffix' => '/',
+        ],
+        'megaMenu'=> [
+            'class' => '\app\core\components\MegaMenu',
         ],
     ],
     'modules' => \app\core\components\ModuleLoader::getConfig(),

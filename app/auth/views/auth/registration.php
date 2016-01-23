@@ -27,7 +27,7 @@ $this->title = 'Регистрация';
     <?= $form->field($model, 'password')->passwordInput() ?>
 
     <?= $form->field($model, 'agreementAccepted', [
-        'template' => '<div class="col-lg-5 col-lg-offset-2">{input}<span>Я принимаю условия '
+        'template' => '<div class="col-lg-5 col-lg-offset-2">{input}<span> Я принимаю условия '
             . Html::a('пользовательского соглашения', ['/auth/auth/agreement'], ['target' => '_blank']) .
             '</span>{error}</div>',
     ])->checkbox([], false) ?>

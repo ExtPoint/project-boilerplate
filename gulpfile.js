@@ -3,9 +3,12 @@ require('gulp-easy')(require('gulp'))
         dest: './public/assets/',
         less: {
             minifycss: {
-                target: './app',
+                target: './app/core',
                 relativeTo: './'
             }
+        },
+        js: {
+            jsx: true
         }
     })
     .js('app/*/client.js', 'main.js')

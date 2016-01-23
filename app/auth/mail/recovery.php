@@ -3,7 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $message \yii\mail\BaseMessage */
 /* @var $url string */
-/* @var $user \app\profile\models\User */
+/* @var $user \app\core\models\User */
 
 $message->setSubject(\Yii::$app->name . ' - Восстановление доступа');
 

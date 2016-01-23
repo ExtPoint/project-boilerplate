@@ -12,6 +12,7 @@ class m151217_092337_profile_init extends Migration {
             'email' => $this->string(255),
             'name' => $this->string(255),
             'role' => $this->string(32)->notNull(),
+            'photo' => $this->string(),
             'password' => $this->string(32),
             'salt' => $this->string(10),
             'authKey' => $this->string(32),
@@ -22,12 +23,21 @@ class m151217_092337_profile_init extends Migration {
         ], $tableOptions);
         $this->addPrimaryKey('uid', 'users', 'uid');
 
+        $this->createTable('users_info', [
+            'userUid' => $this->string(36),
+            'firstName' => $this->string(),
+            'lastName' => $this->string(),
+            'birthday' => $this->date(),
+            'phone' => $this->string(),
+        ], $tableOptions);
+        $this->addPrimaryKey('userUid', 'users_info', 'userUid');
+
         // Prompt admin email
-        $email = YII_DEBUG ? Yii::$app->controller->prompt('Please write you email (as administrator):') : '';
+        $email = YII_DEBUG ? Yii::$app->controller->prompt('Please write you email (as administrator, password: 1):') : '';
         $email = $email ?: 'admin@boilerplate-yii2-k4nuj8';
 
         // Add administrator
-        $user = new \app\profile\models\User();
+        $user = new \app\core\models\User();
         $user->email = $email;
         $user->name = 'Администратор';
         $user->password = $user->passwordToHash('1');
@@ -37,5 +47,6 @@ class m151217_092337_profile_init extends Migration {
 
     public function down() {
         $this->dropTable('users');
+        $this->dropTable('users_info');
     }
 }

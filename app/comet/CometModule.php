@@ -79,7 +79,7 @@ class CometModule extends AppModule {
                 'class' => '\NeatComet\adapters\yii2\NeatCometComponent',
                 'cometComponent' => [$this, 'getClient'],
                 'configFileName' => __DIR__ . '/bindings.json',
-                'hasDynamicAttributes' => true,
+                //'hasDynamicAttributes' => true,
             ],
         ];
     }

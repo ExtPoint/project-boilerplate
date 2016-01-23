@@ -9,7 +9,7 @@ require(__DIR__ . '/WebApplication.php');
 class Yii extends \yii\BaseYii
 {
     /**
-     * @var \app\core\base\WebApplication
+     * @var \app\core\base\WebApplication|\yii\console\Application
      */
     public static $app;
 }

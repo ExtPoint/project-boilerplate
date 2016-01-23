@@ -1,10 +1,12 @@
 <?php
 
-namespace app\profile\models;
+namespace app\core\models;
 
 use app\core\base\AppModel;
 use app\core\behaviors\TimestampBehavior;
 use app\core\behaviors\UidBehavior;
+use app\profile\enums\UserRole;
+use app\profile\models\UserInfo;
 use Yii;
 use yii\web\IdentityInterface;
 
@@ -23,6 +25,8 @@ use yii\web\IdentityInterface;
  * @property string $photo
  * @property string $createTime
  * @property string $updateTime
+ * @property-read UserInfo $info
+ * @property-read string $photoUrl
  */
 class User extends AppModel implements IdentityInterface {
 
@@ -48,7 +52,7 @@ class User extends AppModel implements IdentityInterface {
      */
     public function rules() {
         return [
-            [['email', 'name'], 'string', 'max' => 255],
+            [['email', 'name', 'photo'], 'string', 'max' => 255],
             ['email', 'unique'],
             [['role', 'password', 'authKey', 'accessToken', 'recoveryKey'], 'string', 'max' => 32],
             [['salt'], 'string', 'max' => 10],
@@ -65,6 +69,7 @@ class User extends AppModel implements IdentityInterface {
             'role' => Yii::t('app', 'Роль'),
             'password' => Yii::t('app', 'Пароль'),
             'createTime' => Yii::t('app', 'Дата регистрации'),
+            'photo' => Yii::t('app', 'Фото'),
         ];
     }
 
@@ -122,6 +127,33 @@ class User extends AppModel implements IdentityInterface {
      */
     public function validatePassword($password) {
         return md5(md5($password) . md5($this->salt)) === $this->password;
+    }
+
+    public function getInfo() {
+        return $this->hasOne(UserInfo::className(), ['userUid' => 'uid']);
+    }
+
+    public function getPhotoUrl() {
+        return ''; // @todo
+    }
+
+    public function canViewAttribute($userModel, $attribute) {
+        return $userModel->uid === $this->uid || $this->role === UserRole::ADMIN;
+    }
+
+    /**
+     * @param bool $insert
+     * @param array $changedAttributes
+     */
+    public function afterSave($insert, $changedAttributes) {
+        if ($insert && !$this->info) {
+            $info = new UserInfo(['userUid' => $this->uid, 'firstName' => $this->name]);
+            $info->userUid = $this->uid;
+            $info->firstName = $this->name;
+            $info->saveOrPanic();
+        }
+
+        parent::afterSave($insert, $changedAttributes);
     }
 
 }

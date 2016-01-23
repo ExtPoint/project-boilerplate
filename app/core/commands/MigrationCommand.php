@@ -26,6 +26,7 @@ class MigrationCommand extends \bariew\moduleMigration\ModuleMigrateController {
             $content = $this->renderFile(\Yii::getAlias($this->templateFile), ['className' => $name]);
             if (!is_dir($dir)) {
                 mkdir($dir);
+                chmod($dir, 0775);
             }
             file_put_contents($file, $content);
             $this->stdout("New migration created successfully.\n", Console::FG_GREEN);

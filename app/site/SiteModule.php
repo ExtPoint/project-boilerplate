@@ -16,7 +16,15 @@ class SiteModule extends AppModule {
 
     protected function coreUrlRules() {
         return [
-            '' => $this->id . '/site/index',
+            '' => "$this->id/site/index",
+            'about' => "$this->id/site/about",
+        ];
+    }
+
+    public function coreMenus() {
+        return [
+            ['label' => 'Главная', 'url' => ["/$this->id/site/index"]],
+            ['label' => 'О сайте', 'url' => ["/$this->id/site/about"]],
         ];
     }
 

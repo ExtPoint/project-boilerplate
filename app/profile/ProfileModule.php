@@ -6,11 +6,37 @@ use app\core\base\AppModule;
 
 class ProfileModule extends AppModule {
 
-    public $layout = '@app/core/layouts/web';
-
     protected function coreUrlRules() {
         return [
-            '' => $this->id . '/site/index',
+            'profile' => "$this->id/profile/index",
+            'profile/edit' => "$this->id/profile-edit/index",
+            'profile/edit/<action>' => "$this->id/profile-edit/<action>",
+        ];
+    }
+
+    public function coreMenus() {
+        return [
+            [
+                'label' => 'Профиль',
+                'url' => ["/$this->id/profile/index"],
+                'roles' => '@',
+                'items' => [
+                    [
+                        'label' => 'Редактирование профиля',
+                        'url' => ["/$this->id/profile-edit/index"],
+                        'items' => [
+                            [
+                                'label' => 'Основные',
+                                'url' => ["/$this->id/profile-edit/index"],
+                            ],
+                            [
+                                'label' => 'Пароль',
+                                'url' => ["/$this->id/profile-edit/password"],
+                            ],
+                        ],
+                    ],
+                ],
+            ],
         ];
     }
 

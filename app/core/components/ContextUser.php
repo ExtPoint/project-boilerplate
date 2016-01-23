@@ -7,24 +7,32 @@ use yii\web\User;
 
 /**
  * Class ContextUser
- * @property \app\profile\models\User $model
- * @property string $uid
+ * @property-read \app\core\models\User $model
+ * @property-read string $uid
+ * @property-read string $name
  * @package app\core\components
  */
 class ContextUser extends User {
 
     /**
-     * @return \app\profile\models\User
+     * @return \app\core\models\User
      */
     public function getModel() {
         return $this->identity;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getUid() {
         return $this->getModel() ? $this->getModel()->uid : null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() {
+        return $this->getModel() ? $this->getModel()->name : '';
     }
 
     public function can($permissionName, $params = [], $allowCaching = true)

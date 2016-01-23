@@ -5,7 +5,7 @@ use yii\helpers\Url;
 
 /* @var $this \yii\web\View view component instance */
 /* @var $message \yii\mail\BaseMessage */
-/* @var $user \app\profile\models\User */
+/* @var $user \app\core\models\User */
 
 $message->setSubject('Добро пожаловать на сайт ' . \Yii::$app->name);
 

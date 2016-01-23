@@ -2,7 +2,9 @@
 Boilerplate for create Yii 2 application
 
 
-### Global replace - first important step
+## Install
+
+### 1. Global replace - first important step
 
 Replace in every file of the project:
 
@@ -11,29 +13,33 @@ Replace in every file of the project:
 - Rename the project in IDE
 
 
-### Nginx config
+### 2. Web server
 
-- Copy dev/nginx.conf into sites-enabled/
 - Replace /boilerplate-yii2-project-path with your local project path
 - Add 127.0.0.1 boilerplate-yii2-k4nuj8.local into your hosts file
+- Copy apache.conf (or dev/nginx.conf) into sites-enabled/
 
 
-### Apache 2.4+ config
+### 3. Install dependencies
 
-- Copy dev/apache.conf into sites-enabled/
-- Replace /boilerplate-yii2-project-path with your local project path
-- Add 127.0.0.1 boilerplate-yii2-k4nuj8.local into your hosts file
-
-
-### Install dependencies
-
-- composer install
+```sh
+composer install
+npm install
+```
 
 
-### Attach local services
+### 4. Attach local services
 
-- Copy config.sample.php to config.php
 - Create database "boilerplate-yii2-k4nuj8"
+- Copy config.sample.php to config.php and configure it
+
+
+### 5. Database migrations
+
+- Run applicaion migrations
+```sh
+php yii migrate
+```
 
 
 ### Test
@@ -44,3 +50,18 @@ Replace in every file of the project:
 ### Clean
 
 - Delete this file (README.md) or replace 100% of its contents with your project's Readme
+
+
+# Modules dependencies
+## comet
+
+```sh
+npm install --save NeatComet jii jii-comet
+```
+
+
+## core
+
+```sh
+npm install --save jquery bootstrap
+```

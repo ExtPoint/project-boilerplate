@@ -3,7 +3,7 @@
 namespace app\auth\models;
 
 use app\profile\enums\UserRole;
-use app\profile\models\User;
+use app\core\models\User;
 use Yii;
 use yii\base\Model;
 

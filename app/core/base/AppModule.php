@@ -28,10 +28,10 @@ class AppModule extends Module implements BootstrapInterface {
     }
 
     /**
-     * @inheritdoc
+     * @param WebApplication $app
      */
     public function bootstrap($app) {
-        $app->getUrlManager()->addRules($this->coreUrlRules(), false);
+        $app->urlManager->addRules($this->coreUrlRules(), false);
     }
 
     /**
@@ -74,6 +74,10 @@ class AppModule extends Module implements BootstrapInterface {
     }
 
     protected function coreUrlRules() {
+        return [];
+    }
+
+    public function coreMenus() {
         return [];
     }
 

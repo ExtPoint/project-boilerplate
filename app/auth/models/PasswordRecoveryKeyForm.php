@@ -2,7 +2,7 @@
 
 namespace app\auth\models;
 
-use app\profile\models\User;
+use app\core\models\User;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Url;
@@ -18,7 +18,7 @@ class PasswordRecoveryKeyForm extends Model {
     public function rules() {
         return [
             [['email', 'captcha'], 'required', 'message' => Yii::t('app', 'Необходимо указать символы с картинки')],
-            [['email'], 'exist', 'targetClass' => 'app\profile\models\User',
+            [['email'], 'exist', 'targetClass' => 'app\core\models\User',
                 'message' => Yii::t('app', 'Пользователя с указанным e-mail не существует'),
             ],
             [['captcha'], 'captcha', 'captchaAction' => 'auth/recovery/captcha'],

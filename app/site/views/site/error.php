@@ -6,8 +6,6 @@ use yii\helpers\Html;
 /* @var $name string */
 /* @var $message string */
 /* @var $exception Exception */
-
-$this->title = $name;
 ?>
 <div>
 

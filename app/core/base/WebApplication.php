@@ -2,13 +2,13 @@
 
 namespace app\core\base;
 
-use app\core\components\ContextUser;
 use yii\web\Application;
 
 /**
  * Class WebApplication
- * @property ContextUser $user
  * @package app\core\base
+ * @property \app\core\components\ContextUser $user
+ * @property \app\core\components\MegaMenu $megaMenu
  */
 class WebApplication extends Application {
 
