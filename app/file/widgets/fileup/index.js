@@ -7,10 +7,13 @@ require('./FileItem.jsx');
 
 jQuery.fn.fileInput = function (options) {
     this.each(function () {
-        options.inputElement = this;
+        var container = $('<div />').insertAfter(this).get(0);
+        options.name = $(this).attr('name');
+        $(this).remove();
+
         ReactDOM.render(
             React.createElement(FileUp.view.FileInputView, options),
-            $('<div />').insertAfter(this).get(0)
+            container
         );
     });
 };

@@ -13,22 +13,23 @@ FileUp.Neatness.defineClass('FileUp.view.FileInputView', /** @lends FileUp.view.
         files: []
     },
 
-    multiple: false,
+    name: '',
 
-    inputElement: null,
+    multiple: false,
 
     uploader: null,
 
     constructor: function (options) {
         this.multiple = !!options.multiple;
-        this.inputElement = options.inputElement;
+        this.name = options.name;
         this.uploader = new FileUp(jQuery.extend({}, {
             dropArea: {},
             form: {
                 multiple: this.multiple
             }
         }, options.uploader || {}));
-        this.state.files = jQuery.map(options.files || [], function(file) {
+
+        this.state.files = jQuery.map(options.files || [], function (file) {
             return new FileUp.models.File({
                 //path: file.folder + file.fileName,
                 path: file.title,
@@ -42,40 +43,71 @@ FileUp.Neatness.defineClass('FileUp.view.FileInputView', /** @lends FileUp.view.
                 resultHttpMessage: file
             });
         });
-        this.uploader.queue.on(FileUp.models.QueueCollection.EVENT_ADD, function(files) {
+        this.uploader.queue.add(this.state.files);
+
+        if (!this.multiple) {
+            this.uploader.queue.on(FileUp.models.QueueCollection.EVENT_ADD, function (addedFiles) {
+                var files = this.uploader.queue.getFiles();
+                var toRemove = [];
+                for (var i = 0, l = files.length; i < l; i++) {
+                    if (addedFiles.indexOf(files[i]) === -1) {
+                        toRemove.push(files[i]);
+                    }
+                }
+                this.uploader.queue.remove(toRemove);
+            }.bind(this));
+        }
+        this.uploader.queue.on([FileUp.models.QueueCollection.EVENT_ADD, FileUp.models.QueueCollection.EVENT_REMOVE, FileUp.models.QueueCollection.EVENT_ITEM_END], function () {
+            var files = this.uploader.queue.getFiles();
             this.setState({
-                files: this.multiple ? this.state.files.concat(files) : [files[0]]
+                files: !this.multiple && files.length > 0 ? [files[files.length - 1]] : files
             });
         }.bind(this));
-        this.uploader.queue.on(FileUp.models.QueueCollection.EVENT_ITEM_END, function(file) {
+    },
+
+    render: function () {
+        var queue = this.uploader.queue;
+        return (
+            <div className="FileUp-FileInputView">
+                {this._renderInputs()}
+                <div className="list-group" style={{display: this.state.files.length > 0 ? 'block' : 'none'}}>
+                    {jQuery.map(this.state.files, function(file) {
+                        return <FileUp.view.FileItem key={file.getUid()} file={file} queue={queue}/>
+                        })}
+                </div>
+                <button type="button" className="btn btn-primary" onClick={this._onClick.bind(this)}>Выбрать файл
+                </button>
+            </div>
+        );
+    },
+
+    _renderInputs: function() {
+        var uids = [];
+        jQuery.each(this.state.files, function (i, file) {
+            /** @typedef {FileUp.models.File} file */
             if (!file.isResultSuccess()) {
                 return;
             }
 
             var data = file.getResultHttpMessage();
-            if (!data.uid) {
+            if (typeof data !== 'object' || !data.uid) {
                 return;
             }
 
-            if (this.multiple) {
-                // @todo
-            } else {
-                this.inputElement.value = data.uid;
-            }
-        }.bind(this));
-    },
+            uids.push(data.uid);
+        });
 
-    render: function () {
-        return (
-            <div className="FileUp-FileInputView">
-                <div className="list-group" style={{display: this.state.files.length > 0 ? 'block' : 'none'}}>
-                    {jQuery.map(this.state.files, function(file) {
-                        return <FileUp.view.FileItem key={file.getUid()} file={file}/>
-                        })}
-                </div>
-                <button type="button" className="btn btn-primary" onClick={this._onClick.bind(this)}>Выбрать файл</button>
-            </div>
-        );
+        if (uids.length === 0 && !this.multiple) {
+            uids.push('');
+        }
+        uids = this.multiple ? uids : [uids[0]];
+        if (this.name.indexOf('[]') !== -1) {
+            return jQuery.map(uids, function (uid) {
+                return <input type='hidden' name={this.name} key={uid} value={uid} />;
+            }.bind(this));
+        } else {
+            return <input type='hidden' name={this.name} value={uids.join(',')} />;
+        }
     },
 
     _onClick: function (e) {

@@ -40,6 +40,11 @@ FileUp.Neatness.defineClass('FileUp.view.FileItem', /** @lends FileUp.view.FileI
 
     },
 
+    /**
+     * @type {FileUp.models.QueueCollection}
+     */
+    queue: null,
+
     state: {
 
         /**
@@ -51,6 +56,7 @@ FileUp.Neatness.defineClass('FileUp.view.FileItem', /** @lends FileUp.view.FileI
 
     constructor: function (options) {
         this.state.file = options.file;
+        this.queue = options.queue;
         options.file.on([FileUp.models.File.EVENT_STATUS, FileUp.models.File.EVENT_PROGRESS], function (file) {
             this.setState({file: file});
         }.bind(this));
@@ -62,14 +68,20 @@ FileUp.Neatness.defineClass('FileUp.view.FileItem', /** @lends FileUp.view.FileI
                 <div className="media">
                     {this._renderPreview()}
                     <div className="media-body">
+                        <button type="button" className="btn btn-sm btn-default pull-right" aria-label="Remove" onClick={this._onRemoveClick.bind(this)}
+                                style={{display: this.state.file.isStatusEnd() ? 'block' : 'none'}}>
+                            <span className="glyphicon glyphicon-remove" aria-hidden="true"/>
+                        </button>
                         <h4 className="media-heading">{this.state.file.getName()}</h4>
 
                         {this.state.file.isResultError() ? 'Ошибка: ' + this.state.file.getResultHttpMessage() : ''}
                         {this.state.file.isStatusProcess() ? this.__static.asHumanFileSize(this.state.file.getBytesUploaded()) + ' из ' : ''}
                         {this.__static.asHumanFileSize(this.state.file.getBytesTotal())}
 
-                        <div className="progress" style={{display: this.state.file.isStatusProcess() ? 'block' : 'none'}}>
-                            <div className="progress-bar" role="progressbar" aria-valuenow={this.state.file.progress.getPercent()} aria-valuemin="0"
+                        <div className="progress"
+                             style={{display: this.state.file.isStatusProcess() ? 'block' : 'none'}}>
+                            <div className="progress-bar" role="progressbar"
+                                 aria-valuenow={this.state.file.progress.getPercent()} aria-valuemin="0"
                                  aria-valuemax="100" style={{width: this.state.file.progress.getPercent() + '%'}}>
                                 {this.state.file.progress.getPercent()}%
                             </div>
@@ -97,6 +109,10 @@ FileUp.Neatness.defineClass('FileUp.view.FileItem', /** @lends FileUp.view.FileI
                 </a>
             </div>
         );
+    },
+
+    _onRemoveClick: function(e) {
+        this.queue.remove([this.state.file]);
     }
 
 });
