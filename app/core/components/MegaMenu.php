@@ -167,6 +167,11 @@ class MegaMenu extends Component {
         return $item;
     }
 
+    public function getItemUrl($item) {
+        $item = $this->getItem($item);
+        return $item ? $item['url'] : null;
+    }
+
     /**
      * @param array $items
      * @param int $level
@@ -298,7 +303,7 @@ class MegaMenu extends Component {
             $item['visible'] = self::normalizeVisible($item);
 
             if (!isset($item['active'])) {
-                $item['active'] = $this->isUrlEquals($item['url'], $this->getActiveItem());
+                $item['active'] = isset($item['url']) && $this->isUrlEquals($item['url'], $this->getActiveItem());
             }
 
             if (isset($item['items'])) {

@@ -27,6 +27,7 @@ composer install
 npm install
 ```
 
+And remove folders node_modules, vendor from .gitignore
 
 ### 4. Attach local services
 

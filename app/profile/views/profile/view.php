@@ -2,6 +2,7 @@
 
 namespace app\views;
 
+use app\profile\enums\UserRole;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -10,8 +11,8 @@ use yii\widgets\DetailView;
 ?>
 <h1>
     <?= Html::encode($userModel->name) ?>
-    <?php if (\Yii::$app->user->uid === $userModel->uid) { ?>
-        <small><?= Html::a('Редактировать профиль', ['/profile/profile-edit/index']) ?></small>
+    <?php if (\Yii::$app->user->uid === $userModel->uid || \Yii::$app->user->can(UserRole::ADMIN)) { ?>
+        <small><?= Html::a('Редактировать профиль', \Yii::$app->megaMenu->getItemUrl(['/profile/profile-edit/index'])) ?></small>
     <?php } ?>
 </h1>
 
