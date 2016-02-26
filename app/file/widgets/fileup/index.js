@@ -11,9 +11,10 @@ jQuery.fn.fileInput = function (options) {
         options.name = $(this).attr('name');
         $(this).remove();
 
-        ReactDOM.render(
+        var fileInput = ReactDOM.render(
             React.createElement(FileUp.view.FileInputView, options),
             container
         );
+        $(container).find('.FileUp-FileInputView').data('fileInput', fileInput);
     });
 };

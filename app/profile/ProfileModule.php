@@ -8,26 +8,27 @@ use app\profile\enums\UserRole;
 class ProfileModule extends AppModule {
 
     protected function coreUrlRules() {
+        $userUid = \Yii::$app->has('user') ? \Yii::$app->user->uid : null;
         return [
             [
                 'pattern' => 'profile/<userUid>/edit',
                 'route' => "$this->id/profile-edit/index",
                 'defaults' => [
-                    'userUid' => \Yii::$app->user->uid,
+                    'userUid' => $userUid,
                 ],
             ],
             [
                 'pattern' => 'profile/<userUid>/edit/<action>',
                 'route' => "$this->id/profile-edit/<action>",
                 'defaults' => [
-                    'userUid' => \Yii::$app->user->uid,
+                    'userUid' => $userUid,
                 ],
             ],
             [
                 'pattern' => 'profile/<userUid>',
                 'route' => "$this->id/profile/view",
                 'defaults' => [
-                    'userUid' => \Yii::$app->user->uid,
+                    'userUid' => $userUid,
                 ],
             ],
         ];

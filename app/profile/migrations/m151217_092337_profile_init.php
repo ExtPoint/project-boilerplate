@@ -36,13 +36,21 @@ class m151217_092337_profile_init extends Migration {
         $email = YII_DEBUG ? Yii::$app->controller->prompt('Please write you email (as administrator, password: 1):') : '';
         $email = $email ?: 'admin@boilerplate-yii2-k4nuj8';
 
-        // Add administrator
         $user = new \app\core\models\User();
-        $user->email = $email;
-        $user->name = 'Администратор';
         $user->password = $user->passwordToHash('1');
-        $user->role = \app\profile\enums\UserRole::ADMIN;
-        $user->saveOrPanic();
+
+        // Add administrator
+        Yii::$app->db->createCommand()
+            ->insert('users', [
+                'uid' => \app\core\behaviors\UidBehavior::generate(),
+                'email' => $email,
+                'name' => 'Администратор',
+                'salt' => $user->salt,
+                'password' => $user->password,
+                'role' => \app\profile\enums\UserRole::ADMIN,
+                'createTime' => date('Y-m-d H:i:s'),
+                'updateTime' => date('Y-m-d H:i:s'),
+            ]);
     }
 
     public function down() {

@@ -62,8 +62,12 @@ class MegaMenu extends Component {
         if ($this->_activeItem === null) {
 
             // Set active item
-            list($route, $params) = \Yii::$app->urlManager->parseRequest(\Yii::$app->request);
-            $this->_activeItem = ['/' . $route] + $params;
+            $parseInfo = \Yii::$app->urlManager->parseRequest(\Yii::$app->request);
+            if ($parseInfo) {
+                $this->_activeItem = ['/' . $parseInfo[0]] + $parseInfo[1];
+            } else {
+                $this->_activeItem = ['/' . \Yii::$app->errorHandler->errorAction];
+            }
         }
         return $this->_activeItem;
     }
@@ -113,10 +117,20 @@ class MegaMenu extends Component {
     /**
      * Get page title as breadcrumbs labels + site name
      * @param array|null $url Child url or route, default - current route
+     * @return string
+     */
+    public function getTitle($url = null) {
+        $titles = array_reverse($this->getBreadcrumbs($url));
+        return !empty($titles) ? reset($titles)['label'] : '';
+    }
+
+    /**
+     * Get page title as breadcrumbs labels + site name
+     * @param array|null $url Child url or route, default - current route
      * @param string $separator Separator, default is " - "
      * @return string
      */
-    public function getTitle($url = null, $separator = ' — ') {
+    public function getFullTitle($url = null, $separator = ' — ') {
         $title = [];
         foreach (array_reverse($this->getBreadcrumbs($url)) as $item) {
             $title[] = $item['label'];

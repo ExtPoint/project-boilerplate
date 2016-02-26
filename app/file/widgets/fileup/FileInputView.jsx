@@ -19,9 +19,14 @@ FileUp.Neatness.defineClass('FileUp.view.FileInputView', /** @lends FileUp.view.
 
     uploader: null,
 
+    buttonClass: 'btn btn-default',
+    buttonLabel: 'Выбрать файл',
+
     constructor: function (options) {
         this.multiple = !!options.multiple;
         this.name = options.name;
+        this.buttonClass = options.buttonClass || this.buttonClass;
+        this.buttonLabel = options.buttonLabel || this.buttonLabel;
         this.uploader = new FileUp(jQuery.extend({}, {
             dropArea: {},
             form: {
@@ -75,13 +80,14 @@ FileUp.Neatness.defineClass('FileUp.view.FileInputView', /** @lends FileUp.view.
                         return <FileUp.view.FileItem key={file.getUid()} file={file} queue={queue}/>
                         })}
                 </div>
-                <button type="button" className="btn btn-primary" onClick={this._onClick.bind(this)}>Выбрать файл
+                <button type="button" className={this.buttonClass} onClick={this._onClick.bind(this)}>
+                    {this.buttonLabel}
                 </button>
             </div>
         );
     },
 
-    _renderInputs: function() {
+    _renderInputs: function () {
         var uids = [];
         jQuery.each(this.state.files, function (i, file) {
             /** @typedef {FileUp.models.File} file */
@@ -103,10 +109,10 @@ FileUp.Neatness.defineClass('FileUp.view.FileInputView', /** @lends FileUp.view.
         uids = this.multiple ? uids : [uids[0]];
         if (this.name.indexOf('[]') !== -1) {
             return jQuery.map(uids, function (uid) {
-                return <input type='hidden' name={this.name} key={uid} value={uid} />;
+                return <input type='hidden' name={this.name} key={uid} value={uid}/>;
             }.bind(this));
         } else {
-            return <input type='hidden' name={this.name} value={uids.join(',')} />;
+            return <input type='hidden' name={this.name} value={uids.join(',')}/>;
         }
     },
 
