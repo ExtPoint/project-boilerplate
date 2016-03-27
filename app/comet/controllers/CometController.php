@@ -2,9 +2,9 @@
 
 namespace app\comet\controllers;
 
-use yii\web\Controller;
+use app\core\components\AppController;
 
-class CometController extends Controller {
+class CometController extends AppController {
 
     public function actionIndex() {
         return $this->render('index');

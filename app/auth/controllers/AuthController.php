@@ -4,10 +4,10 @@ namespace app\auth\controllers;
 
 use app\auth\models\LoginForm;
 use app\auth\models\RegistrationForm;
+use app\core\components\AppController;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 
-class AuthController extends Controller {
+class AuthController extends AppController {
 
     public function behaviors() {
         return [
