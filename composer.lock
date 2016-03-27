@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "30dbb4c096b30d11456afdc794d06f55",
-    "content-hash": "ceb195e68f90971166213fa82f97f2c9",
+    "hash": "cc8a215ff80fe882b6af8509dac4a098",
+    "content-hash": "beb1062d01efc327daa0142cd0aee9d1",
     "packages": [
         {
             "name": "bariew/yii2-module-migration-controller",
@@ -335,6 +335,39 @@
                 "markdown-extra"
             ],
             "time": "2015-03-06 05:28:07"
+        },
+        {
+            "name": "extpoint/base-yii2",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ExtPoint/extpoint-base-yii2.git",
+                "reference": "0eec68f2a221dbb81fdd28999f8c57c52ea260e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ExtPoint/extpoint-base-yii2/zipball/0eec68f2a221dbb81fdd28999f8c57c52ea260e0",
+                "reference": "0eec68f2a221dbb81fdd28999f8c57c52ea260e0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "lib-pcre": "*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "extpoint\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "ExtPoint utils for Yii2-based projects",
+            "time": "2016-03-27 10:30:56"
         },
         {
             "name": "ezyang/htmlpurifier",
