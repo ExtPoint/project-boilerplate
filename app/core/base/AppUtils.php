@@ -2,7 +2,7 @@
 
 namespace app\core\base;
 
-use extpoint\yii\Utils;
+use extpoint\yii2\Utils;
 
 /**
  * @package app\core\base

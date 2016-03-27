@@ -338,16 +338,16 @@
         },
         {
             "name": "extpoint/base-yii2",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/extpoint-base-yii2.git",
-                "reference": "0eec68f2a221dbb81fdd28999f8c57c52ea260e0"
+                "reference": "589c7243ce28ac0744ac015d75481ff34d76adac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/extpoint-base-yii2/zipball/0eec68f2a221dbb81fdd28999f8c57c52ea260e0",
-                "reference": "0eec68f2a221dbb81fdd28999f8c57c52ea260e0",
+                "url": "https://api.github.com/repos/ExtPoint/extpoint-base-yii2/zipball/589c7243ce28ac0744ac015d75481ff34d76adac",
+                "reference": "589c7243ce28ac0744ac015d75481ff34d76adac",
                 "shasum": ""
             },
             "require": {
@@ -367,7 +367,7 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2016-03-27 10:30:56"
+            "time": "2016-03-27 12:22:31"
         },
         {
             "name": "ezyang/htmlpurifier",

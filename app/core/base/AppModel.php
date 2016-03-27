@@ -2,7 +2,7 @@
 
 namespace app\core\base;
 
-use extpoint\yii\ActiveRecord;
+use extpoint\yii2\ActiveRecord;
 
 /**
  * @package app\core\base
