@@ -2,11 +2,11 @@
 
 namespace app\auth\controllers;
 
-use yii\web\Controller;
+use app\core\components\AppController;
 use app\auth\models\PasswordResetForm;
 use app\auth\models\PasswordRecoveryKeyForm;
 
-class RecoveryController extends Controller {
+class RecoveryController extends AppController {
 
     public function actions() {
         return [

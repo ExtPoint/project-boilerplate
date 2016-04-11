@@ -47,7 +47,7 @@ class PasswordRecoveryKeyForm extends Model {
         /** @var User $user */
         $user = User::findByLogin($this->email);
         $user->recoveryKey = Yii::$app->getSecurity()->generateRandomString(32);
-        $user->saveOrPanic(false);
+        $user->save(false);
 
         \Yii::$app->mailer
             ->compose('@app/auth/mail/recovery', [
