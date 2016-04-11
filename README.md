@@ -11,6 +11,7 @@ Replace in every file of the project:
 - For human-readable labels: Boilerplate Yii 2 k4nuj8
 - For urls/db/other ids: boilerplate-yii2-k4nuj8 (including this file)
 - Rename the project in IDE
+- Replace cookieValidationKey "q2%s2~5twSe2OkBJ8H6k6wUI@fe~Ah9|" to another random string
 
 
 ### 2. Web server

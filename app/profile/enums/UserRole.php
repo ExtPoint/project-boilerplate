@@ -1,9 +1,9 @@
 <?php
 namespace app\profile\enums;
 
-use app\core\base\Enum;
+use extpoint\yii2\base\AppEnum;
 
-class UserRole extends Enum {
+class UserRole extends AppEnum {
 
 	const USER = 'user';
 	const ADMIN = 'admin';

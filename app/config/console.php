@@ -8,7 +8,7 @@ return \yii\helpers\ArrayHelper::merge(
         'controllerNamespace' => 'app\commands',
         'controllerMap' => [
             'migrate' => [
-                'class' => '\app\core\commands\MigrationCommand',
+                'class' => '\extpoint\yii2\commands\MigrationCommand',
             ],
         ],
     ]

@@ -2,7 +2,7 @@
 
 namespace app\site;
 
-use app\core\base\AppModule;
+use extpoint\yii2\base\AppModule;
 
 class SiteModule extends AppModule {
 
@@ -14,27 +14,29 @@ class SiteModule extends AppModule {
         parent::bootstrap($app);
     }
 
-    protected function coreUrlRules() {
-        return [
-            '' => "$this->id/site/index",
-            'about' => "$this->id/site/about",
-        ];
-    }
-
     public function coreMenus() {
-        $items = [
-            ['label' => 'Главная', 'url' => ["/$this->id/site/index"]],
-            ['label' => 'О сайте', 'url' => ["/$this->id/site/about"]],
+        return [
+            [
+                'label' => 'Главная',
+                'url' => ["/$this->id/site/index"],
+                'urlRule' => '',
+            ],
+            [
+                'label' => 'О сайте',
+                'url' => ["/$this->id/site/about"],
+                'urlRule' => 'about',
+            ],
             [
                 'label' => 'Ошибка',
                 'url' => ["/$this->id/site/error"],
                 'visible' => false,
             ],
+            [
+                'label' => 'Gii',
+                'url' => ["/gii/default/index"],
+                'visible' => \Yii::$app->hasModule('gii'),
+            ],
         ];
-        if (\Yii::$app->hasModule('gii')) {
-            $items[] = ['label' => 'Gii', 'url' => ["/gii/default/index"]];
-        }
-        return $items;
     }
 
 }

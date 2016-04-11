@@ -12,7 +12,7 @@ use yii\widgets\DetailView;
 <h1>
     <?= Html::encode($userModel->name) ?>
     <?php if (\Yii::$app->user->uid === $userModel->uid || \Yii::$app->user->can(UserRole::ADMIN)) { ?>
-        <small><?= Html::a('Редактировать профиль', \Yii::$app->megaMenu->getItemUrl(['/profile/profile-edit/index'])) ?></small>
+        <small><?= Html::a('Редактировать профиль', ['/profile/profile-edit/index', 'userUid' => $userModel->uid]) ?></small>
     <?php } ?>
 </h1>
 

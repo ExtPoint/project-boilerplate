@@ -2,9 +2,9 @@
 
 namespace app\core\models;
 
-use app\core\base\AppModel;
-use app\core\behaviors\TimestampBehavior;
-use app\core\behaviors\UidBehavior;
+use extpoint\yii2\base\AppModel;
+use extpoint\yii2\behaviors\TimestampBehavior;
+use extpoint\yii2\behaviors\UidBehavior;
 use app\profile\enums\UserRole;
 use app\profile\models\UserInfo;
 use Yii;

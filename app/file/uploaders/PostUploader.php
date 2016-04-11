@@ -2,7 +2,7 @@
 
 namespace app\file\uploaders;
 
-use app\core\behaviors\UidBehavior;
+use extpoint\yii2\behaviors\UidBehavior;
 
 class PostUploader extends BaseUploader {
 

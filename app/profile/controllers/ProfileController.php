@@ -9,6 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
 class ProfileController extends Controller {
+
     public function behaviors() {
         return [
             'access' => [
@@ -41,11 +42,13 @@ class ProfileController extends Controller {
      * @throws NotFoundHttpException
      */
     public function actionView($userUid) {
+        /** @var User $userModel */
         $userModel = User::findOne($userUid);
         if (!$userModel) {
             throw new NotFoundHttpException();
         }
 
+        Yii::$app->megaMenu->getActiveItem()->label = $userModel->name;
         return $this->render('view', [
             'userModel' => $userModel,
         ]);

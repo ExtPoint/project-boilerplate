@@ -2,10 +2,10 @@
 
 namespace app\profile\models;
 
-use app\core\base\AppModel;
-use app\core\behaviors\BirthdayBehavior;
+use extpoint\yii2\base\AppModel;
+use extpoint\yii2\behaviors\BirthdayBehavior;
 use app\core\models\User;
-use app\core\validators\PhoneValidator;
+use extpoint\yii2\validators\PhoneValidator;
 use app\profile\enums\UserRole;
 use Yii;
 use yii\validators\DateValidator;

@@ -2,8 +2,8 @@
 
 namespace app\file\models;
 
-use app\core\base\AppModel;
-use app\core\behaviors\TimestampBehavior;
+use extpoint\yii2\base\AppModel;
+use extpoint\yii2\behaviors\TimestampBehavior;
 use app\file\processors\ImageCrop;
 use app\file\processors\ImageCropResize;
 use app\file\processors\ImageResize;
@@ -104,12 +104,12 @@ class ImageMeta extends AppModel {
 
 	/**
 	 * @param $fileUid
-	 * @param $processorName
+	 * @param string [$processorName]
 	 * @return ImageMeta
 	 * @throws FileException
 	 * @throws \yii\base\Exception
 	 */
-	public static function findByProcessor($fileUid, $processorName) {
+	public static function findByProcessor($fileUid, $processorName = FileModule::PROCESSOR_NAME_DEFAULT) {
 		// Check already exists
 		/** @var self $imageMeta */
 		$imageMeta = self::findOne([

@@ -1,6 +1,26 @@
 <?php
 
-require_once __DIR__ . '/../core/components/ModuleLoader.php';
+\Yii::$container->set(\dosamigos\ckeditor\CKEditor::className(), [
+    'clientOptions' => [
+        'toolbarGroups' => [
+            ['name' => 'styles'],
+            ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
+            ['name' => 'document', 'groups' => ['mode']],
+            ['name' => 'links'],
+            ['name' => 'forms'],
+            ['name' => 'tools'],
+            ['name' => 'tools'],
+            '/',
+            ['name' => 'basicstyles', 'groups' => ['basicstyles', 'colors','cleanup']],
+            ['name' => 'paragraph', 'groups' => [ 'list', 'indent', 'blocks', 'align', 'bidi' ]],
+            ['name' => 'insert'],
+        ],
+        'removeButtons' => 'Form,Checkbox,Radio,TextField,Textarea,Select,Button,HiddenField',
+        'extraPlugins' => 'filebrowser',
+        'filebrowserUploadUrl' => '/cms/page/upload/'
+    ],
+    'preset' => 'custom',
+]);
 
 return [
     'id' => 'boilerplate-yii2-k4nuj8',
@@ -8,7 +28,7 @@ return [
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
-    'bootstrap' => \app\core\components\ModuleLoader::getBootstrap() + ['log'],
+    'bootstrap' => \extpoint\yii2\components\ModuleLoader::getBootstrap(dirname(__DIR__)) + ['log'],
     'language' => 'ru',
     'components' => [
         'cache' => [
@@ -63,10 +83,10 @@ return [
             'suffix' => '/',
         ],
         'megaMenu'=> [
-            'class' => '\app\core\components\MegaMenu',
+            'class' => '\extpoint\yii2\components\MegaMenu',
         ],
     ],
-    'modules' => \app\core\components\ModuleLoader::getConfig(),
+    'modules' => \extpoint\yii2\components\ModuleLoader::getConfig(dirname(__DIR__)),
     'params' => [
         'adminEmail' => '',
     ],

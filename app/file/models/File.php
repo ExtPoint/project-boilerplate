@@ -2,9 +2,9 @@
 
 namespace app\file\models;
 
-use app\core\base\AppModel;
-use app\core\behaviors\TimestampBehavior;
-use app\core\behaviors\UidBehavior;
+use extpoint\yii2\base\AppModel;
+use extpoint\yii2\behaviors\TimestampBehavior;
+use extpoint\yii2\behaviors\UidBehavior;
 use app\file\FileException;
 use app\file\FileModule;
 use yii\helpers\Url;

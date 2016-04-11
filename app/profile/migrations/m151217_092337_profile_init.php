@@ -42,7 +42,7 @@ class m151217_092337_profile_init extends Migration {
         // Add administrator
         Yii::$app->db->createCommand()
             ->insert('users', [
-                'uid' => \app\core\behaviors\UidBehavior::generate(),
+                'uid' => \extpoint\yii2\behaviors\UidBehavior::generate(),
                 'email' => $email,
                 'name' => 'Администратор',
                 'salt' => $user->salt,

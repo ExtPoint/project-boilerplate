@@ -2,7 +2,7 @@
 
 namespace app\views;
 
-use app\core\components\MegaMenu;
+use extpoint\yii2\components\MegaMenu;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
