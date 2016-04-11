@@ -48,7 +48,7 @@ class AuthModule extends AppModule {
                 ],
             ],
             [
-                'label' => \Yii::t('app', 'Выход ({name})', ['name' => \Yii::$app->user->name]),
+                'label' => \Yii::t('app', 'Выход ({name})', ['name' => \Yii::$app->has('user') ? \Yii::$app->user->name : '']),
                 'url' => ["/$this->id/auth/logout"],
                 'urlRule' => 'logout',
                 'linkOptions' => ['data-method' => 'post'],

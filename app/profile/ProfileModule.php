@@ -12,33 +12,33 @@ class ProfileModule extends AppModule {
             'admin' => [
                 'label' => 'Администрирование',
                 'roles' => UserRole::ADMIN,
-                'urlRule' => 'admin/profiles',
                 'items' => [
                     [
                         'label' => 'Пользователи',
                         'url' => ["/$this->id/$this->id-admin/index"],
+                        'urlRule' => 'admin/profiles',
                     ],
                 ]
             ],
             [
                 'label' => 'Мой профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => \Yii::$app->user->uid],
+                'url' => ["/$this->id/$this->id/view", 'userUid' => \Yii::$app->has('user') ? \Yii::$app->user->uid : null],
                 'urlRule' => 'profile',
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->user->uid],
+                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->has('user') ? \Yii::$app->user->uid : null],
                         'urlRule' => 'profile/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->user->uid],
+                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->has('user') ? \Yii::$app->user->uid : null],
                                 'urlRule' => 'profile/edit',
                             ],
                             [
                                 'label' => 'Пароль',
-                                'url' => ["/$this->id/$this->id-edit/password", 'userUid' => \Yii::$app->user->uid],
+                                'url' => ["/$this->id/$this->id-edit/password", 'userUid' => \Yii::$app->has('user') ? \Yii::$app->user->uid : null],
                                 'urlRule' => 'profile/edit/password',
                             ],
                         ],

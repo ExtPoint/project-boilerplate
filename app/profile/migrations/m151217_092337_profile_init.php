@@ -50,7 +50,8 @@ class m151217_092337_profile_init extends Migration {
                 'role' => \app\profile\enums\UserRole::ADMIN,
                 'createTime' => date('Y-m-d H:i:s'),
                 'updateTime' => date('Y-m-d H:i:s'),
-            ]);
+            ])
+            ->execute();
     }
 
     public function down() {
