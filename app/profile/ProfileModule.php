@@ -47,19 +47,19 @@ class ProfileModule extends AppModule {
             ],
             [
                 'label' => 'Профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => \Yii::$app->request->get('userUid')],
+                'url' => ["/$this->id/$this->id/view", 'userUid' => \Yii::$app->has('request') ? \Yii::$app->request->get('userUid') : null],
                 'urlRule' => 'profile/<userUid>',
                 'visible' => false,
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->request->get('userUid')],
+                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->has('request') ? \Yii::$app->request->get('userUid') : null],
                         'urlRule' => 'profile/<userUid>/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->request->get('userUid')],
+                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->has('request') ? \Yii::$app->request->get('userUid') : null],
                                 'urlRule' => 'profile/<userUid>/edit',
                             ],
                         ],

@@ -30,7 +30,7 @@ class ContentModule extends AppModule {
                             ],
                             [
                                 'label' => 'Редактирование',
-                                'url' => ["/$this->id/$this->id-admin/update", 'type' => ContentType::NEWS, 'uid' => \Yii::$app->request->get('uid')],
+                                'url' => ["/$this->id/$this->id-admin/update", 'type' => ContentType::NEWS, 'uid' => \Yii::$app->has('request') ? \Yii::$app->request->get('uid') : null],
                                 'urlRule' => 'admin/news/update/<uid>',
                             ],
                         ],
@@ -51,7 +51,7 @@ class ContentModule extends AppModule {
                             ],
                             [
                                 'label' => 'Редактирование',
-                                'url' => ["/$this->id/$this->id-admin/update", 'type' => ContentType::PAGE, 'uid' => \Yii::$app->request->get('uid')],
+                                'url' => ["/$this->id/$this->id-admin/update", 'type' => ContentType::PAGE, 'uid' => \Yii::$app->has('request') ? \Yii::$app->request->get('uid') : null],
                                 'urlRule' => 'admin/pages/update/<uid>',
                             ],
                         ],
@@ -72,7 +72,7 @@ class ContentModule extends AppModule {
                             ],
                             [
                                 'label' => 'Редактирование',
-                                'url' => ["/$this->id/$this->id-admin/update", 'type' => ContentType::TEXT, 'uid' => \Yii::$app->request->get('uid')],
+                                'url' => ["/$this->id/$this->id-admin/update", 'type' => ContentType::TEXT, 'uid' => \Yii::$app->has('request') ? \Yii::$app->request->get('uid') : null],
                                 'urlRule' => 'admin/texts/update/<uid>',
                             ],
                         ],
@@ -86,7 +86,7 @@ class ContentModule extends AppModule {
                 'items' => [
                     [
                         'label' => 'Просмотр',
-                        'url' => ["/$this->id/$this->id/view", 'type' => ContentType::NEWS, 'uid' => \Yii::$app->request->get('uid')],
+                        'url' => ["/$this->id/$this->id/view", 'type' => ContentType::NEWS, 'uid' => \Yii::$app->has('request') ? \Yii::$app->request->get('uid') : null],
                             'urlRule' => 'news/<uid>',
                     ],
                 ]
