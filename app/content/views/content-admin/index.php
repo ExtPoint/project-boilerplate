@@ -26,7 +26,7 @@ use yii\grid\GridView;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'title',
-            'category',
+            'name',
             'isPublished:boolean',
             'createTime:dateTime',
             [
