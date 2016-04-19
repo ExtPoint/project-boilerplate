@@ -43,6 +43,7 @@ use yii\widgets\ActiveForm;
             }
             ?>
             <?= $form->field($model, 'isPublished')->checkbox() ?>
+            <?php if (YII_DEBUG) echo Html::checkbox('createMigration', true, ['label' => 'Создать миграцию']); ?>
         </div>
     </div>
     <?php

@@ -2,6 +2,7 @@
 
 namespace app\content\controllers;
 
+use app\content\models\ContentText;
 use app\profile\enums\UserRole;
 use Yii;
 use app\content\models\Content;
@@ -56,6 +57,10 @@ class ContentAdminController extends Controller {
         $model->creatorUserUid = Yii::$app->user->uid;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($type == 'text' && Yii::$app->request->post('createMigration')) {
+                $textModel = ContentText::findOne($model->uid);
+                $textModel->createMigration();
+            }
             return $this->redirect(['index', 'type' => $model->type]);
         }
 
