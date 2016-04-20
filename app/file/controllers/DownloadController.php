@@ -16,9 +16,20 @@ class DownloadController extends AppController {
             throw new NotFoundHttpException();
         }
 
-        \Yii::$app->response->xSendFile($file->path, $file->downloadName, [
-            'xHeader' => FileModule::getInstance()->xHeader,
-        ]);
+        if (FileModule::getInstance()->xHeader !== false) {
+            \Yii::$app->response->xSendFile($file->path, $file->downloadName, [
+                'xHeader' => FileModule::getInstance()->xHeader,
+            ]);
+        } else {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . $file->getDownloadName() . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file->path));
+            readfile($file->path);
+        }
     }
 
 }

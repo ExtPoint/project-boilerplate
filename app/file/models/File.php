@@ -64,7 +64,7 @@ class File extends AppModel {
 		return [
 			['isTemp', 'boolean'],
 			['title', 'filter', 'filter' => function($value) {
-				return pathinfo($value, PATHINFO_BASENAME);
+                return preg_replace('/^[^\\\\\/]*[\\\\\/]/', '', $value);
 			}],
 			['title', 'string', 'max' => 255],
 			['folder', 'match', 'pattern' => '/^[a-z0-9+-_\/.]+$/i'],

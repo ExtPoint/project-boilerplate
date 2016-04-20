@@ -40,7 +40,7 @@ class FileModule extends AppModule {
 	 * The name of the x-sendfile header
 	 * @var string
 	 */
-	public $xHeader;
+	public $xHeader = false;
 
 	/**
 	 * Maximum file size limit
