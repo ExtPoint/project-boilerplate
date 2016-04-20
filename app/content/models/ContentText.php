@@ -15,20 +15,18 @@ class ContentText extends Content {
         ]);
     }
 
-    public static function render($name, $titleTag = false) {
+    public static function render($name, $titleTag = null) {
         $model = self::findOne([
             'type' => ContentType::TEXT,
             'name' => $name,
         ]);
         
-        $result = '';
-        
         if ($model && $model->isPublished) {
-            $tag = ($titleTag) ? Html::tag($titleTag, $model->title) : '';
-            $result = $tag . $model->text;
+            $tag = $titleTag ? Html::tag($titleTag, $model->title) : '';
+            return $tag . $model->text;
         }
         
-        return $result;
+        return '';
     }
     
     public function createMigration() {
@@ -60,8 +58,7 @@ class ContentText extends Content {
             }
         ";
 
-        $path = substr($_SERVER['DOCUMENT_ROOT'], 0, strrpos($_SERVER['DOCUMENT_ROOT'], '/'));
-        file_put_contents($path . "/app/content/migrations/$migrationName.php", $content);
+        file_put_contents(Yii::getAlias('@app') . "/content/migrations/$migrationName.php", $content);
 
         Yii::$app->db->createCommand()->insert('migration', [
             'version' => $migrationName,
