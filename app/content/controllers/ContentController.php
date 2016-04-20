@@ -4,6 +4,7 @@ namespace app\content\controllers;
 
 use app\content\forms\ContentSearch;
 use app\content\models\Content;
+use app\content\models\ContentPage;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
@@ -32,6 +33,19 @@ class ContentController extends Controller {
 
         return $this->render('view', [
             'contentModel' => $contentModel,
+        ]);
+    }
+
+    public function actionPageView($name) {
+        /** @var ContentPage $contentPageModel */
+        $contentPageModel = Content::findOne(['name' => $name]);
+        if (!$contentPageModel) {
+            throw new NotFoundHttpException();
+        }
+
+        Yii::$app->megaMenu->getActiveItem()->label = $contentPageModel->title;
+        return $this->render('page-view', [
+            'contentPageModel' => $contentPageModel,
         ]);
     }
 

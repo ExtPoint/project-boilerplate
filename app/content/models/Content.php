@@ -73,11 +73,11 @@ class Content extends AppModel {
     public function rules() {
         return [
             [['creatorUserUid', 'title', 'text'], 'required'],
-            [['previewText', 'text'], 'string'],
+            [['text', 'name'], 'string'],
             ['isPublished', 'boolean'],
             [['uid', 'creatorUserUid'], 'string', 'max' => 36],
-            [['type', 'category', 'title', 'image'], 'string', 'max' => 255],
-            ['type', 'unique', 'filter' => function($query) {
+            [['type', 'title'], 'string', 'max' => 255],
+            ['name', 'unique', 'filter' => function($query) {
                 /** @type Query $query */
                 $query->andWhere(['type' => $this->type]);
             }],

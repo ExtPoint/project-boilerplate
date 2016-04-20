@@ -2,6 +2,7 @@
 
 namespace app\content\enums;
 
+use app\content\models\ContentNews;
 use app\content\models\ContentPage;
 use app\content\models\ContentText;
 use extpoint\yii2\base\AppEnum;
@@ -26,6 +27,7 @@ class ContentType extends AppEnum {
         $map = [
             self::TEXT => ContentText::className(),
             self::PAGE => ContentPage::className(),
+            self::NEWS => ContentNews::className(),
         ];
         return isset($map[$id]) ? $map[$id] : null;
     }
