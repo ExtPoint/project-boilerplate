@@ -2,7 +2,7 @@
 
 namespace app\profile\models;
 
-use extpoint\yii2\base\AppModel;
+use app\core\base\AppModel;
 use extpoint\yii2\behaviors\BirthdayBehavior;
 use app\core\models\User;
 use extpoint\yii2\validators\PhoneValidator;

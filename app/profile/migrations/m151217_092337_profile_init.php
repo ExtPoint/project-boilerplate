@@ -40,9 +40,10 @@ class m151217_092337_profile_init extends Migration {
         $user->password = $user->passwordToHash('1');
 
         // Add administrator
+        $uid = \extpoint\yii2\behaviors\UidBehavior::generate();
         Yii::$app->db->createCommand()
             ->insert('users', [
-                'uid' => \extpoint\yii2\behaviors\UidBehavior::generate(),
+                'uid' => $uid,
                 'email' => $email,
                 'name' => 'Администратор',
                 'salt' => $user->salt,
@@ -50,6 +51,11 @@ class m151217_092337_profile_init extends Migration {
                 'role' => \app\profile\enums\UserRole::ADMIN,
                 'createTime' => date('Y-m-d H:i:s'),
                 'updateTime' => date('Y-m-d H:i:s'),
+            ])
+            ->execute();
+        Yii::$app->db->createCommand()
+            ->insert('users_info', [
+                'userUid' => $uid,
             ])
             ->execute();
     }

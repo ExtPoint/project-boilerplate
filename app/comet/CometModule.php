@@ -2,7 +2,7 @@
 
 namespace app\comet;
 
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 use yii\base\Event;
 use yii\db\ActiveRecord;
 

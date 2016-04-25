@@ -2,7 +2,7 @@
 
 namespace app\comet\controllers;
 
-use extpoint\yii2\base\AppController;
+use app\core\base\AppController;
 
 class CometController extends AppController {
 

@@ -2,7 +2,7 @@
 
 namespace app\profile;
 
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 use app\profile\enums\UserRole;
 
 class ProfileModule extends AppModule {
@@ -47,19 +47,19 @@ class ProfileModule extends AppModule {
             ],
             [
                 'label' => 'Профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => \Yii::$app->has('request') ? \Yii::$app->request->get('userUid') : null],
+                'url' => ["/$this->id/$this->id/view", 'userUid' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('userUid') : null],
                 'urlRule' => 'profile/<userUid>',
                 'visible' => false,
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->has('request') ? \Yii::$app->request->get('userUid') : null],
+                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('userUid') : null],
                         'urlRule' => 'profile/<userUid>/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->has('request') ? \Yii::$app->request->get('userUid') : null],
+                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('userUid') : null],
                                 'urlRule' => 'profile/<userUid>/edit',
                             ],
                         ],

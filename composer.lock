@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "0e0350728c7f6ff64ca961446d382ccc",
-    "content-hash": "87f19ac89a453dda85769fd1c8ffcc5e",
+    "hash": "5583de4068f676391f5881c7cdd1a0e7",
+    "content-hash": "d215215ce8d16d10d2754691eeb8c62e",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -379,16 +379,16 @@
         },
         {
             "name": "extpoint/yii2-core",
-            "version": "v1.1.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-core.git",
-                "reference": "f23d93f47ca234df3634e4f5580aafc5c315fffe"
+                "reference": "3eb0d17cae663f6871131a556e9ce498ab84ae18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/f23d93f47ca234df3634e4f5580aafc5c315fffe",
-                "reference": "f23d93f47ca234df3634e4f5580aafc5c315fffe",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/32ad52efe917830e7caedf17cdd98982e22828d7",
+                "reference": "3eb0d17cae663f6871131a556e9ce498ab84ae18",
                 "shasum": ""
             },
             "require": {
@@ -409,7 +409,7 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2016-04-08 01:22:02"
+            "time": "2016-04-25 05:57:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -2362,8 +2362,10 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
-    "stability-flags": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "extpoint/yii2-core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

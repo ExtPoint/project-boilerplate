@@ -2,7 +2,7 @@
 
 namespace app\file;
 
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 use app\file\models\File;
 use app\file\uploaders\BaseUploader;
 use yii\helpers\ArrayHelper;

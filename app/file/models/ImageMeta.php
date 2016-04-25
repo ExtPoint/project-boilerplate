@@ -2,7 +2,7 @@
 
 namespace app\file\models;
 
-use extpoint\yii2\base\AppModel;
+use app\core\base\AppModel;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use app\file\processors\ImageCrop;
 use app\file\processors\ImageCropResize;

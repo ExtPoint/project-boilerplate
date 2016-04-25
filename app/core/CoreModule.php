@@ -3,7 +3,7 @@
 namespace app\core;
 
 use app\core\base\WebApplication;
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 use yii\helpers\FormatConverter;
 
 class CoreModule extends AppModule {

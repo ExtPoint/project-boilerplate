@@ -2,7 +2,7 @@
 
 namespace app\site;
 
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 
 class SiteModule extends AppModule {
 
