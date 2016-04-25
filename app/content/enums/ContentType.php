@@ -5,9 +5,9 @@ namespace app\content\enums;
 use app\content\models\ContentNews;
 use app\content\models\ContentPage;
 use app\content\models\ContentText;
-use extpoint\yii2\base\AppEnum;
+use extpoint\yii2\base\Enum;
 
-class ContentType extends AppEnum {
+class ContentType extends Enum {
 
     const NEWS = 'news';
     const ARTICLE = 'article';

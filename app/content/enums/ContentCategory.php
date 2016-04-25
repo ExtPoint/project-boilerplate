@@ -2,9 +2,9 @@
 
 namespace app\content\enums;
 
-use extpoint\yii2\base\AppEnum;
+use extpoint\yii2\base\Enum;
 
-class ContentCategory extends AppEnum {
+class ContentCategory extends Enum {
 
     const ON_START_PAGE = 'on_start_page';
 
