@@ -13,23 +13,14 @@ use yii\db\ActiveRecord;
 use yii\db\Query;
 
 /**
- * @property string $uid
- * @property string $creatorUserUid
  * @property string $type
  * @property string $category
  * @property string $image
- * @property string $name
- * @property string $title
  * @property string $previewText
- * @property string $text
- * @property integer $isPublished
- * @property string $publishTime
- * @property string $createTime
- * @property string $updateTime
  * @property-read string $imageUrl
  * @property-read string $imageBigUrl
  */
-class Content extends AppModel {
+class Content extends BaseContent {
 
     /**
      * @inheritdoc
@@ -46,42 +37,16 @@ class Content extends AppModel {
     /**
      * @inheritdoc
      */
-    public function behaviors() {
-        return [
-            UidBehavior::className(),
-            TimestampBehavior::className(),
-            [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_INIT => 'isPublished',
-                ],
-                'value' => true
-            ],
-            [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_INIT => 'publishTime',
-                ],
-                'value' => date('Y-m-d H:i')
-            ],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
     public function rules() {
-        return [
-            [['creatorUserUid', 'title', 'text'], 'required'],
-            [['text', 'name'], 'string'],
-            ['isPublished', 'boolean'],
-            [['uid', 'creatorUserUid'], 'string', 'max' => 36],
-            [['type', 'title'], 'string', 'max' => 255],
+        return array_merge(parent::rules(), [
+            [['type'], 'required'],
+            [['type', 'category'], 'string', 'max' => 255],
+            [['image', 'previewText'], 'string'],
             ['name', 'unique', 'filter' => function($query) {
                 /** @type Query $query */
                 $query->andWhere(['type' => $this->type]);
             }],
-        ];
+        ]);
     }
 
     /**

@@ -6,15 +6,17 @@ use app\content\enums\ContentType;
 use Yii;
 use yii\helpers\Html;
 
-class ContentText extends Content {
+class TextSection extends BaseContent {
 
-    public function attributes() {
-        return array_diff(parent::attributes(), [
-            'category',
-            'previewText',
-        ]);
+    public static function tableName() {
+        return 'texts';
     }
 
+    /**
+     * @param string $name
+     * @param null|string $titleTag
+     * @return string
+     */
     public static function render($name, $titleTag = null) {
         $model = self::findOne([
             'type' => ContentType::TEXT,
