@@ -3,7 +3,6 @@
 namespace app\content\controllers;
 
 use app\content\enums\ContentType;
-use app\content\models\ContentText;
 use app\profile\enums\UserRole;
 use Yii;
 use app\content\models\Content;

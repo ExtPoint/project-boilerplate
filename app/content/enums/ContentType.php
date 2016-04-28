@@ -2,9 +2,9 @@
 
 namespace app\content\enums;
 
-use app\content\models\ContentNews;
-use app\content\models\ContentPage;
-use app\content\models\ContentText;
+use app\content\models\Content;
+use app\content\models\Page;
+use app\content\models\TextSection;
 use extpoint\yii2\base\Enum;
 
 class ContentType extends Enum {
@@ -25,9 +25,9 @@ class ContentType extends Enum {
 
     public static function getClassName($id) {
         $map = [
-            self::TEXT => ContentText::className(),
-            self::PAGE => ContentPage::className(),
-            self::NEWS => ContentNews::className(),
+            self::TEXT => TextSection::className(),
+            self::PAGE => Page::className(),
+            self::NEWS => Content::className(),
         ];
         return isset($map[$id]) ? $map[$id] : null;
     }

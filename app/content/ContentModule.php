@@ -99,7 +99,7 @@ class ContentModule extends AppModule {
                     [
                         'label' => 'Просмотр',
                         'url' => ["/$this->id/$this->id/page-view", 'type' => ContentType::PAGE, 'name' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('name') : null],
-                        'urlRule' => '<name:[a-zA-Z0-9\/-]+>',
+                        //'urlRule' => '<name:[a-zA-Z0-9\/-]+>',
                     ],
                 ]
             ],

@@ -2,15 +2,12 @@
 
 namespace app\content\models;
 
-use app\content\enums\ContentType;
-use app\file\models\ImageMeta;
-use extpoint\yii2\base\AppModel;
+use app\core\base\AppModel;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use extpoint\yii2\behaviors\UidBehavior;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
-use yii\db\Query;
 
 /**
  * @property string $uid
