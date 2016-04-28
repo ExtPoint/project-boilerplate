@@ -2,7 +2,7 @@
 
 namespace app\file\models;
 
-use extpoint\yii2\base\AppModel;
+use app\core\base\AppModel;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use extpoint\yii2\behaviors\UidBehavior;
 use app\file\FileException;

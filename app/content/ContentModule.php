@@ -4,7 +4,7 @@ namespace app\content;
 
 use app\content\enums\ContentType;
 use app\profile\enums\UserRole;
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 use yii\web\Request;
 
 class ContentModule extends AppModule {

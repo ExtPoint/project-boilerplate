@@ -2,7 +2,7 @@
 
 namespace app\auth\controllers;
 
-use app\core\components\AppController;
+use app\core\base\AppController;
 use app\auth\models\PasswordResetForm;
 use app\auth\models\PasswordRecoveryKeyForm;
 

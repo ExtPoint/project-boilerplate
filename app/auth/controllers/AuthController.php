@@ -4,7 +4,7 @@ namespace app\auth\controllers;
 
 use app\auth\models\LoginForm;
 use app\auth\models\RegistrationForm;
-use extpoint\yii2\base\AppController;
+use app\core\base\AppController;
 use yii\filters\AccessControl;
 
 class AuthController extends AppController {

@@ -4,7 +4,7 @@ namespace app\file\controllers;
 
 use app\file\FileModule;
 use app\file\models\File;
-use extpoint\yii2\base\AppController;
+use app\core\base\AppController;
 use yii\web\NotFoundHttpException;
 
 class DownloadController extends AppController {

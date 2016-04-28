@@ -2,7 +2,7 @@
 
 namespace app\auth;
 
-use extpoint\yii2\base\AppModule;
+use app\core\base\AppModule;
 
 class AuthModule extends AppModule {
 
