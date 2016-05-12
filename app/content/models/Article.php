@@ -4,9 +4,6 @@ namespace app\content\models;
 
 use app\content\enums\ContentType;
 use app\file\models\ImageMeta;
-use app\core\base\AppModel;
-use extpoint\yii2\behaviors\TimestampBehavior;
-use extpoint\yii2\behaviors\UidBehavior;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
@@ -17,21 +14,34 @@ use yii\db\Query;
  * @property string $category
  * @property string $image
  * @property string $previewText
+ * @property string $publishTime
  * @property-read string $imageUrl
  * @property-read string $imageBigUrl
  */
-class Content extends BaseContent {
+class Article extends BaseContent {
 
-    /**
-     * @inheritdoc
-     */
     public static function tableName() {
-        return 'contents';
+        return 'content_articles';
     }
 
     public static function instantiate($row) {
         $className = ContentType::getClassName($row['type']) ?: self::className();
-        return new $className;
+        return new $className();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors() {
+        return array_merge(parent::behaviors(), [
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_INIT => 'publishTime',
+                ],
+                'value' => date('Y-m-d H:i')
+            ],
+        ]);
     }
 
     /**
@@ -42,6 +52,7 @@ class Content extends BaseContent {
             [['type'], 'required'],
             [['type', 'category'], 'string', 'max' => 255],
             [['image', 'previewText'], 'string'],
+            ['publishTime', 'string', 'max' => 255], // @todo date
             ['name', 'unique', 'filter' => function($query) {
                 /** @type Query $query */
                 $query->andWhere(['type' => $this->type]);
@@ -53,20 +64,12 @@ class Content extends BaseContent {
      * @inheritdoc
      */
     public function attributeLabels() {
-        return [
-            'uid' => 'UID',
-            'type' => 'Тип',
-            'category' => 'Категория',
-            'image' => 'Картинка',
-            'name' => 'Имя латиницей',
-            'title' => 'Заголовок',
-            'previewText' => 'Анонс',
-            'text' => 'Текст',
-            'isPublished' => 'Опубликована?',
-            'publishTime' => 'Время публикации',
-            'createTime' => 'Дата создания',
-            'updateTime' => 'Дата редактирования',
-        ];
+        return array_merge(parent::attributeLabels(), [
+            'previewText' => \Yii::t('app', 'Анонс'),
+            'image' => \Yii::t('app', 'Изображение'),
+            'category' => \Yii::t('app', 'Категория'),
+            'publishTime' => \Yii::t('app', 'Время публикации'),
+        ]);
     }
 
     /**

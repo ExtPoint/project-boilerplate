@@ -2,7 +2,9 @@
 
 namespace app\content\models;
 
+use app\content\validators\ContentNameValidator;
 use app\core\base\AppModel;
+use app\core\models\User;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use extpoint\yii2\behaviors\UidBehavior;
 use Yii;
@@ -16,9 +18,9 @@ use yii\db\ActiveRecord;
  * @property string $title
  * @property string $text
  * @property integer $isPublished
- * @property string $publishTime
  * @property string $createTime
  * @property string $updateTime
+ * @property-read User $creator
  */
 abstract class BaseContent extends AppModel {
 
@@ -36,13 +38,6 @@ abstract class BaseContent extends AppModel {
                 ],
                 'value' => true
             ],
-            [
-                'class' => AttributeBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_INIT => 'publishTime',
-                ],
-                'value' => date('Y-m-d H:i')
-            ],
         ];
     }
 
@@ -52,7 +47,8 @@ abstract class BaseContent extends AppModel {
     public function rules() {
         return [
             [['creatorUserUid', 'title', 'text'], 'required'],
-            [['text', 'name'], 'string'],
+            ['text', 'string'],
+            ['name', ContentNameValidator::className()],
             ['isPublished', 'boolean'],
             [['uid', 'creatorUserUid'], 'string', 'max' => 36],
             ['title', 'string', 'max' => 255],
@@ -64,15 +60,18 @@ abstract class BaseContent extends AppModel {
      */
     public function attributeLabels() {
         return [
-            'uid' => 'UID',
-            'name' => 'Имя латиницей',
-            'title' => 'Заголовок',
-            'text' => 'Текст',
-            'isPublished' => 'Опубликована?',
-            'publishTime' => 'Время публикации',
-            'createTime' => 'Дата создания',
-            'updateTime' => 'Дата редактирования',
+            'uid' => \Yii::t('app', 'UID'),
+            'name' => \Yii::t('app', 'Имя латиницей'),
+            'title' => \Yii::t('app', 'Заголовок'),
+            'text' => \Yii::t('app', 'Текст'),
+            'isPublished' => \Yii::t('app', 'Опубликована?'),
+            'createTime' => \Yii::t('app', 'Дата создания'),
+            'updateTime' => \Yii::t('app', 'Дата редактирования'),
         ];
+    }
+
+    public function getCreator() {
+        return $this->hasOne(User::className(), ['uid' => 'creatorUserUid']);
     }
 
 }

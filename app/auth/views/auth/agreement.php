@@ -6,7 +6,6 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model app\auth\models\LoginForm */
 
-$this->title = 'Пользовательское соглашение';
 ?>
 <div class="m-auth">
 

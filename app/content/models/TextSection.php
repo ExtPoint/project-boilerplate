@@ -2,14 +2,13 @@
 
 namespace app\content\models;
 
-use app\content\enums\ContentType;
 use Yii;
 use yii\helpers\Html;
 
 class TextSection extends BaseContent {
 
     public static function tableName() {
-        return 'texts';
+        return 'content_texts';
     }
 
     /**
@@ -19,12 +18,11 @@ class TextSection extends BaseContent {
      */
     public static function render($name, $titleTag = null) {
         $model = self::findOne([
-            'type' => ContentType::TEXT,
             'name' => $name,
         ]);
         
         if ($model && $model->isPublished) {
-            $tag = $titleTag ? Html::tag($titleTag, $model->title) : '';
+            $tag = $titleTag ? Html::tag($titleTag, $model->title) . "\n" : '';
             return $tag . $model->text;
         }
         
@@ -32,39 +30,20 @@ class TextSection extends BaseContent {
     }
     
     public function createMigration() {
-        $date = date('ymd_His');
-        $migrationName = "m{$date}_add_text_$this->name";
+        $migrationName = 'm' . date('ymd_His') . '_add_text_' . $this->name;
 
-        $content = "<?php
-            use yii\\db\\Migration;
-            class $migrationName extends Migration
-            {
-                public function up()
-                {
-                    \$this->insert('contents', [
-                        'uid' => '$this->uid',
-                        'creatorUserUid' => '$this->creatorUserUid',
-                        'type' => '$this->type',
-                        'name' => '$this->name',
-                        'title' => '$this->title',
-                        'text' => '$this->text',
-                        'isPublished' => '$this->isPublished',
-                        'publishTime' => '$this->publishTime',
-                        'createTime' => '$this->createTime',
-                        'updateTime' => '$this->updateTime',
-                    ]);
-                }
-                public function down() {
-                    \$this->delete('contents', ['uid' => '$this->uid']);
-                }
-            }
-        ";
-
+        // Save file
+        $content = Yii::$app->view->renderFile('@app/content/views/text-section-admin/migration.php', [
+            'model' => $this,
+            'migrationName' => $migrationName,
+        ]);
         file_put_contents(Yii::getAlias('@app') . "/content/migrations/$migrationName.php", $content);
 
+        // Apply local
         Yii::$app->db->createCommand()->insert('migration', [
             'version' => $migrationName,
             'apply_time' => time(),
         ])->execute();
     }
+
 }

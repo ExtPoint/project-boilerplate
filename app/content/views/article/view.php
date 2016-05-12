@@ -2,14 +2,12 @@
 
 namespace app\views;
 
-use app\content\enums\ContentType;
+use app\content\models\Article;
 use app\content\models\Content;
 use yii\helpers\Html;
-use yii\helpers\Url;
-use yii\widgets\ListView;
 
 /* @var $this \yii\web\View */
-/* @var $contentModel Content */
+/* @var $contentModel Article */
 
 ?>
 <div class="text-center">

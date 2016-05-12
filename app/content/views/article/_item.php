@@ -2,11 +2,11 @@
 
 namespace app\views;
 
-use app\content\models\Content;
+use app\content\models\Article;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
 
-/* @var $model Content */
+/* @var $model Article */
 
 ?>
 
