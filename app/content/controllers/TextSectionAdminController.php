@@ -9,8 +9,35 @@ use app\profile\enums\UserRole;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Request;
 
 class TextSectionAdminController extends AppController {
+
+    public static function coreMenus() {
+        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
+
+        return [
+            'label' => 'Тексты',
+            'url' => ["/content/text-section-admin/index"],
+            'items' => [
+                [
+                    'label' => 'Тексты',
+                    'url' => ["/content/text-section-admin/index"],
+                    'urlRule' => 'admin/content/texts'
+                ],
+                [
+                    'label' => 'Добавление',
+                    'url' => ["/content/text-section-admin/update"],
+                    'urlRule' => 'admin/content/texts/add',
+                ],
+                [
+                    'label' => 'Редактирование',
+                    'url' => ["/content/text-section-admin/update", 'uid' => $contentUid],
+                    'urlRule' => 'admin/content/texts/update/<uid>',
+                ],
+            ],
+        ];
+    }
 
     public function behaviors() {
         return [

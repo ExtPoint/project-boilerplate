@@ -9,8 +9,35 @@ use app\profile\enums\UserRole;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Request;
 
 class PageAdminController extends AppController {
+
+    public static function coreMenus() {
+        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
+
+        return [
+            'label' => 'Страницы',
+            'url' => ["/content/page-admin/index"],
+            'items' => [
+                [
+                    'label' => 'Страницы',
+                    'url' => ["/content/page-admin/index"],
+                    'urlRule' => 'admin/pages'
+                ],
+                [
+                    'label' => 'Добавление',
+                    'url' => ["/content/page-admin/create"],
+                    'urlRule' => 'admin/pages/update',
+                ],
+                [
+                    'label' => 'Редактирование',
+                    'url' => ["/content/page-admin/update", 'uid' => $contentUid],
+                    'urlRule' => 'admin/pages/update/<uid>',
+                ],
+            ],
+        ];
+    }
 
     public function behaviors() {
         return [

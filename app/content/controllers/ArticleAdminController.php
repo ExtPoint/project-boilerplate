@@ -2,6 +2,7 @@
 
 namespace app\content\controllers;
 
+use app\content\enums\ContentType;
 use app\content\forms\ArticleSearch;
 use app\content\models\Article;
 use app\core\base\AppController;
@@ -9,8 +10,37 @@ use app\profile\enums\UserRole;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\Request;
 
 class ArticleAdminController extends AppController {
+
+    public static function coreMenus() {
+        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
+
+        return array_map(function ($type) use ($contentUid) {
+            return [
+                'label' => ContentType::getLabel($type),
+                'url' => ["/content/article-admin/index", 'type' => $type],
+                'items' => [
+                    [
+                        'label' => ContentType::getLabel($type),
+                        'url' => ["/content/article-admin/index", 'type' => $type],
+                        'urlRule' => "admin/$type",
+                    ],
+                    [
+                        'label' => 'Добавление',
+                        'url' => ["/content/article-admin/update", 'type' => $type],
+                        'urlRule' => "admin/$type/add",
+                    ],
+                    [
+                        'label' => 'Редактирование',
+                        'url' => ["/content/article-admin/update", 'type' => $type, 'uid' => $contentUid],
+                        'urlRule' => "admin/$type/update/<uid>",
+                    ],
+                ],
+            ];
+        }, ContentType::getKeys());
+    }
 
     public function behaviors() {
         return [

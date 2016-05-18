@@ -2,13 +2,34 @@
 
 namespace app\content\controllers;
 
+use app\content\enums\ContentType;
 use app\content\forms\ArticleSearch;
 use app\content\models\Article;
 use app\core\base\AppController;
 use Yii;
 use yii\web\NotFoundHttpException;
+use yii\web\Request;
 
 class ArticleController extends AppController {
+
+    public static function coreMenus() {
+        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
+
+        return array_map(function ($type) use ($contentUid) {
+            return [
+                'label' => ContentType::getLabel($type),
+                'url' => ["/content/article/index", 'type' => $type],
+                'urlRule' => $type,
+                'items' => [
+                    [
+                        'label' => 'Просмотр',
+                        'url' => ["/content/article/view", 'type' => $type, 'uid' => $contentUid],
+                        'urlRule' => "$type/<uid>",
+                    ],
+                ]
+            ];
+        }, ContentType::getKeys());
+    }
 
     public function actionIndex($type) {
         $searchModel = new ArticleSearch();

@@ -39,7 +39,9 @@ use yii\helpers\Html;
     <?= $form->field($model, 'photo')->widget(FileInput::className()) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
+        <div class="col-sm-offset-3 col-sm-6">
+            <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
+        </div>
     </div>
 
     <?php ActiveForm::end(); ?>
