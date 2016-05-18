@@ -7,30 +7,14 @@
 /.idea/libraries/
 /.idea/jsLibraryMappings.xml
 
-# netbeans project files
-nbproject
-
-# zend studio for eclipse project files
-.buildpath
-.project
-.settings
-
 # windows thumbnail cache
 Thumbs.db
-
-# composer vendor dir
-/vendor
-
-# composer itself is not needed
-composer.phar
 
 # Mac DS_Store Files
 .DS_Store
 
-# phpunit itself is not needed
-phpunit.phar
-# local phpunit config
-/app/phpunit.xml
+# composer itself is not needed
+composer.phar
 
 # Commit your application's lock file http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file
 # You may choose to ignore a library lock file http://getcomposer.org/doc/02-libraries.md#lock-file
@@ -40,4 +24,5 @@ phpunit.phar
 /config.js
 
 public/assets/*
-node_modules
+/node_modules
+/vendor

@@ -38,6 +38,14 @@ abstract class AppGenerator extends Generator {
         return $moduleNames;
     }
 
+    public function getTableNamesList() {
+        $names = ['' => ''];
+        foreach (\Yii::$app->db->schema->getTableNames() as $name) {
+            $names[$name] = $name;
+        }
+        return $names;
+    }
+
     /**
      * @param View $view
      */

@@ -43,6 +43,12 @@ class CrudGenerator extends AppGenerator {
             [['modelClass'], 'validateClass', 'params' => ['extends' => BaseActiveRecord::className()]],
             [['controllerClass'], 'match', 'pattern' => '/Controller$/', 'message' => 'Controller class name must be suffixed with "Controller".'],
             [['controllerClass'], 'match', 'pattern' => '/(^|\\\\)[A-Z][^\\\\]+Controller$/', 'message' => 'Controller class name must start with an uppercase letter.'],
+            ['controllerClass', function() {
+                $dir = Yii::getAlias('@app') . '/' . $this->moduleId . '/controllers';
+                if (!file_exists($dir)) {
+                    mkdir($dir, 0777, true);
+                }
+            }],
             [['controllerClass'], 'validateNewClass'],
         ]);
     }
@@ -128,7 +134,7 @@ class CrudGenerator extends AppGenerator {
     }
 
     public function getModuleId() {
-        preg_match('/^app\\\\([^\\\\]+)/', $this->modelClass, $match);
+        preg_match('/^app\\\\([^\\\\]+)/', $this->controllerClass, $match);
         return lcfirst($match[1]);
     }
 

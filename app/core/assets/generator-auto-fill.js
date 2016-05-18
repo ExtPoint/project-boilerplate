@@ -5,8 +5,11 @@
             var inputs = {};
             $('form').find('input[type=text], select').each(function () {
                 var $el = $(this);
-                var name = $el.attr('name').replace(/^[^\[]+\[([^\[\]]+)\]/g, '$1');
-                inputs[name] = $el;
+                var name = $el.attr('name');
+                if (name) {
+                    name = name.replace(/^[^\[]+\[([^\[\]]+)\]/g, '$1');
+                    inputs[name] = $el;
+                }
             });
             return inputs;
         },
@@ -22,12 +25,14 @@
             return value.replace(/.*\\([^\\]+)?$/g, '$1');
         },
 
-        camelToId: function (value) {
-            return value
-                .replace(/[A-Z]/g, function (v) {
-                    return '-' + v.toLowerCase();
-                })
-                .replace(/^-/, '');
+        tableToCamel: function (value) {
+            var modelClass = '';
+            $.each(value.split('_'), function () {
+                if (this.length > 0) {
+                    modelClass += this.substring(0, 1).toUpperCase() + this.substring(1).replace(/s$/, '');
+                }
+            });
+            return modelClass;
         }
 
     };
