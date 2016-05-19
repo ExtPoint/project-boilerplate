@@ -5,6 +5,7 @@ namespace app\views;
 use dosamigos\ckeditor\CKEditor;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
+use app\core\components\widgets\TreeDropdownWidget;
 
 /* @var $this \yii\web\View */
 /* @var $model \app\content\models\Page */
@@ -17,6 +18,7 @@ use yii\bootstrap\Html;
 
     <div class="row">
         <div class="col-md-7">
+            <?= $form->field($model, 'parentUid')->widget(TreeDropdownWidget::className()) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'metaKeywords')->textInput(['maxlength' => true]) ?>
