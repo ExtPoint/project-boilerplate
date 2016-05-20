@@ -30,6 +30,11 @@ use app\profile\enums\UserRole;
 class <?= $controllerClass ?> extends AppController {
 
     public static function coreMenus($urlPrefix = 'admin/<?= $generator->modelId ?>') {
+        array_merge([
+            'type' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('type') : null,
+            'name' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('name') : null,
+        ], $actionParams);
+
         return [
             'label' => '<?= $generator->modelName ?>',
             'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/index"],
@@ -48,6 +53,11 @@ class <?= $controllerClass ?> extends AppController {
                     'label' => 'Редактирование',
                     'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/update", '<?= implode('\' => null, \'', $actionParams) ?>' => null],
                     'urlRule' => "$urlPrefix/update/<<?= implode('>/<', $actionParams) ?>>",
+                ],
+                [
+                    'label' => 'Просмотр',
+                    'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/view", '<?= implode('\' => null, \'', $actionParams) ?>' => null],
+                    'urlRule' => "$urlPrefix/view/<<?= implode('>/<', $actionParams) ?>>",
                 ],
             ],
         ];
