@@ -18,7 +18,7 @@ use app\core\components\widgets\TreeDropdownWidget;
 
     <div class="row">
         <div class="col-md-7">
-            <?= $form->field($model, 'parentUid')->widget(TreeDropdownWidget::className()) ?>
+            <?= $form->field($model, 'parentUid')->widget(TreeDropdownWidget::className(), ['currentItem' => $model->uid]) ?>
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'metaKeywords')->textInput(['maxlength' => true]) ?>

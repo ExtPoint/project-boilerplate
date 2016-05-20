@@ -26,31 +26,37 @@ class Page extends BaseContent {
         ]);
     }
 
-    public function afterSave($insert, $changedAttributes){
-        parent::afterSave($insert, $changedAttributes);
-        Yii::$app->cache->delete(self::CACHE_KEY_MENU_ITEMS);
+    public function attributeLabels() {
+        return array_merge(parent::attributeLabels(), [
+            'parentUid' => 'Родительская страница',
+        ]);
     }
 
-    public static function addItemToTree($array, $model) {
-        if (!$model->parentUid) {
-            $array[$model->uid] = [
-                'label' => $model->title,
-                'url' => ['/content/page/view', 'name' => $model->name],
-                'urlRule' => $model->name,
-                'items' => [],
-            ];
-        } elseif (array_key_exists($model->parentUid, $array)) {
-            $array[$model->parentUid]['items'][$model->uid] = [
-                'label' => $model->title,
-                'url' => ['/content/page/view', 'name' => $model->name],
-                'urlRule' => $array[$model->parentUid]['urlRule'] . '/' . $model->name,
-                'items' => [],
-            ];
-        } else {
-            foreach($array as $key => $value) {
-                $array[$key]['items'] = self::addItemToTree($value['items'], $model);
+    public function afterSave($insert, $changedAttributes){
+        parent::afterSave($insert, $changedAttributes);
+
+        if (Yii::$app->has('cache')) {
+            Yii::$app->cache->delete(self::CACHE_KEY_MENU_ITEMS);
+        }
+    }
+
+    protected static function createTree($models, $array = [], $parentUid = null, $parentUrlRule = '') {
+        foreach ($models as $key => $model) {
+            if ($model->parentUid == $parentUid) {
+                $array[$model->primaryKey] = [
+                    'label' => $model->title,
+                    'url' => ['/content/page/view', 'uid' => $model->uid],
+                    'urlRule' => $parentUrlRule . '/' . $model->name,
+                    'items' => [],
+                ];
+                unset($models[$key]);
             }
         }
+
+        foreach ($array as $key => $item) {
+            $array[$key]['items'] = self::createTree($models, $item['items'], $key, $item['urlRule']);
+        }
+
         return $array;
     }
 
@@ -59,16 +65,13 @@ class Page extends BaseContent {
             return [];
         }
 
-        $menuItems = Yii::$app->cache ? Yii::$app->cache->get(self::CACHE_KEY_MENU_ITEMS) : false;
+        $menuItems = Yii::$app->has('cache') ? Yii::$app->cache->get(self::CACHE_KEY_MENU_ITEMS) : false;
 
-        if ($menuItems === false) {
-            $menuItems = [];
-            $models = static::find()->where(['isPublished' => true])->orderBy('createTime')->all();
-            foreach ($models as $model) {
-                $menuItems = self::addItemToTree($menuItems, $model);
-            }
+        if (!$menuItems) {
+            $models = static::find()->where(['isPublished' => true])->all();
+            $menuItems = self::createTree($models);
 
-            if (Yii::$app->cache) {
+            if (Yii::$app->has('cache')) {
                 Yii::$app->cache->set(self::CACHE_KEY_MENU_ITEMS, $menuItems);
             }
         }

@@ -3,68 +3,76 @@
 namespace app\core\components\widgets;
 
 use yii\bootstrap\Html;
-use yii\base\Widget;
+use yii\widgets\InputWidget;
 
-class TreeDropdownWidget extends Widget
+class TreeDropdownWidget extends InputWidget
 {
-    public $model;
-
-    public $attribute = 'parentUid';
-
-    public $idField = 'uid';
-
     public $displayField = 'title';
+
+    public $currentItem;
 
     public $options = [];
 
+    protected $disabledItems = [];
+
     public function run()
     {
+        $items = $this->getItems();
+
         $options = array_merge(
-            $this->options,
             [
                 'class' => 'form-control',
                 'encodeSpaces' => true,
-            ]
+                'prompt' => '---Не выбрана---',
+                'options' => $this->disabledItems,
+            ],
+            $this->options
         );
-        return Html::activeDropDownList($this->model, $this->attribute, $this->getItems(), $options);
+
+        return Html::activeDropDownList($this->model, $this->attribute, $items, $options);
     }
 
-    public static function addItemToTree($array, $parentUid, $itemUid, $itemValue) {
-        if (!$parentUid) {
-            $array[$itemUid] = ['value' => $itemValue, 'items' => []];
-        } elseif (array_key_exists($parentUid, $array)) {
-            $array[$parentUid]['items'][$itemUid] = ['value' => $itemValue, 'items' => []];
-        } else {
-            foreach($array as $key => $value) {
-                $array[$key]['items'] = self::addItemToTree($value['items'], $parentUid, $itemUid, $itemValue);
+    protected function createTree($models, $array = [], $parentUid = null) {
+        foreach ($models as $key => $model) {
+            if ($model->{$this->attribute} == $parentUid) {
+                $array[$model->primaryKey] = ['value' => $model->title, 'items' => []];
+                unset($models[$key]);
             }
         }
+
+        foreach ($array as $key => $item) {
+            $array[$key]['items'] = self::createTree($models, $item['items'], $key);
+        }
+
         return $array;
     }
 
-    public static function treeToItems($array, $tab = '') {
+    protected function treeToItems($array, $level = 0, $disabled = false) {
         $result = [];
+
         foreach($array as $key => $value) {
-            $items = self::treeToItems($value['items'], $tab . '    ');
+            $disableChildren = false;
+            if (($key == $this->currentItem) || $disabled) {
+                $this->disabledItems[$key] = ['disabled' => true];
+                $disableChildren = true;
+            }
+
+            $items = self::treeToItems($value['items'], $level + 1, $disableChildren);
+
             $result = array_merge(
                 $result,
-                [$key => $tab . $value['value']],
+                [$key => ($level > 0 ? str_repeat('   ', $level - 1) . '---' : '') . $value['value']],
                 $items
             );
         }
+
         return $result;
     }
 
-    public function getItems() {
+    protected function getItems() {
         $model = $this->model;
-        $models = $model::find()->orderBy('createTime')->all();
-        $tree = [];
-        foreach ($models as $itemModel) {
-            $parentUid = $itemModel->{$this->attribute};
-            $itemUid = $itemModel->{$this->idField};
-            $itemValue = $itemModel->{$this->displayField};
-            $tree = self::addItemToTree($tree, $parentUid, $itemUid, $itemValue);
-        }
-        return self::treeToItems($tree);
+        $models = $model::find()->all();
+        $tree = $this->createTree($models);
+        return $this->treeToItems($tree);
     }
 }
