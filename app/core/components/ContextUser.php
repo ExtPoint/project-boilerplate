@@ -15,6 +15,8 @@ use yii\web\User;
  */
 class ContextUser extends User {
 
+    public $loginUrl = ['/auth/auth/login'];
+
     private $_overrideIdentity = null;
 
     /**
