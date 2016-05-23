@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "56dd63ec553900d83e582c4eca29a08d",
-    "content-hash": "57ea064f61981953ca710ac082a54165",
+    "hash": "d6f78839d8c6d1d5883ca4c13940b55f",
+    "content-hash": "f73309331c9a5675ccd12ddf5b7677e9",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -155,16 +155,16 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "2.2.3",
+            "version": "2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198"
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/af22a351b2ea5801ffb1695abb3bb34d5bed9198",
-                "reference": "af22a351b2ea5801ffb1695abb3bb34d5bed9198",
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/c0185ab7c75aab88762c5aae780b9d83b80eda72",
+                "reference": "c0185ab7c75aab88762c5aae780b9d83b80eda72",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -379,16 +379,16 @@
         },
         {
             "name": "extpoint/yii2-core",
-            "version": "v1.1.3",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-core.git",
-                "reference": "f58a6f540d9668c88560f28abe5e30f5aed3f976"
+                "reference": "8d1e7ddfe020841c26d07b001fb51fa755f0d0a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/f58a6f540d9668c88560f28abe5e30f5aed3f976",
-                "reference": "f58a6f540d9668c88560f28abe5e30f5aed3f976",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/8d1e7ddfe020841c26d07b001fb51fa755f0d0a5",
+                "reference": "8d1e7ddfe020841c26d07b001fb51fa755f0d0a5",
                 "shasum": ""
             },
             "require": {
@@ -409,7 +409,50 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2016-05-02 07:45:45"
+            "time": "2016-05-23 02:13:15"
+        },
+        {
+            "name": "extpoint/yii2-megamenu",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ExtPoint/yii2-megamenu.git",
+                "reference": "d6622cc0a76bf982d9233f98764dda6e9848d41e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-megamenu/zipball/d6622cc0a76bf982d9233f98764dda6e9848d41e",
+                "reference": "d6622cc0a76bf982d9233f98764dda6e9848d41e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "2.*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "extpoint\\megamenu\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kozhin Vladimir",
+                    "email": "affka@affka.ru"
+                }
+            ],
+            "description": "Configurable site map with auto generate page title, breadcrumbs and navigation",
+            "keywords": [
+                "breadcrumbs",
+                "menu",
+                "navigation",
+                "yii2"
+            ],
+            "time": "2016-05-23 01:56:52"
         },
         {
             "name": "ezyang/htmlpurifier",

@@ -2,37 +2,38 @@
 
 namespace app\content\controllers;
 
-use app\content\forms\TextSectionSearch;
-use app\content\models\TextSection;
+use app\content\forms\PageSearch;
+use app\content\models\Page;
 use app\core\base\AppController;
 use app\profile\enums\UserRole;
-use extpoint\megamenu\MenuHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Request;
 
-class TextSectionAdminController extends AppController {
+class MenuAdminController extends AppController {
 
     public static function coreMenuItem() {
+        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
+
         return [
-            'label' => 'Тексты',
-            'url' => ["/content/text-section-admin/index"],
+            'label' => 'Страницы',
+            'url' => ["/content/page-admin/index"],
             'items' => [
                 [
-                    'label' => 'Тексты',
-                    'url' => ["/content/text-section-admin/index"],
-                    'urlRule' => 'admin/content/texts'
+                    'label' => 'Страницы',
+                    'url' => ["/content/page-admin/index"],
+                    'urlRule' => 'admin/pages'
                 ],
                 [
                     'label' => 'Добавление',
-                    'url' => ["/content/text-section-admin/update"],
-                    'urlRule' => 'admin/content/texts/add',
+                    'url' => ["/content/page-admin/create"],
+                    'urlRule' => 'admin/pages/update',
                 ],
                 [
                     'label' => 'Редактирование',
-                    'url' => ["/content/text-section-admin/update", 'uid' => MenuHelper::paramGet('uid')],
-                    'urlRule' => 'admin/content/texts/update/<uid>',
+                    'url' => ["/content/page-admin/update", 'uid' => $contentUid],
+                    'urlRule' => 'admin/pages/update/<uid>',
                 ],
             ],
         ];
@@ -59,7 +60,7 @@ class TextSectionAdminController extends AppController {
     }
 
     public function actionIndex() {
-        $searchModel = new TextSectionSearch();
+        $searchModel = new PageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -70,15 +71,12 @@ class TextSectionAdminController extends AppController {
 
     public function actionUpdate($uid = null) {
         $model = $uid ?
-            TextSection::findOne($uid) :
-            new TextSection([
+            Page::findOne($uid) :
+            new Page([
                 'creatorUserUid' => Yii::$app->user->id,
             ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            if (Yii::$app->request->post('createMigration')) {
-                $model->createMigration();
-            }
             return $this->redirect(['index']);
         }
 
@@ -88,7 +86,7 @@ class TextSectionAdminController extends AppController {
     }
 
     public function actionDelete($id) {
-        $model = TextSection::findOne($id);
+        $model = Page::findOne($id);
         if ($model) {
             $model->delete();
         }

@@ -15,7 +15,7 @@ use yii\helpers\Html;
 <h1>Редактирование профиля</h1>
 <?= Nav::widget([
     'options' => ['class' => 'nav-tabs'],
-    'items' => \Yii::$app->megaMenu->getMenu(['/profile/profile-edit/index'], 1),
+    'items' => \Yii::$app->megaMenu->getMenu(['/profile/profile-edit/index', 'userUid' => $model->uid], 1),
 ]); ?>
 
 <div class="col-lg-7">

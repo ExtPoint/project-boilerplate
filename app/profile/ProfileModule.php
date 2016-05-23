@@ -4,14 +4,12 @@ namespace app\profile;
 
 use app\core\base\AppModule;
 use app\profile\enums\UserRole;
+use extpoint\megamenu\MenuHelper;
 use yii\web\Request;
 
 class ProfileModule extends AppModule {
 
-    public function coreMenus() {
-        $contextUserUid = \Yii::$app->has('user') ? \Yii::$app->user->uid : null;
-        $userUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('userUid') : null;
-
+    public function coreMenu() {
         return [
             'admin' => [
                 'label' => 'Администрирование',
@@ -26,23 +24,23 @@ class ProfileModule extends AppModule {
             ],
             [
                 'label' => 'Мой профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => $contextUserUid],
+                'url' => ["/$this->id/$this->id/view", 'userUid' => MenuHelper::paramUser('uid')],
                 'urlRule' => 'profile',
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => $contextUserUid],
+                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramUser('uid')],
                         'urlRule' => 'profile/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => $contextUserUid],
+                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramUser('uid')],
                                 'urlRule' => 'profile/edit',
                             ],
                             [
                                 'label' => 'Пароль',
-                                'url' => ["/$this->id/$this->id-edit/password", 'userUid' => $contextUserUid],
+                                'url' => ["/$this->id/$this->id-edit/password", 'userUid' => MenuHelper::paramUser('uid')],
                                 'urlRule' => 'profile/edit/password',
                             ],
                         ],
@@ -51,19 +49,19 @@ class ProfileModule extends AppModule {
             ],
             [
                 'label' => 'Профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => $userUid],
+                'url' => ["/$this->id/$this->id/view", 'userUid' => MenuHelper::paramGet('userUid')],
                 'urlRule' => 'profile/<userUid>',
                 'visible' => false,
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => $userUid],
+                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramGet('userUid')],
                         'urlRule' => 'profile/<userUid>/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => $userUid],
+                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramGet('userUid')],
                                 'urlRule' => 'profile/<userUid>/edit',
                             ],
                         ],

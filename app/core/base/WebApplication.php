@@ -2,7 +2,7 @@
 
 namespace app\core\base;
 
-use extpoint\yii2\components\MegaMenu;
+use extpoint\megamenu\MegaMenu;
 use yii\web\Application;
 
 /**

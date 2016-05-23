@@ -4,14 +4,14 @@ namespace app\content\controllers;
 
 use app\content\models\Page;
 use app\core\base\AppController;
+use extpoint\megamenu\MenuHelper;
 use Yii;
 use yii\web\NotFoundHttpException;
 use yii\web\Request;
 
 class PageController extends AppController {
 
-    public static function coreMenus() {
-        $contentName = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('name') : null;
+    public static function coreMenuItem() {
         return [
             'label' => 'Страницы',
             'urlRule' => '/',
@@ -19,7 +19,7 @@ class PageController extends AppController {
             'items' => [
                 [
                     'label' => 'Просмотр',
-                    'url' => ["/content/page/page-view", 'name' => $contentName],
+                    'url' => ["/content/page/page-view", 'name' => MenuHelper::paramGet('name')],
                 ],
             ]
         ];

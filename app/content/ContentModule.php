@@ -13,22 +13,22 @@ use app\profile\enums\UserRole;
 
 class ContentModule extends AppModule {
 
-    public function coreMenus() {
+    public function coreMenu() {
         return array_merge(
             [
                 'admin' => [
                     'label' => 'Администрирование',
                     'roles' => UserRole::ADMIN,
                     'items' => array_merge(
-                        ArticleAdminController::coreMenus(),
+                        ArticleAdminController::coreMenuItem(),
                         [
-                            PageAdminController::coreMenus(),
-                            TextSectionAdminController::coreMenus(),
+                            PageAdminController::coreMenuItem(),
+                            TextSectionAdminController::coreMenuItem(),
                         ]
                     )
                 ],
-                PageController::coreMenus(),
-            ], ArticleController::coreMenus(),
+                PageController::coreMenuItem(),
+            ], ArticleController::coreMenuItem(),
             Page::getMenuItems()
         );
     }

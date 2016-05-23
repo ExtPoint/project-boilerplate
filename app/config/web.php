@@ -3,7 +3,7 @@
 return \yii\helpers\ArrayHelper::merge(
     require 'main.php',
     [
-        'defaultRoute' => 'core/site/index',
+        'defaultRoute' => 'site/site/index',
         'components' => [
             'request' => [
                 'cookieValidationKey' => 'q2%s2~5twSe2OkBJ8H6k6wUI@fe~Ah9|',

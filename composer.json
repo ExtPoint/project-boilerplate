@@ -23,7 +23,8 @@
         "kartik-v/yii2-widgets": "*",
         "yiisoft/yii2-imagine": "^2.0",
         "extpoint/yii2-core": "*",
-        "2amigos/yii2-ckeditor-widget": "^1.0"
+        "2amigos/yii2-ckeditor-widget": "^1.0",
+        "extpoint/yii2-megamenu": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

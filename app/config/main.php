@@ -83,7 +83,7 @@ return [
             'suffix' => '/',
         ],
         'megaMenu'=> [
-            'class' => '\extpoint\yii2\components\MegaMenu',
+            'class' => '\extpoint\megamenu\MegaMenu',
         ],
     ],
     'modules' => \extpoint\yii2\components\ModuleLoader::getConfig(dirname(__DIR__)),

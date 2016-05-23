@@ -7,6 +7,7 @@ use app\content\forms\ArticleSearch;
 use app\content\models\Article;
 use app\core\base\AppController;
 use app\profile\enums\UserRole;
+use extpoint\megamenu\MenuHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -14,10 +15,8 @@ use yii\web\Request;
 
 class ArticleAdminController extends AppController {
 
-    public static function coreMenus() {
-        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
-
-        return array_map(function ($type) use ($contentUid) {
+    public static function coreMenuItem() {
+        return array_map(function ($type) {
             return [
                 'label' => ContentType::getLabel($type),
                 'url' => ["/content/article-admin/index", 'type' => $type],
@@ -34,7 +33,7 @@ class ArticleAdminController extends AppController {
                     ],
                     [
                         'label' => 'Редактирование',
-                        'url' => ["/content/article-admin/update", 'type' => $type, 'uid' => $contentUid],
+                        'url' => ["/content/article-admin/update", 'type' => $type, 'uid' => MenuHelper::paramGet('uid')],
                         'urlRule' => "admin/$type/update/<uid>",
                     ],
                 ],

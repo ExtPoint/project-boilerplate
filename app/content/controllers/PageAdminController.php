@@ -6,6 +6,7 @@ use app\content\forms\PageSearch;
 use app\content\models\Page;
 use app\core\base\AppController;
 use app\profile\enums\UserRole;
+use extpoint\megamenu\MenuHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -13,9 +14,7 @@ use yii\web\Request;
 
 class PageAdminController extends AppController {
 
-    public static function coreMenus() {
-        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
-
+    public static function coreMenuItem() {
         return [
             'label' => 'Страницы',
             'url' => ["/content/page-admin/index"],
@@ -32,7 +31,7 @@ class PageAdminController extends AppController {
                 ],
                 [
                     'label' => 'Редактирование',
-                    'url' => ["/content/page-admin/update", 'uid' => $contentUid],
+                    'url' => ["/content/page-admin/update", 'uid' => MenuHelper::paramGet('uid')],
                     'urlRule' => 'admin/pages/update/<uid>',
                 ],
             ],
