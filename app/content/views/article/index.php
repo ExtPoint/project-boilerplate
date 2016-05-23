@@ -5,7 +5,7 @@ namespace app\views;
 use app\content\enums\ContentType;
 use app\content\forms\ArticleSearch;
 use app\content\forms\ContentSearch;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 use yii\helpers\Html;
 use yii\jui\DatePicker;
 use yii\widgets\ListView;
@@ -23,7 +23,7 @@ use yii\widgets\ListView;
     </div>
 
     <div class="col-md-4">
-        <?php $form = ActiveForm::begin([
+        <?php $form = AppActiveForm::begin([
             'action' => ['/content/article/index', 'type' => $searchModel->type],
             'method' => 'get',
         ]); ?>
@@ -40,7 +40,7 @@ use yii\widgets\ListView;
                     'class' => 'form-control'
                 ]
             ]) ?>
-        <?php ActiveForm::end(); ?>
+        <?php AppActiveForm::end(); ?>
     </div>
 </div>
 

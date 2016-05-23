@@ -24,7 +24,7 @@ namespace app\views;
 use Yii;
 use yii\web\View;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 use <?= ltrim($generator->modelClass, '\\') ?>;
 
 /* @var View $this */
@@ -34,7 +34,7 @@ use <?= ltrim($generator->modelClass, '\\') ?>;
 
 <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
 
-<?= "<?php " ?>$form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+<?= "<?php " ?>$form = AppActiveForm::begin(['layout' => 'horizontal']); ?>
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
     if (in_array($attribute, $safeAttributes)) {
@@ -48,4 +48,4 @@ use <?= ltrim($generator->modelClass, '\\') ?>;
         </div>
     </div>
 
-<?= "<?php " ?>ActiveForm::end(); ?>
+<?= "<?php " ?>AppActiveForm::end(); ?>

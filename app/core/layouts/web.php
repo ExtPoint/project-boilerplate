@@ -38,7 +38,7 @@ $this->registerCssFile('@web/assets/main.css');
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => \Yii::$app->megaMenu->getMenu(),
+                'items' => \Yii::$app->megaMenu->getMenu(null, 1),
             ]);
             NavBar::end();
         ?>

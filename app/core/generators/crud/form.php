@@ -1,7 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
-/* @var $form \yii\widgets\ActiveForm */
+/* @var $form \app\core\widgets\AppActiveForm */
 /* @var $generator \app\core\generators\crud\CrudGenerator */
 
 echo $form->field($generator, 'modelClass')->dropDownList($generator->getModelNames());

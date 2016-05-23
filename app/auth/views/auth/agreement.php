@@ -1,9 +1,9 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
+/* @var $form app\core\widgets\AppActiveForm; */
 /* @var $model app\auth\models\LoginForm */
 
 ?>

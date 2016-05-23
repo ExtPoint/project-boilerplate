@@ -5,7 +5,7 @@ namespace app\views;
 use Yii;
 use yii\web\View;
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 use app\dictionary\models\Dictionary;
 
 /* @var View $this */
@@ -15,7 +15,7 @@ use app\dictionary\models\Dictionary;
 
 <h1><?= Html::encode($this->title) ?></h1>
 
-<?php $form = ActiveForm::begin(['layout' => 'horizontal']); ?>
+<?php $form = AppActiveForm::begin(['layout' => 'horizontal']); ?>
 
     <?= $form->field($dictionaryModel, 'type')->textInput(['maxlength' => true]) ?>
     <?= $form->field($dictionaryModel, 'name')->textInput(['maxlength' => true]) ?>
@@ -27,4 +27,4 @@ use app\dictionary\models\Dictionary;
         </div>
     </div>
 
-<?php ActiveForm::end(); ?>
+<?php AppActiveForm::end(); ?>
