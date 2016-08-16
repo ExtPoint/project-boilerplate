@@ -126,7 +126,7 @@ class CrudGenerator extends AppGenerator {
     }
 
     public function getModelId() {
-        return lcfirst(StringHelper::basename($this->modelClass));
+        return Inflector::camel2id(lcfirst(StringHelper::basename($this->modelClass)));
     }
 
     public function getModelName() {

@@ -24,6 +24,8 @@ trait SearchModelTrait {
             return $dataProvider;
         }
 
+        $this->prepare($query);
+
         return $dataProvider;
     }
 

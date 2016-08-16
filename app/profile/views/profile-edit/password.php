@@ -4,7 +4,7 @@ namespace app\views;
 
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use app\core\widgets\AppActiveForm;
 
 /* @var $this \yii\web\View */
 /* @var $model \app\profile\forms\PasswordUpdate */
@@ -17,7 +17,7 @@ use yii\widgets\ActiveForm;
 ]); ?>
 <br />
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = AppActiveForm::begin(); ?>
 
 <?= $form->field($model, 'oldPassword')->passwordInput(['maxlength' => true]) ?>
 <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
@@ -27,4 +27,4 @@ use yii\widgets\ActiveForm;
     <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary']) ?>
 </div>
 
-<?php ActiveForm::end(); ?>
+<?php AppActiveForm::end(); ?>

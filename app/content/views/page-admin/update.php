@@ -2,9 +2,10 @@
 
 namespace app\views;
 
-use dosamigos\ckeditor\CKEditor;
-use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
+use app\core\widgets\AppActiveForm;
+use app\core\widgets\TreeDropdownWidget;
+use dosamigos\ckeditor\CKEditor;
 
 /* @var $this \yii\web\View */
 /* @var $model \app\content\models\Page */
@@ -13,12 +14,10 @@ use yii\bootstrap\Html;
 
 <h1><?= Html::encode($this->title) ?></h1>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = AppActiveForm::begin(); ?>
 
     <div class="row">
         <div class="col-md-7">
-            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
-            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'metaKeywords')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'metaDescription')->textInput(['maxlength' => true]) ?>
         </div>
@@ -32,5 +31,5 @@ use yii\bootstrap\Html;
         <?= Html::submitButton($model->isNewRecord ? \Yii::t('app', 'Добавить') : \Yii::t('app', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+<?php AppActiveForm::end(); ?>
 

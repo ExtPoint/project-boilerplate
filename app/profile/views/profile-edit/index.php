@@ -4,7 +4,7 @@ namespace app\views;
 
 use app\file\widgets\fileup\FileInput;
 use kartik\widgets\DatePicker;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 use yii\bootstrap\Nav;
 use yii\helpers\Html;
 
@@ -19,7 +19,7 @@ use yii\helpers\Html;
 ]); ?>
 
 <div class="col-lg-7">
-    <?php $form = ActiveForm::begin([
+    <?php $form = AppActiveForm::begin([
         'options' => ['enctype' => 'multipart/form-data'],
         'layout' => 'horizontal',
     ]); ?>
@@ -44,5 +44,5 @@ use yii\helpers\Html;
         </div>
     </div>
 
-    <?php ActiveForm::end(); ?>
+    <?php AppActiveForm::end(); ?>
 </div>

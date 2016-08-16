@@ -3,7 +3,7 @@
 namespace app\views;
 
 use dosamigos\ckeditor\CKEditor;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 use yii\bootstrap\Html;
 
 /* @var $this \yii\web\View */
@@ -13,7 +13,7 @@ use yii\bootstrap\Html;
 
 <h1><?= Html::encode($this->title) ?></h1>
 
-<?php $form = ActiveForm::begin(); ?>
+<?php $form = AppActiveForm::begin(); ?>
 
     <div class="row">
         <div class="col-md-7">
@@ -35,5 +35,5 @@ use yii\bootstrap\Html;
         <?= Html::submitButton($model->isNewRecord ? \Yii::t('app', 'Добавить') : \Yii::t('app', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+<?php AppActiveForm::end(); ?>
 

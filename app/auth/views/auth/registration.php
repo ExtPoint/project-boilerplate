@@ -1,10 +1,10 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
+/* @var $form app\core\widgets\AppActiveForm */
 /* @var $model app\auth\models\RegistrationForm */
 
 $this->title = 'Регистрация';
@@ -13,7 +13,7 @@ $this->title = 'Регистрация';
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <?php $form = ActiveForm::begin([
+    <?php $form = AppActiveForm::begin([
         'id' => 'login-form',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
@@ -47,6 +47,6 @@ $this->title = 'Регистрация';
         });
     </script>
 
-    <?php ActiveForm::end(); ?>
+    <?php AppActiveForm::end(); ?>
 
 </div>

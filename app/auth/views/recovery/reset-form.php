@@ -1,9 +1,9 @@
 <?php
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
+/* @var $form app\core\widgets\AppActiveForm */
 /* @var $model app\auth\models\PasswordResetForm */
 
 $this->title = 'Восстановление пароля';
@@ -12,7 +12,7 @@ $this->title = 'Восстановление пароля';
 
 	<h1><?= Html::encode($this->title) ?></h1>
 
-	<?php $form = ActiveForm::begin(); ?>
+	<?php $form = AppActiveForm::begin(); ?>
 	<?= $form->field($model, 'password')->passwordInput() ?>
 	<?= $form->field($model, 'passwordAgain')->passwordInput() ?>
 
@@ -22,6 +22,6 @@ $this->title = 'Восстановление пароля';
 		</div>
 	</div>
 
-	<?php ActiveForm::end(); ?>
+	<?php AppActiveForm::end(); ?>
 
 </div>

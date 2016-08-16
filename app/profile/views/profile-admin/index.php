@@ -4,7 +4,7 @@ namespace app\views;
 
 use app\core\models\User;
 use app\profile\enums\UserRole;
-use yii\bootstrap\ActiveForm;
+use app\core\widgets\AppActiveForm;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
 use yii\grid\GridView;
@@ -12,12 +12,12 @@ use yii\grid\GridView;
 /* @var $this \yii\web\View */
 /* @var $dataProvider \yii\data\ActiveDataProvider */
 /* @var $searchModel \app\profile\forms\UserSearch */
-/* @var $form \yii\widgets\ActiveForm */
+/* @var $form \app\core\widgets\AppActiveForm */
 
 ?>
 <h1><?= Html::encode($this->title) ?></h1>
 
-<?php /*$form = ActiveForm::begin([
+<?php /*$form = AppActiveForm::begin([
     'action' => ['/profile/profile-admin/index'],
     'method' => 'get',
     'layout' => 'horizontal',
@@ -34,7 +34,7 @@ use yii\grid\GridView;
     </div>
 </div>
 
-<?php ActiveForm::end();*/ ?>
+<?php AppActiveForm::end();*/ ?>
 
 
 <?= GridView::widget([
