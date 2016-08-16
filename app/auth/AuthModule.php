@@ -7,12 +7,6 @@ use extpoint\megamenu\MenuHelper;
 
 class AuthModule extends AppModule {
 
-    protected function coreUrlRules() {
-        return [
-            'login/recovery/captcha' => "$this->id/recovery/captcha",
-        ];
-    }
-
     public function coreMenu() {
         return [
             [
@@ -40,6 +34,10 @@ class AuthModule extends AppModule {
                         'url' => ["/$this->id/recovery/index"],
                         'urlRule' => 'login/recovery',
                         'items' => [
+                            [
+                                'url' => ["/$this->id/recovery/captcha"],
+                                'urlRule' => 'login/recovery/captcha',
+                            ],
                             [
                                 'label' => \Yii::t('app', 'Проверочный код'),
                                 'url' => ["/$this->id/recovery/code"],

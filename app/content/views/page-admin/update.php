@@ -18,6 +18,8 @@ use dosamigos\ckeditor\CKEditor;
 
     <div class="row">
         <div class="col-md-7">
+            <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'metaKeywords')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'metaDescription')->textInput(['maxlength' => true]) ?>
         </div>

@@ -34,7 +34,7 @@ use <?= ltrim($generator->modelClass, '\\') ?>;
 
 <h1><?= "<?= " ?>Html::encode($this->title) ?></h1>
 
-<?= "<?php " ?>$form = AppActiveForm::begin(['layout' => 'horizontal']); ?>
+<?= "<?php " ?>$form = AppActiveForm::begin(); ?>
 
 <?php foreach ($generator->getColumnNames() as $attribute) {
     if (in_array($attribute, $safeAttributes)) {

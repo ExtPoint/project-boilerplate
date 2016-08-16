@@ -7,7 +7,6 @@ use app\core\base\AppController;
 use extpoint\megamenu\MenuHelper;
 use Yii;
 use yii\web\NotFoundHttpException;
-use yii\web\Request;
 
 class PageController extends AppController {
 

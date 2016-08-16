@@ -14,6 +14,7 @@ $this->title = 'Вход';
 
     <?php $form = AppActiveForm::begin([
         'id' => 'login-form',
+        'layout' => 'default',
         'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
             'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",

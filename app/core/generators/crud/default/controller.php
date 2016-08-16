@@ -26,13 +26,14 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\profile\enums\UserRole;
+use extpoint\megamenu\MenuHelper;
 
 class <?= $controllerClass ?> extends AppController {
 
     public static function coreMenus($urlPrefix = 'admin/<?= $generator->modelId ?>') {
         array_merge([
-            'type' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('type') : null,
-            'name' => \Yii::$app->request instanceof Request ? \Yii::$app->request->get('name') : null,
+            'type' => MenuHelper::paramGet('type'),
+            'name' => MenuHelper::paramGet('name'),
         ], $actionParams);
 
         return [

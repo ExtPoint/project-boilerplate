@@ -18,11 +18,11 @@ class DictionaryAdminController extends AppController {
         $name = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('name') : null;
 
         return [
-            'label' => 'Dictionary',
+            'label' => 'Справочники',
             'url' => ["/dictionary/dictionary-admin/index"],
             'items' => [
                 [
-                    'label' => 'Dictionary',
+                    'label' => 'Справочники',
                     'url' => ["/dictionary/dictionary-admin/index"],
                     'urlRule' => $urlPrefix,
                 ],
