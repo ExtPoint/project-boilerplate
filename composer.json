@@ -20,12 +20,17 @@
         "yiisoft/yii2-swiftmailer": "*",
         "bariew/yii2-module-migration-controller": "*",
         "yiisoft/yii2-jui": "^2.0",
+        "extpoint/yii2-krajee-base": "*",
         "kartik-v/yii2-widgets": "*",
         "yiisoft/yii2-imagine": "^2.0",
         "extpoint/yii2-core": "*",
         "2amigos/yii2-ckeditor-widget": "^1.0",
         "extpoint/yii2-megamenu": "*"
     },
+    "repositories": [{
+        "type": "vcs",
+        "url": "https://github.com/ExtPoint/yii2-krajee-base"
+    }],
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
@@ -57,6 +62,11 @@
         "asset-installer-paths": {
             "npm-asset-library": "vendor/npm",
             "bower-asset-library": "vendor/bower"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "kartik\\base\\": "vendor/extpoint/yii2-krajee-base"
         }
     }
 }
