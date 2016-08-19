@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "757629adde85050eeddea814dc71a260",
-    "content-hash": "1d1e748a855729e9043c1f7f92a31ec4",
+    "hash": "94c2f0637cc8ca3a5fb529d5ac1a10d7",
+    "content-hash": "8713fb53b9f1aa0765c7796cc80a5ebe",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -413,16 +413,16 @@
         },
         {
             "name": "extpoint/yii2-krajee-base",
-            "version": "1.8.5",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-krajee-base.git",
-                "reference": "7f7a45ffe193fe673f72b9effc01b08499f2a454"
+                "reference": "31526b8a172b94d31a9dad7ed094ebd10c996e33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-krajee-base/zipball/7f7a45ffe193fe673f72b9effc01b08499f2a454",
-                "reference": "7f7a45ffe193fe673f72b9effc01b08499f2a454",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-krajee-base/zipball/31526b8a172b94d31a9dad7ed094ebd10c996e33",
+                "reference": "31526b8a172b94d31a9dad7ed094ebd10c996e33",
                 "shasum": ""
             },
             "require": {
@@ -450,7 +450,7 @@
                 }
             ],
             "description": "Base library and foundation components for all Yii2 Krajee extensions.",
-            "homepage": "https://github.com/kartik-v/yii2-krajee-base",
+            "homepage": "https://github.com/ExtPoint/yii2-krajee-base",
             "keywords": [
                 "base",
                 "extension",
@@ -460,9 +460,9 @@
                 "yii2"
             ],
             "support": {
-                "source": "https://github.com/ExtPoint/yii2-krajee-base/tree/1.8.5"
+                "source": "https://github.com/ExtPoint/yii2-krajee-base/tree/bugfix"
             },
-            "time": "2016-05-07 19:45:52"
+            "time": "2016-08-18 09:09:52"
         },
         {
             "name": "extpoint/yii2-megamenu",
@@ -2480,7 +2480,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "extpoint/yii2-krajee-base": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
