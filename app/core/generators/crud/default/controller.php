@@ -31,11 +31,6 @@ use extpoint\megamenu\MenuHelper;
 class <?= $controllerClass ?> extends AppController {
 
     public static function coreMenus($urlPrefix = 'admin/<?= $generator->modelId ?>') {
-        array_merge([
-            'type' => MenuHelper::paramGet('type'),
-            'name' => MenuHelper::paramGet('name'),
-        ], $actionParams);
-
         return [
             'label' => '<?= $generator->modelName ?>',
             'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/index"],
@@ -52,12 +47,16 @@ class <?= $controllerClass ?> extends AppController {
                 ],
                 [
                     'label' => 'Редактирование',
-                    'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/update", '<?= implode('\' => null, \'', $actionParams) ?>' => null],
+                    'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/update", <?= implode(', ', array_map(function($name) {
+    return "'$name' => MenuHelper::paramGet('$name')";
+}, $actionParams)) ?>],
                     'urlRule' => "$urlPrefix/update/<<?= implode('>/<', $actionParams) ?>>",
                 ],
                 [
                     'label' => 'Просмотр',
-                    'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/view", '<?= implode('\' => null, \'', $actionParams) ?>' => null],
+                    'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/view", <?= implode(', ', array_map(function($name) {
+    return "'$name' => MenuHelper::paramGet('$name')";
+}, $actionParams)) ?>],
                     'urlRule' => "$urlPrefix/view/<<?= implode('>/<', $actionParams) ?>>",
                 ],
             ],
