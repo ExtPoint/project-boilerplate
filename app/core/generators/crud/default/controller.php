@@ -30,7 +30,7 @@ use extpoint\megamenu\MenuHelper;
 
 class <?= $controllerClass ?> extends AppController {
 
-    public static function coreMenus($urlPrefix = 'admin/<?= $generator->modelId ?>') {
+    public static function coreMenu($urlPrefix = 'admin/<?= $generator->modelId ?>') {
         return [
             'label' => '<?= $generator->modelName ?>',
             'url' => ["/<?= $generator->moduleId ?>/<?= $generator->controllerId ?>/index"],
