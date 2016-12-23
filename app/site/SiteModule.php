@@ -11,7 +11,7 @@ class SiteModule extends AppModule {
             [
                 'label' => 'Главная',
                 'url' => ["/$this->id/site/index"],
-                'urlRule' => '',
+                'urlRule' => '/',
                 'order' => -100,
             ],
             [
