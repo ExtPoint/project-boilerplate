@@ -59,12 +59,11 @@ php yii migrate
 ## comet
 
 ```sh
-npm install --save NeatComet jii jii-comet
+npm install --save neatcomet jii jii-comet
 ```
 
-
-## core
+## React
 
 ```sh
-npm install --save jquery bootstrap
+npm install --save react react-dom
 ```
