@@ -1,8 +1,6 @@
 // Load Jii Framework
 window.Jii = require('jii/deps');
 Jii.namespaceMoveContext(window);
-require('jii-comet/sockjs');
-require('jii-comet/neat');
 
 // Load module files
 require('./adapter/OrmAdapter');
@@ -17,13 +15,21 @@ Jii.createWebApplication(Jii.mergeConfigs(
             basePath: '/',
             components: {
                 comet: {
-                    className: 'Jii.comet.client.Client'
+                    className: require('jii/comet/client/Client'),
+                    transport: {
+                        className: require('jii/comet/client/transport/Sockjs')
+                    },
+                    plugins: {
+                        autoReconnect: {
+                            className: require('jii/comet/client/plugin/AutoReconnect')
+                        }
+                    }
                 },
                 neat: {
-                    className: 'Jii.comet.client.NeatClient',
+                    className: require('jii/comet/client/NeatClient'),
                     engine: {
                         className: 'NeatComet.NeatCometClient',
-                        createCollection: app.comet.adapter.OrmAdapter.createCollection
+                        //createCollection: app.comet.adapter.OrmAdapter.createCollection
                     }
                 }
             }

@@ -2,18 +2,16 @@
 
 // Load Jii Framework
 global.Jii = require('jii');
-require('jii-urlmanager');
-require('jii-httpserver');
-require('jii-comet');
+const ApplicationException = require('jii/exceptions/ApplicationException');
 
 // Load other packages
-var request = require('request');
+const request = require('request');
 
 // Load custom config
-var customPath = __dirname + '/../../config.js';
-var custom = require('fs').existsSync(customPath) ? require(customPath) : {};
+const customPath = __dirname + '/../../config.js';
+const custom = require('fs').existsSync(customPath) ? require(customPath) : {};
 
-require('jii-workers')
+require('jii/workers')
     .setEnvironment(custom.env || 'development')
     .application('comet', Jii.mergeConfigs(
         {
@@ -22,8 +20,8 @@ require('jii-workers')
                 inlineActions: {
                     // From php to comet
                     'api': function(context) {
-                        var channel = context.request.post('channel');
-                        var data = context.request.post('data');
+                        const channel = context.request.post('channel');
+                        const data = context.request.post('data');
 
                         if (context.request.post('method') === 'publish' && channel && data) {
                             Jii.app.comet.sendToChannel(channel, JSON.parse(data));
@@ -36,50 +34,51 @@ require('jii-workers')
                 },
                 components: {
                     http: {
-                        className: 'Jii.httpServer.HttpServer',
+                        className: require('jii/request/http/HttpServer'),
                         port: 5200
                     },
                     comet: {
-                        className: 'Jii.comet.server.Server',
+                        className: require('jii/comet/server/Server'),
                         port: 5210,
                         host: '127.0.0.1',
                         transport: {
-                            className: 'Jii.comet.server.transport.SockJs',
+                            className: require('jii/comet/server/transport/Sockjs'),
                             urlPrefix: '/comet'
                         }
                     },
                     neat: {
-                        className: 'Jii.comet.server.NeatServer',
-                        configFileName: __dirname + '/bindings.json',
+                        className: require('jii/comet/server/NeatServer'),
+                        configFileName: __dirname + '/../config/cometBindingFiles.json',
 
                         // From comet to php
                         dataLoadHandler: function(params) {
-                            var url = Jii.app.params.phpLoadDataUrl;
-                            return new Promise(function(resolve) {
+                            const url = Jii.app.params.phpLoadDataUrl;
+                            return new Promise(function(resolve, reject) {
                                 request({
                                     method: 'POST',
                                     uri: url,
                                     form: { msg: JSON.stringify(params) }
                                 }, function(error, response, body) {
                                     if (error || !response || response.statusCode >= 400) {
-                                        throw new Jii.exceptions.ApplicationException('Request to server `' + url + '` failed: ' + error);
+                                        console.error('Request to server `' + url + '` failed: ' + error);
+                                        throw new ApplicationException('Request to server `' + url + '` failed: ' + error);
                                     }
 
-                                    var data = null;
+                                    let data = null;
                                     try {
                                         data = JSON.parse(body);
                                     } catch(e) {
                                         Jii.error('Cannot parse PHP response (url ' + url + '): ' + body);
+                                        reject('Cannot parse PHP response (url ' + url + '): ' + body);
+                                        return;
                                     }
-                                    if (data) {
-                                        resolve(data);
-                                    }
+                                    resolve(data);
                                 });
                             });
                         }
                     },
                     urlManager: {
-                        className: 'Jii.urlManager.UrlManager'
+                        className: require('jii/request/UrlManager')
                     }
                 }
             },
