@@ -5,6 +5,12 @@
   "dependencies": {
     "bootstrap": "^3.3",
     "fileup-core": "github:extpoint/fileup-core",
+    "neatcomet": "^0.2.1",
+    "jii": "^0.8.3",
+    "jii-comet": "^0.8.3",
+    "jquery": "*",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
     "gulp-easy": "^0.2.6"
   },
   "devDependencies": {
