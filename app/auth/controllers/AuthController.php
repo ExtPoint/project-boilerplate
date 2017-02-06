@@ -48,9 +48,7 @@ class AuthController extends AppController {
     public function onAuthSuccess($client)
     {
         $attributes = $client->getUserAttributes();
-        $email = ArrayHelper::getValue($attributes, 'email');
-        $id = ArrayHelper::getValue($attributes, 'id');
-        $nickname = ArrayHelper::getValue($attributes, 'login');
+        $id = (string)ArrayHelper::getValue($attributes, 'id');
 
         /* @var SocialConnection $socialConnection */
         $socialConnection = SocialConnection::find()->where([
@@ -62,63 +60,37 @@ class AuthController extends AppController {
             if ($socialConnection && $socialConnection->userUid) {
                 // login
                 Yii::$app->user->login($socialConnection->user);
-                return $this->redirect(['/']);
+                return $this->redirect('/');
             }
             else if ($socialConnection) {
                 //registration
-                $this->redirect(['/auth/auth/registration']);
-                //add userId in socialConnection
-                //return //TODO: высылаем на страницу регистрации
+                return $this->redirect(['/auth/auth/registration', 'source' => $client->getId(), 'sourceId' => $id]);
             }
             else {
+                $socialConnection = new SocialConnection([
+                    'source' => $client->getId(),
+                    'sourceId' => $id,
+                ]);
+                $socialConnection->saveOrPanic();
+
                 // registration
-                $this->redirect(['/auth/auth/registration']);
-                /*if ($email !== null && User::find()->where(['email' => $email])->exists()) {
-                    $response = Yii::$app->response;
-                    $response->content = \t('Error: email already registered'); // TODO: Add friendly message
-                    return $response;
-                }
-                elseif (!$email) {
-                    $response = Yii::$app->response;
-                    $response->content = \t('Error: email already registered'); // TODO: request email
-                    return $response;
-                }
-                else {
-                    $investorModel = new QueuedInvestor([
-                        'name' => $nickname,
-                        'email' => $email,
-                    ]);
-                    if (!$investorModel->save()) {
-                        $response = Yii::$app->response;
-                        $response->content = implode('<br>',
-                            array_map('htmlspecialchars', $investorModel->errors)
-                        );
-                        return $response;
-                    }
-
-                    $socialConnection = new SocialConnection([
-                        'userUid' => $investorModel->uid,
-                        'source' => $client->getId(),
-                        'sourceId' => (string)$id,
-                    ]);
-
-                    $socialConnection->saveOrPanic();
-
-                    return $this->redirect(['/queue/queue/private', 'ref' => $investorModel->refPrivate]);
-                }*/
+                return $this->redirect(['/auth/auth/registration', 'source' => $client->getId(), 'sourceId' => $id]);
             }
         }
         else { // user already logged in
-            if (!$socialConnection) { // add socialConnection provider
+            if (!$socialConnection) {
+                // add socialConnection provider
                 $socialConnection = new SocialConnection([
-                    'userUid' => Yii::$app->user->id,
+                    'userUid' => Yii::$app->user->uid,
                     'source' => $client->getId(),
-                    'sourceId' => (string)$attributes['id'],
+                    'sourceId' => $id,
                 ]);
                 $socialConnection->saveOrPanic();
+                \Yii::$app->session->setFlash('success', \Yii::t('app', 'Social account success added!'));
+                return $this->redirect(['/profile/edit']);
             }
 
-            return $this->redirect(['/']);
+            return $this->redirect('/');
         }
     }
 
@@ -151,6 +123,20 @@ class AuthController extends AppController {
             $loginModel->username = $model->email;
             $loginModel->password = $model->password;
             $loginModel->login();
+
+            $params = Yii::$app->request->queryParams;
+            if(!empty($params['source']) && !empty($params['sourceId'])){
+                $socialParam = [
+                    'source' => $params['source'],
+                    'sourceId' => $params['sourceId'],
+                ];
+
+                /** @var SocialConnection $socialConnection */
+                $socialConnection = SocialConnection::findOne($socialParam)
+                    ?: new SocialConnection($socialParam);
+                $socialConnection->userUid = \Yii::$app->user->model->uid;
+                $socialConnection->saveOrPanic();
+            }
 
             return $this->goHome();
         }

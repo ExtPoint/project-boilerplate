@@ -2,6 +2,8 @@
 
 namespace app\views;
 
+use app\auth\models\SocialConnection;
+use yii\authclient\widgets\AuthChoice;
 use app\file\widgets\fileup\FileInput;
 use kartik\widgets\DatePicker;
 use app\core\widgets\AppActiveForm;
@@ -37,6 +39,28 @@ use yii\helpers\Html;
 
     <h3>Смена фотографии</h3>
     <?= $form->field($model, 'photo')->widget(FileInput::className()) ?>
+
+    <?php if(\Yii::$app->has('authClientCollection')): ?>
+        <h3>Добавить авторизацию через соц сеть</h3>
+        <?php $authAuthChoice = AuthChoice::begin([
+            'baseAuthUrl' => ['/auth/auth/social'],
+            'popupMode' => false,
+        ]); ?>
+        <ul class='auth-clients'>
+            <?php foreach ($authAuthChoice->getClients() as $client): ?>
+                <li class='bg-success text-success'>
+                    <?= $authAuthChoice->clientLink($client) ?>
+                    <?php if(SocialConnection::findOne([
+                        'source' => $client->getId(),
+                        'userUid' => \Yii::$app->user->uid,
+                    ])): ?>
+                        <span>✓</span>
+                    <?php endif; ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+        <?php AuthChoice::end(); ?>
+    <?php endif; ?>
 
     <div class="form-group">
         <div class="col-sm-offset-3 col-sm-6">

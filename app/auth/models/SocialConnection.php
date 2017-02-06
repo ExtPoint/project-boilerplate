@@ -27,9 +27,9 @@ class SocialConnection extends AppModel {
      */
     public function rules() {
         return [
-            [['userUid'], 'required'],
+            [['source', 'sourceId'], 'required'],
             [['userUid'], 'string', 'max' => 36],
-            [['service', 'service_id'], 'string', 'max' => 256],
+            [['source', 'sourceId'], 'string', 'max' => 256],
         ];
     }
 
@@ -39,8 +39,8 @@ class SocialConnection extends AppModel {
     public function attributeLabels() {
         return [
             'userUid' => 'User Uid',
-            'service' => 'Service',
-            'service_id' => 'Service ID',
+            'source' => 'source',
+            'sourceId' => 'source ID',
         ];
     }
 

@@ -16,6 +16,7 @@ return \yii\helpers\ArrayHelper::merge(
             'errorHandler' => [
                 'errorAction' => 'site/site/error',
             ],
+            //you need to register the application on the social network and add it to the secret key
             'authClientCollection' => [
                 'class' => \yii\authclient\Collection::className(),
                 'clients' => [
