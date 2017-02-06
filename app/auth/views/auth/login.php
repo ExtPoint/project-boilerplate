@@ -42,6 +42,11 @@ $this->title = 'Вход';
         </div>
     </div>
 
+    <?= yii\authclient\widgets\AuthChoice::widget([
+        'baseAuthUrl' => ['/auth/auth/social'],
+        'popupMode' => false,
+    ]) ?>
+
     <?php AppActiveForm::end(); ?>
 
 </div>
