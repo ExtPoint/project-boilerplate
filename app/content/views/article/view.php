@@ -16,7 +16,7 @@ use yii\helpers\Html;
     <br />
     <h1 class="media-heading">
         <small><?= \Yii::$app->formatter->asDate($contentModel->createTime) ?></small>
-        <?= Html::a($contentModel->title, ['/content/content/view', 'type' => $contentModel->type, 'uid' => $contentModel->uid]) ?>
+        <?= Html::a($contentModel->title, ['/content/content/view', 'type' => $contentModel->type, 'id' => $contentModel->id]) ?>
     </h1>
 </div>
 <?= $contentModel->text ?>

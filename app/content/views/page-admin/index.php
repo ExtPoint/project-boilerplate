@@ -29,7 +29,7 @@ use yii\helpers\Url;
             'label' => 'Адрес',
             'format' => 'raw',
             'value' => function ($model) {
-                $url = Url::toRoute(['/content/page/view', 'uid' => $model->uid]);
+                $url = Url::toRoute(['/content/page/view', 'id' => $model->id]);
                 return Html::a(ltrim($url, '/'), $url);
             },
         ],
@@ -42,14 +42,14 @@ use yii\helpers\Url;
                     /** @type Page $model */
                     return Html::a(
                         '<span class="glyphicon glyphicon-eye-open"></span>',
-                        ['/content/page/view', 'uid' => $model->uid]
+                        ['/content/page/view', 'id' => $model->id]
                     );
                 },
                 'update' => function ($url, $model, $key) {
                     /** @type Page $model */
                     return Html::a(
                         '<span class="glyphicon glyphicon-pencil"></span>',
-                        ['/content/page-admin/update', 'uid' => $model->uid]
+                        ['/content/page-admin/update', 'id' => $model->id]
                     );
                 },
             ]

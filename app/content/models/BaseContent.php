@@ -6,14 +6,12 @@ use app\content\validators\ContentNameValidator;
 use app\core\base\AppModel;
 use app\core\models\User;
 use extpoint\yii2\behaviors\TimestampBehavior;
-use extpoint\yii2\behaviors\UidBehavior;
-use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 
 /**
- * @property string $uid
- * @property string $creatorUserUid
+ * @property string $id
+ * @property string $creatorUserId
  * @property string $name
  * @property string $title
  * @property string $text
@@ -29,7 +27,6 @@ abstract class BaseContent extends AppModel {
      */
     public function behaviors() {
         return [
-            UidBehavior::className(),
             TimestampBehavior::className(),
             [
                 'class' => AttributeBehavior::className(),
@@ -46,11 +43,11 @@ abstract class BaseContent extends AppModel {
      */
     public function rules() {
         return [
-            [['creatorUserUid', 'title', 'text'], 'required'],
+            [['creatorUserId', 'title', 'text'], 'required'],
             ['text', 'string'],
             ['name', ContentNameValidator::className()],
             ['isPublished', 'boolean'],
-            [['uid', 'creatorUserUid'], 'string', 'max' => 36],
+            [['id', 'creatorUserId'], 'string', 'max' => 36],
             ['title', 'string', 'max' => 255],
         ];
     }
@@ -60,7 +57,7 @@ abstract class BaseContent extends AppModel {
      */
     public function attributeLabels() {
         return [
-            'uid' => \Yii::t('app', 'UID'),
+            'id' => \Yii::t('app', 'ID'),
             'name' => \Yii::t('app', 'Имя латиницей'),
             'title' => \Yii::t('app', 'Заголовок'),
             'text' => \Yii::t('app', 'Текст'),
@@ -71,7 +68,7 @@ abstract class BaseContent extends AppModel {
     }
 
     public function getCreator() {
-        return $this->hasOne(User::className(), ['uid' => 'creatorUserUid']);
+        return $this->hasOne(User::className(), ['id' => 'creatorUserId']);
     }
 
 }

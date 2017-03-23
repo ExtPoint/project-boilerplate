@@ -40,7 +40,7 @@ use yii\grid\GridView;
                     /** @type Article $model */
                     return Html::a(
                         '<span class="glyphicon glyphicon-pencil"></span>',
-                        ['/content/article-admin/update', 'uid' => $model->uid]
+                        ['/content/article-admin/update', 'id' => $model->id]
                     );
                 },
             ]

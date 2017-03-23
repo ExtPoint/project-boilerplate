@@ -1,10 +1,17 @@
 <?php
+
+namespace app\views;
+
+use app\auth\AuthModule;
+use app\auth\models\LoginForm;
+use yii\authclient\widgets\AuthChoice;
 use yii\helpers\Html;
 use app\core\widgets\AppActiveForm;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $form app\core\widgets\AppActiveForm */
-/* @var $model app\auth\models\LoginForm */
+/* @var $this View */
+/* @var $form AppActiveForm */
+/* @var $model LoginForm */
 
 $this->title = 'Вход';
 ?>
@@ -42,10 +49,12 @@ $this->title = 'Вход';
         </div>
     </div>
 
-    <?= yii\authclient\widgets\AuthChoice::widget([
-        'baseAuthUrl' => ['/auth/auth/social'],
-        'popupMode' => false,
-    ]) ?>
+    <?php if (AuthModule::getInstance()->enableSocial) { ?>
+        <?= AuthChoice::widget([
+            'baseAuthUrl' => ['/auth/auth/social'],
+            'popupMode' => false,
+        ]) ?>
+    <?php } ?>
 
     <?php AppActiveForm::end(); ?>
 

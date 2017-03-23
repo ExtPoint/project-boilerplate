@@ -22,8 +22,8 @@ class ArticleController extends AppController {
                 'items' => [
                     [
                         'label' => 'Просмотр',
-                        'url' => ["/content/article/view", 'type' => $type, 'uid' => MenuHelper::paramGet('uid')],
-                        'urlRule' => "$type/<uid>",
+                        'url' => ["/content/article/view", 'type' => $type, 'id' => MenuHelper::paramGet('id')],
+                        'urlRule' => "$type/<id>",
                     ],
                 ]
             ];
@@ -42,9 +42,9 @@ class ArticleController extends AppController {
         ]);
     }
 
-    public function actionView($type, $uid) {
+    public function actionView($type, $id) {
         /** @var Article $contentModel */
-        $contentModel = Article::findOne($uid);
+        $contentModel = Article::findOne($id);
         if (!$contentModel) {
             throw new NotFoundHttpException();
         }

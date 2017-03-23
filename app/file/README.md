@@ -3,7 +3,7 @@
 
 ## Add file field to model (one file)
 
-1. Add string(36) attribute to model
+1. Add int attribute to model
 2. Add field to form:
 
 ```php
@@ -22,5 +22,5 @@
 ## Get file by uid:
 
 ```php
-\app\file\models\File::findOne($uid)->getDownloadUrl()
+\app\file\models\File::findOne(['uid' => $uid])->getDownloadUrl()
 ```

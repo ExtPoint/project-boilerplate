@@ -8,7 +8,7 @@ class m151217_092337_profile_init extends Migration {
         $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
 
         $this->createTable('users', [
-            'uid' => $this->string(36)->notNull(),
+            'id' => $this->primaryKey(),
             'email' => $this->string(255),
             'name' => $this->string(255),
             'role' => $this->string(32)->notNull(),
@@ -21,16 +21,15 @@ class m151217_092337_profile_init extends Migration {
             'createTime' => $this->dateTime()->notNull(),
             'updateTime' => $this->dateTime()->notNull(),
         ], $tableOptions);
-        $this->addPrimaryKey('uid', 'users', 'uid');
 
         $this->createTable('users_info', [
-            'userUid' => $this->string(36),
+            'userId' => $this->string(36),
             'firstName' => $this->string(),
             'lastName' => $this->string(),
             'birthday' => $this->date(),
             'phone' => $this->string(),
         ], $tableOptions);
-        $this->addPrimaryKey('userUid', 'users_info', 'userUid');
+        $this->addPrimaryKey('userId', 'users_info', 'userId');
 
         // Prompt admin email
         $email = YII_DEBUG ? Yii::$app->controller->prompt('Please write you email (as administrator, password: 1):') : '';
@@ -40,10 +39,8 @@ class m151217_092337_profile_init extends Migration {
         $user->password = $user->passwordToHash('1');
 
         // Add administrator
-        $uid = \extpoint\yii2\behaviors\UidBehavior::generate();
         Yii::$app->db->createCommand()
             ->insert('users', [
-                'uid' => $uid,
                 'email' => $email,
                 'name' => 'Администратор',
                 'salt' => $user->salt,
@@ -55,7 +52,7 @@ class m151217_092337_profile_init extends Migration {
             ->execute();
         Yii::$app->db->createCommand()
             ->insert('users_info', [
-                'userUid' => $uid,
+                'userId' => Yii::$app->db->lastInsertID,
             ])
             ->execute();
     }

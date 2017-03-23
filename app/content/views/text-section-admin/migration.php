@@ -16,8 +16,8 @@ class <?= $migrationName ?> extends Migration {
 
     public function up() {
         $this->insert('<?= TextSection::tableName() ?>', [
-            'uid' => '<?= $model->uid ?>',
-            'creatorUserUid' => '<?= $model->creatorUserUid ?>',
+            'id' => '<?= $model->id ?>',
+            'creatorUserId' => '<?= $model->creatorUserId ?>',
             'name' => '<?= trim($model->name) ?>',
             'title' => '<?= trim($model->title) ?>',
             'text' => '<?= trim($model->text) ?>',
@@ -29,6 +29,6 @@ class <?= $migrationName ?> extends Migration {
     }
 
     public function down() {
-        $this->delete('<?= TextSection::tableName() ?>', ['uid' => '<?= $model->uid ?>']);
+        $this->delete('<?= TextSection::tableName() ?>', ['id' => '<?= $model->id ?>']);
     }
 }

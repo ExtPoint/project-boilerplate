@@ -34,7 +34,7 @@ use yii\grid\GridView;
                     /** @type TextSection $model */
                     return Html::a(
                         '<span class="glyphicon glyphicon-pencil"></span>',
-                        ['/content/text-section-admin/update', 'uid' => $model->uid]
+                        ['/content/text-section-admin/update', 'id' => $model->id]
                     );
                 },
             ]

@@ -2,6 +2,7 @@
 
 namespace app\views;
 
+use app\auth\AuthModule;
 use app\auth\models\SocialConnection;
 use yii\authclient\widgets\AuthChoice;
 use app\file\widgets\fileup\FileInput;
@@ -17,7 +18,7 @@ use yii\helpers\Html;
 <h1>Редактирование профиля</h1>
 <?= Nav::widget([
     'options' => ['class' => 'nav-tabs'],
-    'items' => \Yii::$app->megaMenu->getMenu(['/profile/profile-edit/index', 'userUid' => $model->uid], 1),
+    'items' => \Yii::$app->megaMenu->getMenu(['/profile/profile-edit/index', 'userId' => $model->id], 1),
 ]); ?>
 
 <div class="col-lg-7">
@@ -40,11 +41,12 @@ use yii\helpers\Html;
     <h3>Смена фотографии</h3>
     <?= $form->field($model, 'photo')->widget(FileInput::className()) ?>
 
-    <?php if(\Yii::$app->has('authClientCollection')): ?>
+    <?php if(AuthModule::getInstance()->enableSocial): ?>
         <h3>Добавить авторизацию через соц сеть</h3>
         <?php $authAuthChoice = AuthChoice::begin([
             'baseAuthUrl' => ['/auth/auth/social'],
             'popupMode' => false,
+            'clients' => AuthModule::getInstance()->authClientCollection->getClients(),
         ]); ?>
         <ul class='auth-clients'>
             <?php foreach ($authAuthChoice->getClients() as $client): ?>
@@ -52,7 +54,7 @@ use yii\helpers\Html;
                     <?= $authAuthChoice->clientLink($client) ?>
                     <?php if(SocialConnection::findOne([
                         'source' => $client->getId(),
-                        'userUid' => \Yii::$app->user->uid,
+                        'userId' => \Yii::$app->user->id,
                     ])): ?>
                         <span>✓</span>
                     <?php endif; ?>

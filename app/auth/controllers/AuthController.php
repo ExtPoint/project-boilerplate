@@ -57,7 +57,7 @@ class AuthController extends AppController {
         ])->one();
 
         if (Yii::$app->user->isGuest) {
-            if ($socialConnection && $socialConnection->userUid) {
+            if ($socialConnection && $socialConnection->userId) {
                 // login
                 Yii::$app->user->login($socialConnection->user);
                 return $this->redirect('/');
@@ -81,7 +81,7 @@ class AuthController extends AppController {
             if (!$socialConnection) {
                 // add socialConnection provider
                 $socialConnection = new SocialConnection([
-                    'userUid' => Yii::$app->user->uid,
+                    'userId' => Yii::$app->user->id,
                     'source' => $client->getId(),
                     'sourceId' => $id,
                 ]);
@@ -134,7 +134,7 @@ class AuthController extends AppController {
                 /** @var SocialConnection $socialConnection */
                 $socialConnection = SocialConnection::findOne($socialParam)
                     ?: new SocialConnection($socialParam);
-                $socialConnection->userUid = \Yii::$app->user->model->uid;
+                $socialConnection->userId = \Yii::$app->user->id;
                 $socialConnection->saveOrPanic();
             }
 

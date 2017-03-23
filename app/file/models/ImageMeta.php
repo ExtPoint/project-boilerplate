@@ -12,7 +12,7 @@ use app\file\FileModule;
 
 /**
  * @property integer $id
- * @property string $fileUid
+ * @property string $fileId
  * @property string $folder
  * @property string $fileName
  * @property string $fileMimeType
@@ -92,35 +92,35 @@ class ImageMeta extends AppModel {
 	}
 
 	/**
-	 * @param $fileUid
+	 * @param $fileId
 	 * @return static
 	 */
-	public static function findOriginal($fileUid) {
+	public static function findOriginal($fileId) {
 		return static::find()->where([
-			'fileUid' => $fileUid,
+			'fileId' => $fileId,
 			'isOriginal' => true
 		])->one();
 	}
 
 	/**
-	 * @param $fileUid
+	 * @param $fileId
 	 * @param string [$processorName]
 	 * @return ImageMeta
 	 * @throws FileException
 	 * @throws \yii\base\Exception
 	 */
-	public static function findByProcessor($fileUid, $processorName = FileModule::PROCESSOR_NAME_DEFAULT) {
+	public static function findByProcessor($fileId, $processorName = FileModule::PROCESSOR_NAME_DEFAULT) {
 		// Check already exists
 		/** @var self $imageMeta */
 		$imageMeta = self::findOne([
-			'fileUid' => $fileUid,
+			'fileId' => $fileId,
 			'processor' => $processorName,
 		]);
 		if ($imageMeta) {
 			return $imageMeta;
 		}
 
-		$imageMeta = static::cloneOriginal($fileUid, $processorName);
+		$imageMeta = static::cloneOriginal($fileId, $processorName);
 		$imageMeta->process($processorName);
 		$imageMeta->processor = $processorName;
 		$imageMeta->save();
@@ -154,17 +154,17 @@ class ImageMeta extends AppModel {
         }
     }
 
-	protected static function cloneOriginal($fileUid, $suffix) {
+	protected static function cloneOriginal($fileId, $suffix) {
 		// Get original image
 		/** @var self $originalMeta */
-		$originalMeta = self::findOriginal($fileUid);
+		$originalMeta = self::findOriginal($fileId);
 		if (!$originalMeta) {
-			throw new FileException('Not found original image by uid `' . $fileUid . '`.');
+			throw new FileException('Not found original image by id `' . $fileId . '`.');
 		}
 
 		// New file meta
 		$imageMeta = new self();
-		$imageMeta->fileUid = $originalMeta->fileUid;
+		$imageMeta->fileId = $originalMeta->fileId;
 		$imageMeta->folder = $originalMeta->folder;
 		$imageMeta->fileMimeType = $originalMeta->fileMimeType;
 

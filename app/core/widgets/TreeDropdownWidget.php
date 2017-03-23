@@ -32,9 +32,9 @@ class TreeDropdownWidget extends InputWidget
         return Html::activeDropDownList($this->model, $this->attribute, $items, $options);
     }
 
-    protected function createTree($models, $array = [], $parentUid = null) {
+    protected function createTree($models, $array = [], $parentId = null) {
         foreach ($models as $key => $model) {
-            if ($model->{$this->attribute} == $parentUid) {
+            if ($model->{$this->attribute} == $parentId) {
                 $array[$model->primaryKey] = ['value' => $model->title, 'items' => []];
                 unset($models[$key]);
             }

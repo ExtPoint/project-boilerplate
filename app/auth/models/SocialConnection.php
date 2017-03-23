@@ -7,8 +7,8 @@ use \app\core\base\AppModel;
 
 /**
  *
- * @property string $uid
- * @property string $userUid
+ * @property string $id
+ * @property string $userId
  * @property string $source
  * @property string $sourceId
  * @property-read User $user
@@ -28,7 +28,7 @@ class SocialConnection extends AppModel {
     public function rules() {
         return [
             [['source', 'sourceId'], 'required'],
-            [['userUid'], 'string', 'max' => 36],
+            ['userId', 'integer'],
             [['source', 'sourceId'], 'string', 'max' => 256],
         ];
     }
@@ -38,13 +38,13 @@ class SocialConnection extends AppModel {
      */
     public function attributeLabels() {
         return [
-            'userUid' => 'User Uid',
+            'userId' => 'User id',
             'source' => 'source',
             'sourceId' => 'source ID',
         ];
     }
 
     public function getUser() {
-        return $this->hasOne(User::className(), ['uid' => 'userUid']);
+        return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 }

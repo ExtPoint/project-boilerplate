@@ -33,17 +33,17 @@ class ProfileController extends Controller {
      * @throws NotFoundHttpException
      */
     public function actionIndex() {
-        return $this->actionView(Yii::$app->user->uid);
+        return $this->actionView(Yii::$app->user->id);
     }
 
     /**
-     * @param string $userUid
+     * @param string $userId
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($userUid) {
+    public function actionView($userId) {
         /** @var User $userModel */
-        $userModel = User::findOne($userUid);
+        $userModel = User::findOne($userId);
         if (!$userModel) {
             throw new NotFoundHttpException();
         }

@@ -10,6 +10,7 @@ use app\file\FileModule;
 use yii\helpers\Url;
 
 /**
+ * @property integer $id
  * @property string $uid
  * @property string $title
  * @property string $folder
@@ -42,7 +43,7 @@ class File extends AppModel {
     public static function findByUrl($url) {
         // Find uid
         if (preg_match('/[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}/', $url, $match)) {
-            return static::findOne($match[0]);
+            return static::findOne(['uid' => $match[0]]);
         }
         return null;
     }
@@ -116,7 +117,7 @@ class File extends AppModel {
 	public function getPreviewImageUrl() {
 		if (ImageMeta::isImageMimeType($this->fileMimeType)) {
 			try {
-				return ImageMeta::findByProcessor($this->uid, FileModule::PROCESSOR_NAME_DEFAULT)->url;
+				return ImageMeta::findByProcessor($this->id, FileModule::PROCESSOR_NAME_DEFAULT)->url;
 			} catch (FileException $e) {
 				// @todo change mime type on error for cache
 			}
@@ -139,10 +140,10 @@ class File extends AppModel {
 
 		// Remove image meta info
 		/** @var ImageMeta[] $imagesMeta */
-		$imagesMeta = ImageMeta::findAll(['fileUid' => $this->uid]);
+		$imagesMeta = ImageMeta::findAll(['fileId' => $this->id]);
 		foreach ($imagesMeta as $imageMeta) {
 			if (!$imageMeta->delete()) {
-				throw new FileException('Can not remove image meta `' . $imageMeta->getRelativePath() . '` for file `' . $this->uid . '`.');
+				throw new FileException('Can not remove image meta `' . $imageMeta->getRelativePath() . '` for file `' . $this->id . '`.');
 			}
 		}
 
@@ -186,7 +187,7 @@ class File extends AppModel {
 
             // Create instance
             $imageMeta = new ImageMeta([
-                'fileUid' => $this->uid,
+                'fileId' => $this->id,
                 'folder' => $this->folder,
                 'fileName' => $this->fileName,
                 'fileMimeType' => $this->fileMimeType,

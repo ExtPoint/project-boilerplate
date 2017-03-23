@@ -7,6 +7,7 @@ class m160122_150406_file_init_tables extends Migration {
     public function up() {
 
         $this->createTable('files', [
+            'id' => $this->primaryKey(),
             'uid' => $this->string(36),
             'title' => $this->string(),
             'folder' => $this->string(),
@@ -17,11 +18,11 @@ class m160122_150406_file_init_tables extends Migration {
             'updateTime' => $this->dateTime(),
             'isTemp' => $this->boolean(),
         ]);
-        $this->addPrimaryKey('uid', 'files', 'uid');
+        $this->createIndex('uid', 'files', 'uid');
 
         $this->createTable('files_images_meta', [
             'id' => $this->primaryKey(),
-            'fileUid' => $this->string(36),
+            'fileId' => $this->integer(),
             'folder' => $this->string(),
             'fileName' => $this->string(),
             'fileMimeType' => $this->string(),
@@ -33,11 +34,11 @@ class m160122_150406_file_init_tables extends Migration {
             'updateTime' => $this->dateTime(),
         ]);
         $this->createIndex('file_processor', 'files_images_meta', [
-            'fileUid',
+            'fileId',
             'processor',
         ]);
         $this->createIndex('original', 'files_images_meta', [
-            'fileUid',
+            'fileId',
             'isOriginal',
         ]);
     }

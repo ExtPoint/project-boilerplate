@@ -2,12 +2,11 @@
 
 namespace app\content\models;
 
-use app\content\enums\ContentType;
 use Yii;
 
 /**
- * @property string $parentUid
- * @property string $redirectToUid
+ * @property string $parentId
+ * @property string $redirectToId
  * @property string $metaKeywords
  * @property string $metaDescription
  * @property-read Page $redirectPage
@@ -22,13 +21,13 @@ class Page extends BaseContent {
 
     public function rules() {
         return array_merge(parent::rules(), [
-            [['parentUid'], 'string', 'max' => 255],
+            [['parentId'], 'string', 'max' => 255],
         ]);
     }
 
     public function attributeLabels() {
         return array_merge(parent::attributeLabels(), [
-            'parentUid' => 'Родительская страница',
+            'parentId' => 'Родительская страница',
         ]);
     }
 
@@ -40,12 +39,12 @@ class Page extends BaseContent {
         }
     }
 
-    protected static function createTree($models, $array = [], $parentUid = null, $parentUrlRule = '') {
+    protected static function createTree($models, $array = [], $parentId = null, $parentUrlRule = '') {
         foreach ($models as $key => $model) {
-            if ($model->parentUid == $parentUid) {
+            if ($model->parentId == $parentId) {
                 $array[$model->primaryKey] = [
                     'label' => $model->title,
-                    'url' => ['/content/page/view', 'uid' => $model->uid],
+                    'url' => ['/content/page/view', 'id' => $model->id],
                     'urlRule' => $parentUrlRule . '/' . $model->name,
                     'items' => [],
                 ];
@@ -80,7 +79,7 @@ class Page extends BaseContent {
     }
 
     public function getRedirectPage() {
-        return $this->hasOne(static::className(), ['uid' => 'redirectToUid']);
+        return $this->hasOne(static::className(), ['id' => 'redirectToId']);
     }
 
 }

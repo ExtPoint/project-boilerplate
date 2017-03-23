@@ -13,7 +13,7 @@ use yii\validators\DateValidator;
 /**
  * This is the model class for table "user_info".
  *
- * @property string $userUid
+ * @property string $userId
  * @property string $firstName
  * @property string $lastName
  * @property string $birthday
@@ -45,7 +45,7 @@ class UserInfo extends AppModel
     public function rules()
     {
         return [
-            [['userUid'], 'string', 'length' => 36],
+            [['userId'], 'integer'],
             [['firstName', 'lastName'], 'string', 'max' => 255],
             ['birthday', DateValidator::className(), 'format' => 'dd.MM.yyyy'],
             ['phone', PhoneValidator::className()],
@@ -66,10 +66,10 @@ class UserInfo extends AppModel
     }
 
     public function getUser() {
-        return $this->hasOne(User::className(), ['uid' => 'userUid']);
+        return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 
     public function canViewAttribute($userModel, $attribute) {
-        return $userModel->uid === $this->userUid || $this->user->role === UserRole::ADMIN;
+        return $userModel->id === $this->userId || $this->user->role === UserRole::ADMIN;
     }
 }

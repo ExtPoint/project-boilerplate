@@ -24,8 +24,8 @@ class ProfileEditController extends Controller {
         ];
     }
 
-    public function actionIndex($userUid = null) {
-        $model = $userUid ? User::findOne($userUid) : Yii::$app->user->model;
+    public function actionIndex($userId = null) {
+        $model = $userId ? User::findOne($userId) : Yii::$app->user->model;
 
         if ($model->load(Yii::$app->request->post()) && $model->info->load(Yii::$app->request->post())
             && $model->validate() && $model->info->validate()
@@ -48,9 +48,9 @@ class ProfileEditController extends Controller {
         ]);
     }
 
-    public function actionPassword($userUid = null) {
+    public function actionPassword($userId = null) {
         $form = new PasswordUpdate();
-        $form->user = $userUid ? User::findOne($userUid) : Yii::$app->user->model;
+        $form->user = $userId ? User::findOne($userId) : Yii::$app->user->model;
 
         if ($form->load(Yii::$app->request->post()) && $form->change()) {
             \Yii::$app->session->setFlash('success', 'Пароль успешно изменен!');

@@ -6,8 +6,8 @@ class m160407_093325_content_init extends Migration {
 
     public function up() {
         $base = [
-            'uid' => $this->string(36),
-            'creatorUserUid' => $this->string(36),
+            'id' => $this->primaryKey(),
+            'creatorUserId' => $this->integer(),
             'name' => $this->string(),
             'title' => $this->string(),
             'text' => $this->text(),
@@ -24,19 +24,15 @@ class m160407_093325_content_init extends Migration {
             'previewText' => $this->text(),
             'publishTime' => $this->dateTime()->notNull(),
         ], $tableOptions);
-        $this->addPrimaryKey('uid', 'content_articles', 'uid');
 
         $this->createTable('content_pages', $base + [
             'metaKeywords' => $this->string(),
             'metaDescription' => $this->string(),
-            'parentUid' => $this->string(36),
-            'redirectToUid' => $this->string(36),
+            'parentId' => $this->integer(),
+            'redirectToId' => $this->integer(),
         ], $tableOptions);
-        $this->addPrimaryKey('uid', 'content_pages', 'uid');
 
-        $this->createTable('content_texts', $base + [
-        ], $tableOptions);
-        $this->addPrimaryKey('uid', 'content_texts', 'uid');
+        $this->createTable('content_texts', $base, $tableOptions);
 
     }
 

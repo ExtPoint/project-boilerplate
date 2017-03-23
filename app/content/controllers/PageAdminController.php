@@ -31,8 +31,8 @@ class PageAdminController extends AppController {
                 ],
                 [
                     'label' => 'Редактирование',
-                    'url' => ["/content/page-admin/update", 'uid' => MenuHelper::paramGet('uid')],
-                    'urlRule' => 'admin/pages/update/<uid>',
+                    'url' => ["/content/page-admin/update", 'id' => MenuHelper::paramGet('id')],
+                    'urlRule' => 'admin/pages/update/<id>',
                 ],
             ],
         ];
@@ -68,11 +68,11 @@ class PageAdminController extends AppController {
         ]);
     }
 
-    public function actionUpdate($uid = null) {
-        $model = $uid ?
-            Page::findOne($uid) :
+    public function actionUpdate($id = null) {
+        $model = $id ?
+            Page::findOne($id) :
             new Page([
-                'creatorUserUid' => Yii::$app->user->id,
+                'creatorUserId' => Yii::$app->user->id,
             ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -33,8 +33,8 @@ class ArticleAdminController extends AppController {
                     ],
                     [
                         'label' => 'Редактирование',
-                        'url' => ["/content/article-admin/update", 'type' => $type, 'uid' => MenuHelper::paramGet('uid')],
-                        'urlRule' => "admin/$type/update/<uid>",
+                        'url' => ["/content/article-admin/update", 'type' => $type, 'id' => MenuHelper::paramGet('id')],
+                        'urlRule' => "admin/$type/update/<id>",
                     ],
                 ],
             ];
@@ -72,14 +72,14 @@ class ArticleAdminController extends AppController {
         ]);
     }
 
-    public function actionUpdate($type, $uid = null) {
+    public function actionUpdate($type, $id = null) {
         /** @var Article $model */
-        $model = $uid ?
-            Article::findOne($uid) :
+        $model = $id ?
+            Article::findOne($id) :
             Article::instantiate(['type' => $type]);
         if ($model->isNewRecord) {
             $model->type = $type;
-            $model->creatorUserUid = Yii::$app->user->id;
+            $model->creatorUserId = Yii::$app->user->id;
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

@@ -9,7 +9,7 @@ use yii\web\User;
 /**
  * Class ContextUser
  * @property-read \app\core\models\User $model
- * @property-read string $uid
+ * @property-read string $id
  * @property-read string $name
  * @package app\core\components
  */
@@ -29,8 +29,8 @@ class ContextUser extends User {
     /**
      * @return string|null
      */
-    public function getUid() {
-        return $this->getModel() ? $this->getModel()->uid : null;
+    public function getId() {
+        return $this->getModel() ? $this->getModel()->id : null;
     }
 
     /**

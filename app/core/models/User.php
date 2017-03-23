@@ -4,7 +4,6 @@ namespace app\core\models;
 
 use app\core\base\AppModel;
 use extpoint\yii2\behaviors\TimestampBehavior;
-use extpoint\yii2\behaviors\UidBehavior;
 use app\profile\enums\UserRole;
 use app\profile\models\UserInfo;
 use Yii;
@@ -13,7 +12,7 @@ use yii\web\IdentityInterface;
 /**
  * This is the model class for table "users".
  *
- * @property string $uid
+ * @property string $id
  * @property string $email
  * @property string $name
  * @property string $role
@@ -42,7 +41,6 @@ class User extends AppModel implements IdentityInterface {
      */
     public function behaviors() {
         return [
-            UidBehavior::className(),
             TimestampBehavior::className(),
         ];
     }
@@ -104,7 +102,7 @@ class User extends AppModel implements IdentityInterface {
      * @inheritdoc
      */
     public function getId() {
-        return $this->uid;
+        return $this->id;
     }
 
     /**
@@ -130,7 +128,7 @@ class User extends AppModel implements IdentityInterface {
     }
 
     public function getInfo() {
-        return $this->hasOne(UserInfo::className(), ['userUid' => 'uid']);
+        return $this->hasOne(UserInfo::className(), ['userId' => 'id']);
     }
 
     public function getPhotoUrl() {
@@ -138,7 +136,7 @@ class User extends AppModel implements IdentityInterface {
     }
 
     public function canViewAttribute($userModel, $attribute) {
-        return $userModel->uid === $this->uid || $this->role === UserRole::ADMIN;
+        return $userModel->id === $this->id || $this->role === UserRole::ADMIN;
     }
 
     /**
@@ -147,8 +145,8 @@ class User extends AppModel implements IdentityInterface {
      */
     public function afterSave($insert, $changedAttributes) {
         if ($insert && !$this->info) {
-            $info = new UserInfo(['userUid' => $this->uid, 'firstName' => $this->name]);
-            $info->userUid = $this->uid;
+            $info = new UserInfo(['userId' => $this->id, 'firstName' => $this->name]);
+            $info->userId = $this->id;
             $info->firstName = $this->name;
             $info->saveOrPanic();
         }

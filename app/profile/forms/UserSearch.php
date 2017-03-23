@@ -16,7 +16,7 @@ class UserSearch extends User {
      */
     public function rules() {
         return [
-            [['uid', 'email', 'name', 'role'], 'safe'],
+            [['id', 'email', 'name', 'role'], 'safe'],
         ];
     }
 

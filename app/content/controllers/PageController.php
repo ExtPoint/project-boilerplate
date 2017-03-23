@@ -23,9 +23,9 @@ class PageController extends AppController {
             ]
         ];
     }
-    public function actionView($uid) {
+    public function actionView($id) {
         /** @var Page $pageModel */
-        $pageModel = Page::findOne(['uid' => $uid]);
+        $pageModel = Page::findOne(['id' => $id]);
         if (!$pageModel) {
             throw new NotFoundHttpException(Yii::t('app', 'Страница не найдена'));
         }

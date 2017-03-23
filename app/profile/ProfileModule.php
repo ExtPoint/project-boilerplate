@@ -24,23 +24,23 @@ class ProfileModule extends AppModule {
             ],
             [
                 'label' => 'Мой профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => MenuHelper::paramUser('uid')],
+                'url' => ["/$this->id/$this->id/view", 'userId' => MenuHelper::paramUser('id')],
                 'urlRule' => 'profile',
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramUser('uid')],
+                        'url' => ["/$this->id/$this->id-edit/index", 'userId' => MenuHelper::paramUser('id')],
                         'urlRule' => 'profile/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramUser('uid')],
+                                'url' => ["/$this->id/$this->id-edit/index", 'userId' => MenuHelper::paramUser('id')],
                                 'urlRule' => 'profile/edit',
                             ],
                             [
                                 'label' => 'Пароль',
-                                'url' => ["/$this->id/$this->id-edit/password", 'userUid' => MenuHelper::paramUser('uid')],
+                                'url' => ["/$this->id/$this->id-edit/password", 'userId' => MenuHelper::paramUser('id')],
                                 'urlRule' => 'profile/edit/password',
                             ],
                         ],
@@ -49,20 +49,20 @@ class ProfileModule extends AppModule {
             ],
             [
                 'label' => 'Профиль',
-                'url' => ["/$this->id/$this->id/view", 'userUid' => MenuHelper::paramGet('userUid')],
-                'urlRule' => 'profile/<userUid>',
+                'url' => ["/$this->id/$this->id/view", 'userId' => MenuHelper::paramGet('userId')],
+                'urlRule' => 'profile/<userId>',
                 'visible' => false,
                 'roles' => '@',
                 'items' => [
                     [
                         'label' => 'Редактирование профиля',
-                        'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramGet('userUid')],
-                        'urlRule' => 'profile/<userUid>/edit',
+                        'url' => ["/$this->id/$this->id-edit/index", 'userId' => MenuHelper::paramGet('userId')],
+                        'urlRule' => 'profile/<userId>/edit',
                         'items' => [
                             [
                                 'label' => 'Основные',
-                                'url' => ["/$this->id/$this->id-edit/index", 'userUid' => MenuHelper::paramGet('userUid')],
-                                'urlRule' => 'profile/<userUid>/edit',
+                                'url' => ["/$this->id/$this->id-edit/index", 'userId' => MenuHelper::paramGet('userId')],
+                                'urlRule' => 'profile/<userId>/edit',
                             ],
                         ],
                     ],

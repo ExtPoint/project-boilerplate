@@ -53,9 +53,9 @@ use yii\grid\GridView;
                 /** @type User $model */
                 switch ($action) {
                     case 'view':
-                        return ['/profile/profile/view', 'userUid' => $model->uid];
+                        return ['/profile/profile/view', 'userId' => $model->id];
                     case 'update':
-                        return ['/profile/profile-edit/index', 'userUid' => $model->uid];
+                        return ['/profile/profile-edit/index', 'userId' => $model->id];
                 }
                 return '#';
             }

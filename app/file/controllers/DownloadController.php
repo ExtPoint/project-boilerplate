@@ -11,7 +11,7 @@ class DownloadController extends AppController {
 
     public function actionIndex($uid) {
         /** @var File $file */
-        $file = File::findOne($uid);
+        $file = File::findOne(['uid' => $uid]);
         if (!$file) {
             throw new NotFoundHttpException();
         }

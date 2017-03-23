@@ -31,8 +31,8 @@ class TextSectionAdminController extends AppController {
                 ],
                 [
                     'label' => 'Редактирование',
-                    'url' => ["/content/text-section-admin/update", 'uid' => MenuHelper::paramGet('uid')],
-                    'urlRule' => 'admin/content/texts/update/<uid>',
+                    'url' => ["/content/text-section-admin/update", 'id' => MenuHelper::paramGet('id')],
+                    'urlRule' => 'admin/content/texts/update/<id>',
                 ],
             ],
         ];
@@ -68,11 +68,11 @@ class TextSectionAdminController extends AppController {
         ]);
     }
 
-    public function actionUpdate($uid = null) {
-        $model = $uid ?
-            TextSection::findOne($uid) :
+    public function actionUpdate($id = null) {
+        $model = $id ?
+            TextSection::findOne($id) :
             new TextSection([
-                'creatorUserUid' => Yii::$app->user->id,
+                'creatorUserId' => Yii::$app->user->id,
             ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

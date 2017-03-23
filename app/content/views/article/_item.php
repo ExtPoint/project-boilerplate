@@ -13,7 +13,7 @@ use yii\helpers\Url;
 <div class="media">
     <?php if ($model->imageUrl) { ?>
         <div class="media-left">
-            <a href="<?= Url::to(['/content/content/view', 'type' => $model->type, 'uid' => $model->uid]) ?>">
+            <a href="<?= Url::to(['/content/content/view', 'type' => $model->type, 'id' => $model->id]) ?>">
                 <img class="media-object" src="<?= $model->imageUrl ?> " alt="<?= $model->title ?>" />
             </a>
         </div>
@@ -21,7 +21,7 @@ use yii\helpers\Url;
     <div class="media-body">
         <h4 class="media-heading">
             <small><?= \Yii::$app->formatter->asDate($model->createTime) ?></small>
-            <?= Html::a($model->title, ['/content/content/view', 'type' => $model->type, 'uid' => $model->uid]) ?>
+            <?= Html::a($model->title, ['/content/content/view', 'type' => $model->type, 'id' => $model->id]) ?>
         </h4>
         <?= $model->previewText ?>
     </div>

@@ -6,6 +6,7 @@ use app\content\forms\PageSearch;
 use app\content\models\Page;
 use app\core\base\AppController;
 use app\profile\enums\UserRole;
+use extpoint\megamenu\MenuHelper;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -14,8 +15,6 @@ use yii\web\Request;
 class MenuAdminController extends AppController {
 
     public static function coreMenuItem() {
-        $contentUid = \Yii::$app->request instanceof Request ? \Yii::$app->request->get('uid') : null;
-
         return [
             'label' => 'Страницы',
             'url' => ["/content/page-admin/index"],
@@ -32,8 +31,8 @@ class MenuAdminController extends AppController {
                 ],
                 [
                     'label' => 'Редактирование',
-                    'url' => ["/content/page-admin/update", 'uid' => $contentUid],
-                    'urlRule' => 'admin/pages/update/<uid>',
+                    'url' => ["/content/page-admin/update", 'id' => MenuHelper::paramGet('id')],
+                    'urlRule' => 'admin/pages/update/<id>',
                 ],
             ],
         ];
@@ -69,11 +68,11 @@ class MenuAdminController extends AppController {
         ]);
     }
 
-    public function actionUpdate($uid = null) {
-        $model = $uid ?
-            Page::findOne($uid) :
+    public function actionUpdate($id = null) {
+        $model = $id ?
+            Page::findOne($id) :
             new Page([
-                'creatorUserUid' => Yii::$app->user->id,
+                'creatorUserId' => Yii::$app->user->id,
             ]);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
