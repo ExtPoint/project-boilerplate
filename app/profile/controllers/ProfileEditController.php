@@ -27,17 +27,15 @@ class ProfileEditController extends Controller {
     public function actionIndex($userId = null) {
         $model = $userId ? User::findOne($userId) : Yii::$app->user->model;
 
-        if ($model->load(Yii::$app->request->post()) && $model->info->load(Yii::$app->request->post())
-            && $model->validate() && $model->info->validate()
-        ) {
-            if ($model->info->firstName || $model->info->lastName) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->firstName || $model->lastName) {
                 $model->name = implode(' ', array_filter([
-                    $model->info->firstName,
-                    $model->info->lastName
+                    $model->firstName,
+                    $model->lastName
                 ]));
             }
 
-            if ($model->save() && $model->info->save(false)) {
+            if ($model->save()) {
                 \Yii::$app->session->setFlash('success', 'Изменения профиля сохранены!');
                 return $this->refresh();
             }

@@ -26,17 +26,17 @@ use yii\widgets\DetailView;
         <?= DetailView::widget([
             'model' => $userModel,
             'attributes' => [
-                'info.firstName',
-                'info.lastName',
+                'firstName',
+                'lastName',
                 [
                     'attribute' => 'email',
                     'visible' => $userModel->canViewAttribute(\Yii::$app->user->model, 'email'),
                 ],
                 [
-                    'attribute' => 'info.phone',
-                    'visible' => $userModel->info->canViewAttribute(\Yii::$app->user->model, 'phone'),
+                    'attribute' => 'phone',
+                    'visible' => $userModel->canViewAttribute(\Yii::$app->user->model, 'phone'),
                 ],
-                'info.birthday',
+                'birthday',
                 'createTime',
             ],
         ]) ?>

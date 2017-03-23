@@ -20,16 +20,11 @@ class m151217_092337_profile_init extends Migration {
             'recoveryKey' => $this->string(32),
             'createTime' => $this->dateTime()->notNull(),
             'updateTime' => $this->dateTime()->notNull(),
-        ], $tableOptions);
-
-        $this->createTable('users_info', [
-            'userId' => $this->string(36),
             'firstName' => $this->string(),
             'lastName' => $this->string(),
             'birthday' => $this->date(),
             'phone' => $this->string(),
         ], $tableOptions);
-        $this->addPrimaryKey('userId', 'users_info', 'userId');
 
         // Prompt admin email
         $email = YII_DEBUG ? Yii::$app->controller->prompt('Please write you email (as administrator, password: 1):') : '';
@@ -50,15 +45,9 @@ class m151217_092337_profile_init extends Migration {
                 'updateTime' => date('Y-m-d H:i:s'),
             ])
             ->execute();
-        Yii::$app->db->createCommand()
-            ->insert('users_info', [
-                'userId' => Yii::$app->db->lastInsertID,
-            ])
-            ->execute();
     }
 
     public function down() {
         $this->dropTable('users');
-        $this->dropTable('users_info');
     }
 }

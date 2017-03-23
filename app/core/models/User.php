@@ -3,10 +3,12 @@
 namespace app\core\models;
 
 use app\core\base\AppModel;
+use extpoint\yii2\behaviors\BirthdayBehavior;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use app\profile\enums\UserRole;
-use app\profile\models\UserInfo;
+use extpoint\yii2\validators\PhoneValidator;
 use Yii;
+use yii\validators\DateValidator;
 use yii\web\IdentityInterface;
 
 /**
@@ -22,9 +24,12 @@ use yii\web\IdentityInterface;
  * @property string $accessToken
  * @property string $recoveryKey
  * @property string $photo
+ * @property string $firstName
+ * @property string $lastName
+ * @property string $birthday
+ * @property string $phone
  * @property string $createTime
  * @property string $updateTime
- * @property-read UserInfo $info
  * @property-read string $photoUrl
  */
 class User extends AppModel implements IdentityInterface {
@@ -42,6 +47,7 @@ class User extends AppModel implements IdentityInterface {
     public function behaviors() {
         return [
             TimestampBehavior::className(),
+            BirthdayBehavior::className(),
         ];
     }
 
@@ -53,7 +59,10 @@ class User extends AppModel implements IdentityInterface {
             [['email', 'name', 'photo'], 'string', 'max' => 255],
             ['email', 'unique'],
             [['role', 'password', 'authKey', 'accessToken', 'recoveryKey'], 'string', 'max' => 32],
-            [['salt'], 'string', 'max' => 10],
+            ['salt', 'string', 'max' => 10],
+            [['firstName', 'lastName'], 'string', 'max' => 255],
+            ['birthday', DateValidator::className(), 'format' => 'dd.MM.yyyy'],
+            ['phone', PhoneValidator::className()],
         ];
     }
 
@@ -68,6 +77,10 @@ class User extends AppModel implements IdentityInterface {
             'password' => Yii::t('app', 'Пароль'),
             'createTime' => Yii::t('app', 'Дата регистрации'),
             'photo' => Yii::t('app', 'Фото'),
+            'firstName' => Yii::t('app', 'Имя'),
+            'lastName' => Yii::t('app', 'Фамилия'),
+            'birthday' => Yii::t('app', 'Дата рождения'),
+            'phone' => Yii::t('app', 'Телефон'),
         ];
     }
 
@@ -127,10 +140,6 @@ class User extends AppModel implements IdentityInterface {
         return md5(md5($password) . md5($this->salt)) === $this->password;
     }
 
-    public function getInfo() {
-        return $this->hasOne(UserInfo::className(), ['userId' => 'id']);
-    }
-
     public function getPhotoUrl() {
         return ''; // @todo
     }
@@ -144,13 +153,6 @@ class User extends AppModel implements IdentityInterface {
      * @param array $changedAttributes
      */
     public function afterSave($insert, $changedAttributes) {
-        if ($insert && !$this->info) {
-            $info = new UserInfo(['userId' => $this->id, 'firstName' => $this->name]);
-            $info->userId = $this->id;
-            $info->firstName = $this->name;
-            $info->saveOrPanic();
-        }
-
         parent::afterSave($insert, $changedAttributes);
     }
 

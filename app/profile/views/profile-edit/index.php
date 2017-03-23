@@ -28,15 +28,15 @@ use yii\helpers\Html;
     ]); ?>
 
     <h3>Основное</h3>
-    <?= $form->field($model->info, 'firstName') ?>
-    <?= $form->field($model->info, 'lastName') ?>
+    <?= $form->field($model, 'firstName') ?>
+    <?= $form->field($model, 'lastName') ?>
     <?= $form->field($model, 'email', [
         'inputTemplate' => '<div class="input-group"><span class="input-group-addon">@</span>{input}</div>',
     ]) ?>
-    <?= $form->field($model->info, 'phone', [
+    <?= $form->field($model, 'phone', [
         'inputTemplate' => '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>{input}</div>',
     ]) ?>
-    <?= $form->field($model->info, 'birthday')->widget(DatePicker::classname()) ?>
+    <?= $form->field($model, 'birthday')->widget(DatePicker::classname()) ?>
 
     <h3>Смена фотографии</h3>
     <?= $form->field($model, 'photo')->widget(FileInput::className()) ?>

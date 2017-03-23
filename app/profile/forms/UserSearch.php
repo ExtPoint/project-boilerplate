@@ -28,7 +28,7 @@ class UserSearch extends User {
      * @return ActiveDataProvider
      */
     public function search($params) {
-        $query = User::find()->with('info');
+        $query = User::find();
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
