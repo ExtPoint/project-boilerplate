@@ -1,0 +1,71 @@
+@import '../../../style/bootstrap-default/variables';
+
+.@{bem-namespace}Loading {
+  position: relative;
+  min-height: 100px;
+
+  &__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    margin: -40px 0 0 -30px;
+    display: none;
+    text-align: center;
+    font-size: 10px;
+    z-index: 2;
+
+    > div {
+      height: 50px;
+      width: 8px;
+      background-color: @brand-primary;
+      display: block;
+      -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+      animation: sk-stretchdelay 1.2s infinite ease-in-out;
+      margin-left: 2px;
+      float: left;
+    }
+  }
+
+  &_visible > &__content {
+    opacity: .2;
+    transition: opacity 0.2s ease;
+  }
+  &_visible > &__loader {
+    display: block;
+  }
+
+  &__loader &__rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+  }
+  &__loader &__rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+  }
+  &__loader &__rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+  }
+  &__loader &__rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+  }
+
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.5) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.5);
+    -webkit-transform: scaleY(0.5);
+  }  20% {
+       transform: scaleY(1.0);
+       -webkit-transform: scaleY(1.0);
+     }
+}

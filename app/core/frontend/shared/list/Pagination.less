@@ -1,0 +1,30 @@
+@import '../../../style/bootstrap-default/variables';
+
+.@{bem-namespace}Pagination {
+  height: 28px;
+  margin: 0;
+  &__page {
+    display: inline-block !important;
+    margin-right: 5px;
+    .active {
+      font-weight: 600;
+    }
+  }
+  &__page-link {
+    font-size: 13px;
+    font-weight: 300;
+    padding: 4px 11px !important;
+    border-radius: 55px !important;
+    &_hidden {
+      position: relative;
+      top: 6px;
+      padding: 4px 0 !important;
+      border-color: transparent !important;
+      background-color: transparent !important;
+      &:hover {
+        color: #333 !important;
+        background-color: transparent !important;
+      }
+    }
+  }
+}

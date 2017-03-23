@@ -2,14 +2,20 @@
 
 namespace app\views;
 
-use extpoint\megamenu\MegaMenu;
+use app\core\assets\FrontendAssetBundle;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
+use yii\web\View;
 use yii\widgets\Breadcrumbs;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
+
+FrontendAssetBundle::register($this);
+
+$this->registerJsFile('@web/assets/bundle-index.js', ['position' => View::POS_BEGIN]);
+$this->registerJsFile('@web/assets/bundle-style.js', ['position' => View::POS_BEGIN]);
 
 $this->registerJsFile('@web/assets/main.js');
 $this->registerCssFile('@web/assets/main.css');

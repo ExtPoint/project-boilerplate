@@ -7,7 +7,7 @@
 2. Add field to form:
 
 ```php
-<?= $form->field($model, 'photo')->widget(\app\file\widgets\fileup\FileInput::className()) ?>
+<?= $form->field($model, 'photo')->widget(\app\file\widgets\FileInput\FileInput::className()) ?>
 ```
 
 ## Add file field to model (multiple files)
@@ -16,7 +16,7 @@
 2. Add field to form:
 
 ```php
-<?= $form->field($model, 'attachments')->widget(\app\file\widgets\fileup\FileInput::className(), ['multiple' => true]) ?>
+<?= $form->field($model, 'attachments')->widget(\app\file\widgets\FileInput\FileInput::className(), ['multiple' => true]) ?>
 ```
 
 ## Get file by uid:

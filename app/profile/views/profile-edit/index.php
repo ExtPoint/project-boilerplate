@@ -39,7 +39,7 @@ use yii\helpers\Html;
     <?= $form->field($model, 'birthday')->widget(DatePicker::classname()) ?>
 
     <h3>Смена фотографии</h3>
-    <?= $form->field($model, 'photo')->widget(FileInput::className()) ?>
+    <?= $form->field($model, 'photo')->file() ?>
 
     <?php if(AuthModule::getInstance()->enableSocial): ?>
         <h3>Добавить авторизацию через соц сеть</h3>

@@ -3,7 +3,6 @@
 namespace app\views;
 
 use app\content\enums\ContentCategory;
-use app\file\widgets\fileup\FileInput;
 use dosamigos\ckeditor\CKEditor;
 use kartik\widgets\DateTimePicker;
 use app\core\widgets\AppActiveForm;
@@ -26,7 +25,7 @@ use yii\bootstrap\Html;
         </div>
         <div class="col-md-5">
             <?= $form->field($model, 'publishTime')->widget(DateTimePicker::classname()); ?>
-            <?= $form->field($model, 'image')->widget(FileInput::className()); ?>
+            <?= $form->field($model, 'image')->file(); ?>
             <?= $form->field($model, 'isPublished')->checkbox() ?>
         </div>
     </div>

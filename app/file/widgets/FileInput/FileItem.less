@@ -1,0 +1,62 @@
+@import '../../../core/style/bootstrap-default/variables';
+
+.@{bem-namespace}FileItem {
+    position: relative;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    float: left;
+
+    &, &__image {
+        width: 100px;
+        height: 100px;
+    }
+
+    &__remove {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        background-color: rgba(0, 0, 0, .5);
+        color: #fff;
+        font-size: 10px;
+        display: none;
+
+        &:hover, &:focus {
+            color: @gray-light;
+        }
+    }
+    &:hover &__remove {
+        display: block;
+    }
+
+    &__status {
+        position: absolute;
+        left: 5%;
+        bottom: 10%;
+        width: 90%;
+        height: 24px;
+    }
+    &__status-progress {
+        height: 15px;
+    }
+    &__progress-bar {
+        font-size: 10px;
+        line-height: 15px;
+    }
+    &__status-error, &__status-name {
+        font-size: 12px;
+        padding: 2px 3px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-align: center;
+        color: #fff;
+        background-color: rgba(0, 0, 0, .5);
+    }
+    &__status-error {
+        color: @brand-danger;
+    }
+}

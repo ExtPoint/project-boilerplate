@@ -3,12 +3,13 @@
 namespace app\core\widgets;
 
 use app\dictionary\models\Dictionary;
+use app\file\widgets\FileInput\FileInput;
 use yii\bootstrap\ActiveField;
-use app\file\widgets\fileup\FileInput;
 use kartik\widgets\DatePicker;
 use kartik\widgets\DateTimePicker;
 use kartik\widgets\ColorInput;
 use dosamigos\ckeditor\CKEditor;
+use yii\helpers\ArrayHelper;
 
 class AppActiveField extends ActiveField
 {
@@ -28,11 +29,13 @@ class AppActiveField extends ActiveField
     }
 
     public function file($options = []) {
-        $this->parts['{input}'] = FileInput::widget([
-            'model' => $this->model,
-            'attribute' => $this->attribute,
-            'options' => $options,
-        ]);
+        $this->parts['{input}'] = FileInput::widget(ArrayHelper::merge(
+            [
+                'model' => $this->model,
+                'attribute' => $this->attribute,
+            ],
+            $options
+        ));
         return $this;
     }
 

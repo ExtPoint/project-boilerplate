@@ -1,0 +1,71 @@
+@import '../../../style/bootstrap-default/variables';
+
+.@{bem-namespace}GridView {
+  padding: 0 20px;
+
+  @media (max-width: @screen-xs-max) {
+    padding: 0 15px;
+  }
+
+  &__table {
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  &__table-head {
+    font-size: 13px;
+    font-weight: 600;
+    color: #626a77;
+    background-color: #f4f4f4;
+  }
+  &__table-row {
+    &_head {
+      height: 35px;
+    }
+    &_body {
+      height: 37px;
+    }
+  }
+  &__sortable-column {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__sort-caret {
+    font-size: 9px;
+    position: relative;
+    top: 1px;
+    margin-left: 9px;
+  }
+  &__checkbox-container {
+    display: inline-block;
+    padding: 0 10px;
+    margin: 0 -15px;
+  }
+  &__checkbox-container,
+  &__checkbox-icon {
+    margin-bottom: 0;
+  }
+  &__cell {
+    white-space: nowrap;
+
+    &_with-padding {
+      padding: 0 15px;
+
+      &:nth-of-type(2) {
+        padding-left: 0;
+      }
+    }
+  }
+  &__status {
+    &_success {
+      color: #3b9d4a;
+    }
+    &_danger {
+      color: #cb3c3c;
+    }
+  }
+}
