@@ -5,8 +5,8 @@ namespace app\content\models;
 use Yii;
 
 /**
- * @property string $parentId
- * @property string $redirectToId
+ * @property integer $parentId
+ * @property integer $redirectToId
  * @property string $metaKeywords
  * @property string $metaDescription
  * @property-read Page $redirectPage

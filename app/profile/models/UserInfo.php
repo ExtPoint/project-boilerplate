@@ -13,7 +13,7 @@ use yii\validators\DateValidator;
 /**
  * This is the model class for table "user_info".
  *
- * @property string $userId
+ * @property integer $userId
  * @property string $firstName
  * @property string $lastName
  * @property string $birthday

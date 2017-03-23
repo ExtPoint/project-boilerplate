@@ -12,7 +12,7 @@ use app\file\FileModule;
 
 /**
  * @property integer $id
- * @property string $fileId
+ * @property integer $fileId
  * @property string $folder
  * @property string $fileName
  * @property string $fileMimeType

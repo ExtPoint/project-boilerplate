@@ -7,10 +7,10 @@ use \app\core\base\AppModel;
 
 /**
  *
- * @property string $id
- * @property string $userId
+ * @property integer $id
+ * @property integer $userId
  * @property string $source
- * @property string $sourceId
+ * @property integer $sourceId
  * @property-read User $user
  */
 class SocialConnection extends AppModel {

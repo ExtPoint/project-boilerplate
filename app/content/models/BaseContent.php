@@ -10,8 +10,8 @@ use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 
 /**
- * @property string $id
- * @property string $creatorUserId
+ * @property integer $id
+ * @property integer $creatorUserId
  * @property string $name
  * @property string $title
  * @property string $text
