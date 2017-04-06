@@ -8,28 +8,22 @@ class SiteModule extends AppModule {
 
     public function coreMenu() {
         return [
-            [
+            'index' => [
                 'label' => 'Главная',
-                'url' => ["/$this->id/site/index"],
+                'url' => ['/site/site/index'],
                 'urlRule' => '/',
                 'order' => -100,
             ],
-            [
+            'about' => [
                 'label' => 'О сайте',
-                'url' => ["/$this->id/site/about"],
+                'url' => ['/site/site/about'],
                 'urlRule' => 'about',
                 'order' => -50,
             ],
             [
                 'label' => 'Ошибка',
-                'url' => ["/$this->id/site/error"],
+                'url' => ['/site/site/error'],
                 'visible' => false,
-            ],
-            [
-                'label' => 'Gii',
-                'url' => ["/gii/default/index"],
-                'visible' => \Yii::$app->hasModule('gii'),
-                'order' => 90,
             ],
         ];
     }

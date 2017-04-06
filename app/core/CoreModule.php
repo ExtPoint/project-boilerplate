@@ -8,8 +8,6 @@ use yii\helpers\FormatConverter;
 
 class CoreModule extends AppModule {
 
-    public $layout = '@app/core/layouts/web';
-
     /**
      * @param WebApplication $app
      */
@@ -17,6 +15,8 @@ class CoreModule extends AppModule {
         // Date settings
         FormatConverter::$phpFallbackDatePatterns['short']['date'] = 'n/j/Y';
         FormatConverter::$juiFallbackDatePatterns['short']['date'] = 'd/m/Y';
+
+        parent::bootstrap($app);
     }
 
 }

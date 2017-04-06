@@ -14,6 +14,55 @@ use yii\helpers\ArrayHelper;
 class AppActiveField extends ActiveField
 {
 
+    /**
+     * @inheritdoc
+     */
+    public function textInput($options = []) {
+        return parent::textInput($options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function hiddenInput($options = []) {
+        return parent::hiddenInput($options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function passwordInput($options = []) {
+        return parent::passwordInput($options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function fileInput($options = []) {
+        return parent::fileInput($options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function textarea($options = []) {
+        return parent::textarea($options);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function checkbox($options = [], $enclosedByLabel = true) {
+        return parent::checkbox($options, $enclosedByLabel);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function radio($options = [], $enclosedByLabel = true) {
+        return parent::radio($options, $enclosedByLabel);
+    }
+
     public function email($options = []) {
         $this->template = '{label}<div class="input-group"><span class="input-group-addon">@</span>{input}</div>';
         return $this->textInput($options);
@@ -79,6 +128,25 @@ class AppActiveField extends ActiveField
             'model' => $this->model,
             'attribute' => $this->attribute,
             'options' => $options,
+            'clientOptions' => [
+                'toolbarGroups' => [
+                    ['name' => 'styles'],
+                    ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
+                    ['name' => 'document', 'groups' => ['mode']],
+                    ['name' => 'links'],
+                    ['name' => 'forms'],
+                    ['name' => 'tools'],
+                    ['name' => 'tools'],
+                    '/',
+                    ['name' => 'basicstyles', 'groups' => ['basicstyles', 'colors','cleanup']],
+                    ['name' => 'paragraph', 'groups' => [ 'list', 'indent', 'blocks', 'align', 'bidi' ]],
+                    ['name' => 'insert'],
+                ],
+                'removeButtons' => 'Form,Checkbox,Radio,TextField,Textarea,Select,Button,HiddenField',
+                'extraPlugins' => 'filebrowser',
+                'filebrowserUploadUrl' => '/file/upload/editor/'
+            ],
+            'preset' => 'custom',
         ]);
         return $this;
     }

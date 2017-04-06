@@ -41,9 +41,9 @@ class ProfileController extends Controller {
      * @return string
      * @throws NotFoundHttpException
      */
-    public function actionView($userId) {
+    public function actionView($userId = null) {
         /** @var User $userModel */
-        $userModel = User::findOne($userId);
+        $userModel = $userId ? User::findOne($userId) : Yii::$app->user->model;
         if (!$userModel) {
             throw new NotFoundHttpException();
         }

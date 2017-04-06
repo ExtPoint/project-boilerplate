@@ -130,7 +130,7 @@ class FileModule extends AppModule {
         return $files;
     }
 
-    protected function coreUrlRules() {
+    public function coreUrlRules() {
         return [
             'file/<uid:[a-z0-9-]{36}>/<name>' => "$this->id/download/index",
         ];

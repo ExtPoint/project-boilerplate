@@ -3,6 +3,7 @@
 namespace app\core\traits;
 
 use yii\data\ActiveDataProvider;
+use yii\db\ActiveQuery;
 
 trait SearchModelTrait {
 
@@ -12,7 +13,7 @@ trait SearchModelTrait {
      */
     public function search($params)
     {
-        $query = static::find();
+        $query = $this->create();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -29,7 +30,14 @@ trait SearchModelTrait {
         return $dataProvider;
     }
 
-    protected function prepare($query) {
+    /**
+     * @type ActiveQuery
+     */
+    public function create() {
+        return static::find();
+    }
+
+    public function prepare($query) {
 
     }
 

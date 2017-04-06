@@ -4,7 +4,6 @@ namespace app\file\widgets\FileInput;
 
 use app\core\base\AppWidget;
 use app\file\models\File;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;

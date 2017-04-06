@@ -12,6 +12,4 @@ HOSTNAME="$(cat ${PROJECT_DIR}/config/hostname)"
 # Append links, if no exists
 [ ! -h $SOURCE_DIR/config.php ] && ln -sf $PROJECT_DIR/config/config.php $SOURCE_DIR/config.php
 
-
-
 exit 0

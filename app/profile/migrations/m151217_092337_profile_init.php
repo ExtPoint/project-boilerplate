@@ -1,7 +1,6 @@
 <?php
 
-use yii\db\Schema;
-use yii\db\Migration;
+use extpoint\yii2\base\Migration;
 
 class m151217_092337_profile_init extends Migration {
     public function up() {

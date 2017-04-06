@@ -8,6 +8,9 @@ PROJECT_DIR="$(dirname $(readlink -f ${RUNTIME_DIR}/../../..))"
 PROJECT_ENVIRONMENT="$(cat ${PROJECT_DIR}/config/project_environment)"
 HOSTNAME="$(cat ${PROJECT_DIR}/config/hostname)"
 
-
+echo "Restart php..."
+if [[ ${HOSTNAME} =~ preview ]] || [[ ${PROJECT_ENVIRONMENT} =~ preview|stage ]]; then
+	service php7.1-fpm restart
+fi
 
 exit 0

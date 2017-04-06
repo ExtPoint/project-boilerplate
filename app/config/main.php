@@ -1,27 +1,5 @@
 <?php
 
-\Yii::$container->set(\dosamigos\ckeditor\CKEditor::className(), [
-    'clientOptions' => [
-        'toolbarGroups' => [
-            ['name' => 'styles'],
-            ['name' => 'clipboard', 'groups' => ['clipboard', 'undo']],
-            ['name' => 'document', 'groups' => ['mode']],
-            ['name' => 'links'],
-            ['name' => 'forms'],
-            ['name' => 'tools'],
-            ['name' => 'tools'],
-            '/',
-            ['name' => 'basicstyles', 'groups' => ['basicstyles', 'colors','cleanup']],
-            ['name' => 'paragraph', 'groups' => [ 'list', 'indent', 'blocks', 'align', 'bidi' ]],
-            ['name' => 'insert'],
-        ],
-        'removeButtons' => 'Form,Checkbox,Radio,TextField,Textarea,Select,Button,HiddenField',
-        'extraPlugins' => 'filebrowser',
-        'filebrowserUploadUrl' => '/cms/page/upload/'
-    ],
-    'preset' => 'custom',
-]);
-
 return [
     'id' => 'boilerplate-yii2-k4nuj8',
     'name' => 'Boilerplate Yii 2 k4nuj8',
@@ -30,6 +8,7 @@ return [
     'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
     'bootstrap' => \extpoint\yii2\components\ModuleLoader::getBootstrap(dirname(__DIR__)) + ['log'],
     'language' => 'ru',
+    'timeZone' => ($timeZone = 'UTC'),
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -56,6 +35,12 @@ return [
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
+            'on afterOpen' => function ($event) {
+                $event->sender->createCommand("SET time_zone='" . date('P') . "'")->execute();
+            },
+        ],
+        'formatter' => [
+            'defaultTimeZone' => $timeZone,
         ],
         'assetManager' => [
             'forceCopy' => true,
@@ -76,13 +61,17 @@ return [
                 ],
             ],
         ],
-        'urlManager'=> [
+        'urlManager' => [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
-            //'enableStrictParsing' => true,
             'suffix' => '/',
+            'normalizer' => [
+                'class' => 'yii\web\UrlNormalizer',
+                'collapseSlashes' => true,
+                'normalizeTrailingSlash' => true,
+            ],
         ],
-        'megaMenu'=> [
+        'megaMenu' => [
             'class' => '\extpoint\megamenu\MegaMenu',
         ],
     ],

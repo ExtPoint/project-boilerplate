@@ -1,6 +1,17 @@
 const webpack = require('webpack');
 const webpackEasy = require('webpack-easy');
 
+const filterPhpWidgets = files => {
+    let phpWidgets = files
+        .filter(file => file.match(/\.php$/))
+        .map(file => file.match(/([^\/]+)\.php$/)[1]);
+
+    return files
+        .filter(file => file.match(/\.jsx?$/))
+        .filter(file => phpWidgets.indexOf(file.match(/([^\/]+)\.jsx?$/)[1]) !== -1)
+        .filter(file => file.match(/([^\/]+)\.jsx?$/)[1] === file.match(/([^\/]+)\/[^\/]+?$/)[1]);
+};
+
 Promise.all([
     // Index js. Core module at first
     webpackEasy.glob(`./app/*/client.js`)
@@ -9,32 +20,35 @@ Promise.all([
     // Index css
     webpackEasy.glob(`./app/*/style/index.less`),
 
-    // Widgets. Only widgets with php file. Filter /path/MY_WIDGET/MY_WIDGET.js
-    webpackEasy.glob(`./app/*/widgets/*/*.+(js|jsx|php)`)
-        .then(files => {
-            let phpWidgets = files
-                .filter(file => file.match(/\.php$/))
-                .map(file => file.match(/([^\/]+)\.php$/)[1]);
+    // Admin css
+    webpackEasy.glob(`./app/*/admin/style/index.less`),
 
-            return files
-                .filter(file => file.match(/\.jsx?$/))
-                .filter(file => phpWidgets.indexOf(file.match(/([^\/]+)\.jsx?$/)[1]) !== -1)
-                .filter(file => file.match(/([^\/]+)\.jsx?$/)[1] === file.match(/([^\/]+)\/[^\/]+?$/)[1]);
-        })
+    // Other css
+    webpackEasy.glob(`./app/landing/style/index-*.less`),
+
+    // Widgets. Only widgets with php file. Filter /path/MY_WIDGET/MY_WIDGET.js
+    webpackEasy.glob(`./app/*/widgets/*/*.+(js|jsx|php)`).then(filterPhpWidgets),
+    webpackEasy.glob(`./app/*/admin/widgets/*/*.+(js|jsx|php)`).then(filterPhpWidgets)
 ])
     .then(result => {
         webpackEasy
             .entry(Object.assign(
                 {
                     index: result[0],
+                    'style': result[1],
+                    'style-admin': result[2],
                 },
-                result[1].reduce((obj, file) => {
+                result[3].reduce((obj, file) => {
                     const name = file.match(/([^\/]+)\.less$/)[1].replace(/^index/, 'style');
                     obj[name] = obj[name] || [];
                     obj[name].push(file);
                     return obj;
                 }, {}),
-                result[2].reduce((obj, file) => {
+                result[4].reduce((obj, file) => {
+                    obj[file.match(/([^\/]+)\.jsx?$/)[1]] = file;
+                    return obj;
+                }, {}),
+                result[5].reduce((obj, file) => {
                     obj[file.match(/([^\/]+)\.jsx?$/)[1]] = file;
                     return obj;
                 }, {})
@@ -53,8 +67,8 @@ Promise.all([
             })
             .output({
                 path: `${__dirname}/public/`,
-                filename: 'assets/bundle-[name].js',
-                chunkFilename: 'assets/bundle-[name].js',
+                filename: (webpackEasy.isProduction() ? '' : '1.0/') + 'assets/bundle-[name].js',
+                chunkFilename: (webpackEasy.isProduction() ? '' : '1.0/') + 'assets/bundle-[name].js',
             })
             .loaderLess({
                 loaders: [
@@ -79,7 +93,7 @@ Promise.all([
                     '**': 'http://localhost',
                 },
             })
-            .plugin(new webpack.optimize.CommonsChunkPlugin('index', 'assets/bundle-index.js'))
+            .plugin(new webpack.optimize.CommonsChunkPlugin('index', (webpackEasy.isProduction() ? '' : '1.0/') + 'assets/bundle-index.js'))
 
     })
     .catch(e => console.log(e));

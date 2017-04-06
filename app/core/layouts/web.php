@@ -17,8 +17,6 @@ FrontendAssetBundle::register($this);
 $this->registerJsFile('@web/assets/bundle-index.js', ['position' => View::POS_BEGIN]);
 $this->registerJsFile('@web/assets/bundle-style.js', ['position' => View::POS_BEGIN]);
 
-$this->registerJsFile('@web/assets/main.js');
-$this->registerCssFile('@web/assets/main.css');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

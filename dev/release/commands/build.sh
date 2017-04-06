@@ -8,6 +8,6 @@ cd $SOURCE_DIR
 composer install
 npm install
 
-node $SOURCE_DIR/node_modules/gulp/bin/gulp.js --gulpfile $SOURCE_DIR/gulpfile.js production
+node webpack production
 
 exit 0

@@ -1,9 +1,0 @@
-{
-    "profiles": {
-        "all": {
-            "user": {
-                "serverModel": "\\app\\profile\\models\\User"
-            }
-        }
-    }
-}
