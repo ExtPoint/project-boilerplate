@@ -19,16 +19,14 @@ class WebApplication extends Application {
      */
     protected function bootstrap()
     {
+        parent::bootstrap();
+
         $versionFilePath = __DIR__ . '/../../../version.txt';
         if (file_exists($versionFilePath)) {
             $this->version = trim(file_get_contents($versionFilePath));
         }
 
-        parent::bootstrap();
-
-        $request = $this->getRequest();
-        Yii::setAlias('@webroot', dirname($request->getScriptFile()));
-        Yii::setAlias('@web', $request->getBaseUrl() . '/' . $this->version);
+        Yii::setAlias('@static', $this->getRequest()->getBaseUrl() . '/static/' . $this->version);
     }
 
 }

@@ -17,8 +17,8 @@ use yii\widgets\Breadcrumbs;
 
 FrontendAssetBundle::register($this);
 
-$this->registerJsFile('@web/assets/bundle-index.js', ['position' => View::POS_BEGIN]);
-$this->registerJsFile('@web/assets/bundle-style-admin.js', ['position' => View::POS_BEGIN]);
+$this->registerJsFile('@static/assets/bundle-index.js', ['position' => View::POS_BEGIN]);
+$this->registerJsFile('@static/assets/bundle-style-admin.js', ['position' => View::POS_BEGIN]);
 
 ?>
 <?php $this->beginPage() ?>
@@ -28,7 +28,7 @@ $this->registerJsFile('@web/assets/bundle-style-admin.js', ['position' => View::
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode(Yii::$app->megaMenu->getFullTitle()) ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -74,7 +74,7 @@ $this->registerJsFile('@web/assets/bundle-style-admin.js', ['position' => View::
     <div class="sidebar-back"></div>
     <div class="sidebar collapse">
         <?= SidebarNav::widget([
-            'items' => Yii::$app->megaMenu->getMenu('admin', 2),
+            'items' => Yii::$app->megaMenu->getMenu('admin', 1),
         ]); ?>
     </div>
     <div class="main">

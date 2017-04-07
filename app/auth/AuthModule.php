@@ -3,6 +3,7 @@
 namespace app\auth;
 
 use app\core\base\AppModule;
+use extpoint\megamenu\MenuHelper;
 use yii\authclient\Collection;
 
 class AuthModule extends AppModule {
@@ -56,7 +57,7 @@ class AuthModule extends AppModule {
                 'order' => 100,
             ],
             [
-                'label' => \Yii::t('app', 'Выход ({name})', ['name' => \Yii::$app->user->name]),
+                'label' => \Yii::t('app', 'Выход ({name})', ['name' => MenuHelper::paramUser('name')]),
                 'url' => ["/$this->id/auth/logout"],
                 'urlRule' => 'logout',
                 'linkOptions' => ['data-method' => 'post'],

@@ -3,16 +3,16 @@
 namespace app\profile\admin;
 
 use app\core\admin\base\AppAdminModule;
-use app\profile\admin\controllers\ProfileManageController;
+use app\profile\admin\controllers\UsersManageController;
 
-class ProfileAdminModule extends AppAdminModule {
-
-    public function coreMenu() {
+class ProfileAdminModule extends AppAdminModule
+{
+    public function coreMenu()
+    {
         return [
             'admin' => [
-                'items' => ProfileManageController::coreMenuItems()
-            ]
+                'items' => UsersManageController::coreMenuItems(),
+            ],
         ];
     }
-
 }

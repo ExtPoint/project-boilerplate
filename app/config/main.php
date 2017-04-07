@@ -1,12 +1,17 @@
 <?php
 
+use extpoint\yii2\components\ModuleLoader;
+
+ModuleLoader::add('gii', 'extpoint\yii2\gii\GiiModule');
+ModuleLoader::add('file', 'extpoint\yii2\file\FileModule');
+
 return [
     'id' => 'boilerplate-yii2-k4nuj8',
     'name' => 'Boilerplate Yii 2 k4nuj8',
     'basePath' => dirname(__DIR__),
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'runtimePath' => dirname(dirname(__DIR__)) . '/files/log/runtime',
-    'bootstrap' => \extpoint\yii2\components\ModuleLoader::getBootstrap(dirname(__DIR__)) + ['log'],
+    'bootstrap' => ModuleLoader::getBootstrap(dirname(__DIR__)) + ['log'],
     'language' => 'ru',
     'timeZone' => ($timeZone = 'UTC'),
     'components' => [
@@ -75,7 +80,7 @@ return [
             'class' => '\extpoint\megamenu\MegaMenu',
         ],
     ],
-    'modules' => \extpoint\yii2\components\ModuleLoader::getConfig(dirname(__DIR__)),
+    'modules' => ModuleLoader::getConfig(dirname(__DIR__)),
     'params' => [
         'adminEmail' => '',
     ],

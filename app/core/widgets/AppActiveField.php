@@ -3,7 +3,7 @@
 namespace app\core\widgets;
 
 use app\dictionary\models\Dictionary;
-use app\file\widgets\FileInput\FileInput;
+use extpoint\yii2\file\widgets\FileInput\FileInput;
 use yii\bootstrap\ActiveField;
 use kartik\widgets\DatePicker;
 use kartik\widgets\DateTimePicker;
@@ -64,17 +64,15 @@ class AppActiveField extends ActiveField
     }
 
     public function email($options = []) {
-        $this->template = '{label}<div class="input-group"><span class="input-group-addon">@</span>{input}</div>';
-        return $this->textInput($options);
+        $this->textInput($options);
+        $this->parts['{input}'] = '<div class="input-group"><span class="input-group-addon">@</span>' . $this->parts['{input}'] . '</div>';
+        return $this;
     }
 
     public function phone($options = []) {
-        $this->template = '{label}<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>{input}</div>';
-        return $this->textInput($options);
-    }
-
-    public function dictionary($type, $options = []) {
-        return $this->dropDownList(Dictionary::getLabels($type), $options);
+        $this->textInput($options);
+        $this->parts['{input}'] = '<div class="input-group"><span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></span>' . $this->parts['{input}'] . '</div>';
+        return $this;
     }
 
     public function file($options = []) {

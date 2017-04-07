@@ -2,6 +2,7 @@
 
 namespace app\views;
 
+use Yii;
 use app\core\assets\FrontendAssetBundle;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
@@ -14,8 +15,8 @@ use yii\widgets\Breadcrumbs;
 
 FrontendAssetBundle::register($this);
 
-$this->registerJsFile('@web/assets/bundle-index.js', ['position' => View::POS_BEGIN]);
-$this->registerJsFile('@web/assets/bundle-style.js', ['position' => View::POS_BEGIN]);
+$this->registerJsFile('@static/assets/bundle-index.js', ['position' => View::POS_BEGIN]);
+$this->registerJsFile('@static/assets/bundle-style.js', ['position' => View::POS_BEGIN]);
 
 ?>
 <?php $this->beginPage() ?>
@@ -25,7 +26,7 @@ $this->registerJsFile('@web/assets/bundle-style.js', ['position' => View::POS_BE
     <meta charset="<?= \Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= \Yii::$app->megaMenu->getFullTitle() ?></title>
+    <title><?= Html::encode(Yii::$app->megaMenu->getFullTitle()) ?></title>
     <?php $this->head() ?>
 </head>
 <body>

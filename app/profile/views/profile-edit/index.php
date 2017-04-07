@@ -5,7 +5,6 @@ namespace app\views;
 use app\auth\AuthModule;
 use app\auth\models\SocialConnection;
 use yii\authclient\widgets\AuthChoice;
-use app\file\widgets\fileup\FileInput;
 use kartik\widgets\DatePicker;
 use app\core\widgets\AppActiveForm;
 use yii\bootstrap\Nav;

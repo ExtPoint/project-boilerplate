@@ -3,6 +3,8 @@
 namespace app\profile;
 
 use app\core\base\AppModule;
+use app\profile\controllers\ProfileController;
+use app\profile\controllers\ProfileEditController;
 
 class ProfileModule extends AppModule {
 
@@ -56,5 +58,4 @@ class ProfileModule extends AppModule {
             ],
         ];
     }
-
 }

@@ -4,7 +4,7 @@ namespace app\core\models\meta;
 
 use app\core\base\AppModel;
 use yii\db\ActiveQuery;
-use app\core\models\User;
+use extpoint\yii2\file\models\File;
 
 /**
  * @property string $id
@@ -23,8 +23,7 @@ use app\core\models\User;
  * @property string $lastName
  * @property string $birthday
  * @property string $phone
- * @property-read User $avatar
- * @property-read User $photos
+ * @property-read File $photo
  */
 abstract class UserMeta extends AppModel
 {
@@ -36,18 +35,9 @@ abstract class UserMeta extends AppModel
     /**
      * @return ActiveQuery
      */
-    public function getAvatar()
+    public function getPhoto()
     {
-        return $this->hasOne(User::className(), ['uid' => 'photo']);
-    }
-
-    /**
-     * @return ActiveQuery
-     */
-    public function getPhotos()
-    {
-        return $this->hasMany(User::className(), ['id' => 'userId'])
-            ->viaTable('user_photos', ['fileId' => 'id']);
+        return $this->hasOne(File::className(), ['id' => 'photo']);
     }
 
     public static function meta()
@@ -56,19 +46,30 @@ abstract class UserMeta extends AppModel
             'id' => [
                 'label' => 'Id',
                 'dbType' => 'pk',
-                'notNull' => 'true'
+                'notNull' => 'true',
+                'showInTable' => 'true',
+                'showInView' => 'true'
             ],
             'email' => [
                 'label' => 'Email',
                 'notNull' => 'true',
-                'fieldWidget' => 'email'
+                'fieldWidget' => 'email',
+                'showInForm' => 'true',
+                'showInTable' => 'true',
+                'showInView' => 'true'
             ],
             'name' => [
-                'label' => 'Имя'
+                'label' => 'Имя',
+                'showInForm' => 'true',
+                'showInTable' => 'true',
+                'showInView' => 'true'
             ],
             'role' => [
                 'label' => 'Роль',
-                'notNull' => 'true'
+                'notNull' => 'true',
+                'showInForm' => 'true',
+                'showInTable' => 'true',
+                'showInView' => 'true'
             ],
             'photo' => [
                 'label' => 'Фото'
@@ -91,7 +92,9 @@ abstract class UserMeta extends AppModel
             'createTime' => [
                 'label' => 'Дата регистрации',
                 'dbType' => 'datetime',
-                'notNull' => 'true'
+                'notNull' => 'true',
+                'showInTable' => 'true',
+                'showInView' => 'true'
             ],
             'updateTime' => [
                 'label' => 'Update Time',
@@ -99,17 +102,26 @@ abstract class UserMeta extends AppModel
                 'notNull' => 'true'
             ],
             'firstName' => [
-                'label' => 'Имя'
+                'label' => 'Имя',
+                'showInForm' => 'true',
+                'showInView' => 'true'
             ],
             'lastName' => [
-                'label' => 'Фамилия'
+                'label' => 'Фамилия',
+                'showInForm' => 'true',
+                'showInView' => 'true'
             ],
             'birthday' => [
                 'label' => 'Дата рождения',
-                'dbType' => 'date'
+                'dbType' => 'date',
+                'fieldWidget' => 'date',
+                'showInForm' => 'true',
+                'showInView' => 'true'
             ],
             'phone' => [
-                'label' => 'Телефон'
+                'label' => 'Телефон',
+                'showInForm' => 'true',
+                'showInView' => 'true'
             ]
         ];
     }

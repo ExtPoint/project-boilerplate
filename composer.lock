@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2b0735853e2bfa980657f32479143abc",
-    "content-hash": "356011acf018e023c02e8d34321ac128",
+    "hash": "9fe9905c5d480eced74bac10da9f0988",
+    "content-hash": "d4f46d17370dfb849f7a11aa87476b9e",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -386,16 +386,16 @@
         },
         {
             "name": "extpoint/yii2-core",
-            "version": "1.3.5",
+            "version": "1.3.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-core.git",
-                "reference": "a7f223a0308ffcc3b7b8d2fe47bbfd5aa8a59c47"
+                "reference": "d10ca935fff9a4a731531c9815aa6477a43a0260"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/a7f223a0308ffcc3b7b8d2fe47bbfd5aa8a59c47",
-                "reference": "a7f223a0308ffcc3b7b8d2fe47bbfd5aa8a59c47",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/d10ca935fff9a4a731531c9815aa6477a43a0260",
+                "reference": "d10ca935fff9a4a731531c9815aa6477a43a0260",
                 "shasum": ""
             },
             "require": {
@@ -416,7 +416,71 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2017-04-06 03:58:00"
+            "time": "2017-04-07 06:04:23"
+        },
+        {
+            "name": "extpoint/yii2-file",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ExtPoint/yii2-file.git",
+                "reference": "e1e39687e51b05cbcdf4f60a8189de7987fbc058"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-file/zipball/e1e39687e51b05cbcdf4f60a8189de7987fbc058",
+                "reference": "e1e39687e51b05cbcdf4f60a8189de7987fbc058",
+                "shasum": ""
+            },
+            "require": {
+                "extpoint/yii2-core": "*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "extpoint\\yii2\\file\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Yii2 File module for POST/PUT upload and download files",
+            "time": "2017-04-07 08:55:12"
+        },
+        {
+            "name": "extpoint/yii2-gii",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ExtPoint/yii2-gii.git",
+                "reference": "cc8c184fcf0200766cf45b43ce67f02e3a544303"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-gii/zipball/cc8c184fcf0200766cf45b43ce67f02e3a544303",
+                "reference": "cc8c184fcf0200766cf45b43ce67f02e3a544303",
+                "shasum": ""
+            },
+            "require": {
+                "extpoint/yii2-core": "*",
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "extpoint\\yii2\\gii\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Code generator for projects on ExtPoint Yii2 Boilerplate",
+            "time": "2017-04-07 06:42:00"
         },
         {
             "name": "extpoint/yii2-megamenu",
