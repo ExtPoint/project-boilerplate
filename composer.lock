@@ -441,16 +441,16 @@
         },
         {
             "name": "extpoint/yii2-core",
-            "version": "1.4.0",
+            "version": "1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-core.git",
-                "reference": "30775c3a65a2b0ec5d277aaea4e024807a38fa30"
+                "reference": "3e9928d5ae8836ae4e8de802f7ec38ac2f84059c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/30775c3a65a2b0ec5d277aaea4e024807a38fa30",
-                "reference": "30775c3a65a2b0ec5d277aaea4e024807a38fa30",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/3e9928d5ae8836ae4e8de802f7ec38ac2f84059c",
+                "reference": "3e9928d5ae8836ae4e8de802f7ec38ac2f84059c",
                 "shasum": ""
             },
             "require": {
@@ -473,20 +473,20 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2017-04-17 15:31:42"
+            "time": "2017-04-18 10:18:37"
         },
         {
             "name": "extpoint/yii2-file",
-            "version": "1.0.5",
+            "version": "1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-file.git",
-                "reference": "52a06bd8441afcecef67b992291474d6381f7d9d"
+                "reference": "115aaa1ad3212c08f19ddd2a04c05c866dbd12a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-file/zipball/52a06bd8441afcecef67b992291474d6381f7d9d",
-                "reference": "52a06bd8441afcecef67b992291474d6381f7d9d",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-file/zipball/115aaa1ad3212c08f19ddd2a04c05c866dbd12a0",
+                "reference": "115aaa1ad3212c08f19ddd2a04c05c866dbd12a0",
                 "shasum": ""
             },
             "require": {
@@ -505,20 +505,20 @@
                 "MIT"
             ],
             "description": "Yii2 File module for POST/PUT upload and download files",
-            "time": "2017-04-17 15:32:23"
+            "time": "2017-04-18 10:19:13"
         },
         {
             "name": "extpoint/yii2-gii",
-            "version": "1.0.7",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-gii.git",
-                "reference": "8caec750bc3b45fafa1f40d183b56339f4f0b50e"
+                "reference": "3ceb6d546a1e17688ab2cfd9b7ccfb99e56921bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-gii/zipball/8caec750bc3b45fafa1f40d183b56339f4f0b50e",
-                "reference": "8caec750bc3b45fafa1f40d183b56339f4f0b50e",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-gii/zipball/3ceb6d546a1e17688ab2cfd9b7ccfb99e56921bb",
+                "reference": "3ceb6d546a1e17688ab2cfd9b7ccfb99e56921bb",
                 "shasum": ""
             },
             "require": {
@@ -540,7 +540,7 @@
                 "MIT"
             ],
             "description": "Code generator for projects on ExtPoint Yii2 Boilerplate",
-            "time": "2017-04-11 11:06:28"
+            "time": "2017-04-18 10:20:26"
         },
         {
             "name": "extpoint/yii2-megamenu",
