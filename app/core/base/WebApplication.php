@@ -2,6 +2,7 @@
 
 namespace app\core\base;
 
+use extpoint\yii2\components\Types;
 use Yii;
 use extpoint\megamenu\MegaMenu;
 use yii\web\Application;
@@ -11,9 +12,10 @@ use yii\web\Application;
  * @package app\core\base
  * @property \app\core\components\ContextUser $user
  * @property MegaMenu $megaMenu
+ * @property Types $types
  */
-class WebApplication extends Application {
-
+class WebApplication extends Application
+{
     /**
      * @inheritdoc
      */
@@ -28,5 +30,4 @@ class WebApplication extends Application {
 
         Yii::setAlias('@static', $this->getRequest()->getBaseUrl() . '/static/' . $this->version);
     }
-
 }

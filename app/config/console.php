@@ -1,5 +1,7 @@
 <?php
 
+use extpoint\yii2\components\ModuleLoader;
+
 Yii::setAlias('@tests', dirname(__DIR__) . '/tests');
 
 return \yii\helpers\ArrayHelper::merge(
@@ -8,7 +10,9 @@ return \yii\helpers\ArrayHelper::merge(
         'controllerNamespace' => 'app\commands',
         'controllerMap' => [
             'migrate' => [
-                'class' => '\extpoint\yii2\commands\MigrationCommand',
+                'class' => '\yii\console\controllers\MigrateController',
+                'migrationPath' => null,
+                'migrationNamespaces' => ModuleLoader::getMigrationNamespaces(dirname(__DIR__)),
             ],
         ],
     ]

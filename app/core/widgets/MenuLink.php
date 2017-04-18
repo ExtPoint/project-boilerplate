@@ -42,11 +42,11 @@ class MenuLink extends Widget
         }
 
         // Check access via MegaMenu
-        $item = \Yii::$app->megaMenu->getItem($this->url);
-        if (!$item || !$item->getVisible()) {
+        if (!\Yii::$app->megaMenu->isAllowAccess($this->url)) {
             return '';
         }
 
+        $item = \Yii::$app->megaMenu->getItem($this->url);
         $icon = $this->icon ?: $item->icon;
         $label = $this->label ?: $item->label;
 

@@ -3,6 +3,8 @@
 namespace app\core\widgets;
 
 use app\core\base\AppModel;
+use extpoint\yii2\base\Model;
+use yii\bootstrap\ActiveField;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
@@ -11,11 +13,12 @@ class AppActiveForm extends ActiveForm
 {
 
     public $layout = 'horizontal';
-    public $fieldClass = 'app\core\widgets\AppActiveField';
 
     /**
-     * @inheritdoc
-     * @return AppActiveField
+     * @param Model $model
+     * @param string $attribute
+     * @param array $options
+     * @return ActiveField
      */
     public function field($model, $attribute, $options = [])
     {
@@ -24,11 +27,17 @@ class AppActiveForm extends ActiveForm
         if ($layout) {
             $this->layout = $layout;
         }
-        /** @var AppActiveField $result */
+        /** @var ActiveField $result */
         $result = parent::field($model, $attribute, $options);
         if ($layout) {
             $this->layout = $prevLayout;
         }
+
+        // Render field by type
+        $item = $model::meta()[Html::getAttributeName($attribute)];
+        $appType = \Yii::$app->types->getType(!empty($item['appType']) ? $item['appType'] : 'string');
+        $appType->renderField($result, $item, $options);
+
         return $result;
     }
 
@@ -52,8 +61,7 @@ class AppActiveForm extends ActiveForm
     public function fields($model) {
         foreach ($model::meta() as $attribute => $item) {
             if (!empty($item['showInForm'])) {
-                $method = !empty($item['fieldWidget']) ? $item['fieldWidget'] : 'textInput';
-                echo $this->field($model, $attribute)->{$method}();
+                echo $this->field($model, $attribute);
             }
         }
     }

@@ -1,8 +1,10 @@
 <?php
 
+namespace app\auth\migrations;
+
 use yii\db\Migration;
 
-class m170203_120846_add_table_auth_service extends Migration
+class M170203120846_AddAuthService extends Migration
 {
     public function safeUp()
     {

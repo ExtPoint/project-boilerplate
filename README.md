@@ -29,8 +29,6 @@ composer install
 npm install
 ```
 
-And remove folders node_modules, vendor from .gitignore
-
 ### 4. Attach local services
 
 - Create database "boilerplate-yii2-k4nuj8"
@@ -53,17 +51,3 @@ php yii migrate
 ### Clean
 
 - Delete this file (README.md) or replace 100% of its contents with your project's Readme
-
-
-# Modules dependencies
-## comet
-
-```sh
-npm install --save neatcomet jii jii-comet
-```
-
-## React
-
-```sh
-npm install --save react react-dom
-```

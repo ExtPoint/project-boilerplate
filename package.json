@@ -1,8 +1,8 @@
 {
   "name": "boilerplate-yii2-k4nuj8",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "extpoint-yii2": "^1.0.3"
+    "extpoint-yii2": "^1.1.0"
   }
 }

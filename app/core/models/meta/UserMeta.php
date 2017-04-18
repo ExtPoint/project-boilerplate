@@ -53,7 +53,6 @@ abstract class UserMeta extends AppModel
             'email' => [
                 'label' => 'Email',
                 'notNull' => 'true',
-                'fieldWidget' => 'email',
                 'showInForm' => 'true',
                 'showInTable' => 'true',
                 'showInView' => 'true'
@@ -114,7 +113,6 @@ abstract class UserMeta extends AppModel
             'birthday' => [
                 'label' => 'Дата рождения',
                 'dbType' => 'date',
-                'fieldWidget' => 'date',
                 'showInForm' => 'true',
                 'showInView' => 'true'
             ],

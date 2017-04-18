@@ -18,6 +18,9 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'types' => [
+            'class' => 'extpoint\yii2\components\Types',
+        ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
             'htmlLayout' => '@app/core/layouts/mail',
@@ -46,6 +49,7 @@ return [
         ],
         'formatter' => [
             'defaultTimeZone' => $timeZone,
+            'currencyCode' => 'RUB',
         ],
         'assetManager' => [
             'forceCopy' => true,

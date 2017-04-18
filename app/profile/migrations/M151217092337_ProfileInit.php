@@ -1,9 +1,14 @@
 <?php
 
+namespace app\profile\migrations;
+
+use Yii;
 use extpoint\yii2\base\Migration;
 
-class m151217_092337_profile_init extends Migration {
-    public function up() {
+class M151217092337_ProfileInit extends Migration
+{
+    public function up()
+    {
         $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_general_ci ENGINE=InnoDB';
 
         $this->createTable('users', [
@@ -46,7 +51,8 @@ class m151217_092337_profile_init extends Migration {
             ->execute();
     }
 
-    public function down() {
+    public function down()
+    {
         $this->dropTable('users');
     }
 }

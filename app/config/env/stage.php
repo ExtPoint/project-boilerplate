@@ -3,6 +3,9 @@
 return [
     'runtimePath' => __DIR__ . '/../../../../files/log/runtime',
     'components' => [
+        'assetManager' => [
+            'basePath' => __DIR__ . '/../../../../files/assets',
+        ],
         'mailer' => [
             'messageConfig' => [
                 'from' => 'noreply@boilerplate-yii2-k4nuj8.stage.extpoint.com'

@@ -33,7 +33,7 @@ class UserSearch extends User
     {
         return [
             'sort' => [
-                'attributes' => 'id',
+                'attributes' => ['id'],
                 'defaultOrder' => [
                     'id' => SORT_DESC,
                 ],

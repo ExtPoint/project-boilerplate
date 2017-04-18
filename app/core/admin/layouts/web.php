@@ -42,7 +42,7 @@ $this->registerJsFile('@static/assets/bundle-style-admin.js', ['position' => Vie
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand hidden-xs" href="<?= Url::to(['/admin/default/index']) ?>"><?= Yii::$app->name ?></a>
+        <a class="navbar-brand hidden-xs" href="<?= Yii::$app->homeUrl ?>"><?= Yii::$app->name ?></a>
     </div>
     <?= TopNav::widget([
         'options' => ['class' => 'nav top-nav'],
