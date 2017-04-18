@@ -34,9 +34,11 @@ class AppActiveForm extends ActiveForm
         }
 
         // Render field by type
-        $item = $model::meta()[Html::getAttributeName($attribute)];
-        $appType = \Yii::$app->types->getType(!empty($item['appType']) ? $item['appType'] : 'string');
-        $appType->renderField($result, $item, $options);
+        if ($model instanceof Model) {
+            $item = $model::meta()[Html::getAttributeName($attribute)];
+            $appType = \Yii::$app->types->getType(!empty($item['appType']) ? $item['appType'] : 'string');
+            $appType->renderField($result, $item, $options);
+        }
 
         return $result;
     }

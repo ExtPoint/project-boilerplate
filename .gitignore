@@ -26,3 +26,5 @@ composer.phar
 public/assets/*
 /node_modules
 /vendor
+
+!.gitempty
