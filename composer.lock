@@ -441,16 +441,16 @@
         },
         {
             "name": "extpoint/yii2-core",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-core.git",
-                "reference": "3e9928d5ae8836ae4e8de802f7ec38ac2f84059c"
+                "reference": "ab430e69f044b3513a9e371e33e8287d742d8fed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/3e9928d5ae8836ae4e8de802f7ec38ac2f84059c",
-                "reference": "3e9928d5ae8836ae4e8de802f7ec38ac2f84059c",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/ab430e69f044b3513a9e371e33e8287d742d8fed",
+                "reference": "ab430e69f044b3513a9e371e33e8287d742d8fed",
                 "shasum": ""
             },
             "require": {
@@ -473,7 +473,7 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2017-04-18 10:18:37"
+            "time": "2017-04-18 17:03:44"
         },
         {
             "name": "extpoint/yii2-file",

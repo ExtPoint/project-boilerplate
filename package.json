@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "extpoint-yii2": "^1.1.0"
+    "extpoint-yii2": "^1.1.1"
   }
 }
