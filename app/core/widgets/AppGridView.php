@@ -13,8 +13,8 @@ use yii\helpers\Url;
 
 class AppGridView extends GridView
 {
+    public $dataColumnClass = '\app\core\widgets\AppDataColumn';
     public $tableOptions = ['class' => 'table table-hover'];
-
     public $layout = "<div class='table-responsive'>{items}</div>\n{pager}";
 
     /**

@@ -7,6 +7,9 @@ return \yii\helpers\ArrayHelper::merge(
         'components' => [
             'request' => [
                 'cookieValidationKey' => 'q2%s2~5twSe2OkBJ8H6k6wUI@fe~Ah9|',
+                'parsers' => [
+                    'application/json' => 'yii\web\JsonParser',
+                ],
             ],
             'user' => [
                 'class' => '\app\core\components\ContextUser',

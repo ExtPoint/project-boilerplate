@@ -37,7 +37,10 @@ class AppActiveForm extends ActiveForm
         if ($model instanceof Model) {
             $item = $model::meta()[Html::getAttributeName($attribute)];
             $appType = \Yii::$app->types->getType(!empty($item['appType']) ? $item['appType'] : 'string');
-            $appType->renderField($result, $item, $options);
+            $html = $appType->renderField($model, $attribute, $item, $result->inputOptions);
+            if ($html) {
+                $result->parts['{input}'] = $html;
+            }
         }
 
         return $result;
@@ -48,7 +51,7 @@ class AppActiveForm extends ActiveForm
      * @param array $options
      * @return string
      */
-    public function submitButton($label, $options = []) {
+    public function submitButton($label = 'Сохранить', $options = []) {
         $buttonStr = Html::submitButton($label, array_merge($options, ['class' => 'btn btn-primary']));
         if ($this->layout == 'horizontal') {
             return "<div class=\"form-group\"><div class=\"col-sm-offset-3 col-sm-6\">$buttonStr</div></div>";
