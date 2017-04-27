@@ -73,7 +73,6 @@ return [
         'urlManager' => [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
-            'suffix' => '/',
             'normalizer' => [
                 'class' => 'yii\web\UrlNormalizer',
                 'collapseSlashes' => true,

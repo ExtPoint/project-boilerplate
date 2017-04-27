@@ -33,6 +33,11 @@ class CoreModule extends AppModule
      */
     public function onControllerBeforeAction($event)
     {
+        // Skip debug module
+        if ($event->action->controller->module->id === 'debug') {
+            return;
+        }
+
         // Check access
         $item = \Yii::$app->megaMenu->getActiveItem();
         if (!$item || !$item->checkVisible($item->normalizedUrl)) {
