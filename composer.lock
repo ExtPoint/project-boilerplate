@@ -441,16 +441,16 @@
         },
         {
             "name": "extpoint/yii2-core",
-            "version": "1.4.2",
+            "version": "1.4.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-core.git",
-                "reference": "ab430e69f044b3513a9e371e33e8287d742d8fed"
+                "reference": "a0168f6733bed21d6780e26712631032eb3c283e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/ab430e69f044b3513a9e371e33e8287d742d8fed",
-                "reference": "ab430e69f044b3513a9e371e33e8287d742d8fed",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-core/zipball/a0168f6733bed21d6780e26712631032eb3c283e",
+                "reference": "a0168f6733bed21d6780e26712631032eb3c283e",
                 "shasum": ""
             },
             "require": {
@@ -473,20 +473,20 @@
                 "MIT"
             ],
             "description": "ExtPoint utils for Yii2-based projects",
-            "time": "2017-04-18 17:03:44"
+            "time": "2017-04-28 04:30:52"
         },
         {
             "name": "extpoint/yii2-file",
-            "version": "1.0.6",
+            "version": "1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-file.git",
-                "reference": "115aaa1ad3212c08f19ddd2a04c05c866dbd12a0"
+                "reference": "2d5cd8de3bbf7a81e64e6ad942a2b5e5d2fdab2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-file/zipball/115aaa1ad3212c08f19ddd2a04c05c866dbd12a0",
-                "reference": "115aaa1ad3212c08f19ddd2a04c05c866dbd12a0",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-file/zipball/2d5cd8de3bbf7a81e64e6ad942a2b5e5d2fdab2b",
+                "reference": "2d5cd8de3bbf7a81e64e6ad942a2b5e5d2fdab2b",
                 "shasum": ""
             },
             "require": {
@@ -505,20 +505,20 @@
                 "MIT"
             ],
             "description": "Yii2 File module for POST/PUT upload and download files",
-            "time": "2017-04-18 10:19:13"
+            "time": "2017-04-27 10:36:24"
         },
         {
             "name": "extpoint/yii2-gii",
-            "version": "1.0.9",
+            "version": "1.0.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-gii.git",
-                "reference": "3ceb6d546a1e17688ab2cfd9b7ccfb99e56921bb"
+                "reference": "edb791c24cd1938bca9d078218476151ac0b6dda"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-gii/zipball/3ceb6d546a1e17688ab2cfd9b7ccfb99e56921bb",
-                "reference": "3ceb6d546a1e17688ab2cfd9b7ccfb99e56921bb",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-gii/zipball/edb791c24cd1938bca9d078218476151ac0b6dda",
+                "reference": "edb791c24cd1938bca9d078218476151ac0b6dda",
                 "shasum": ""
             },
             "require": {
@@ -540,20 +540,20 @@
                 "MIT"
             ],
             "description": "Code generator for projects on ExtPoint Yii2 Boilerplate",
-            "time": "2017-04-18 10:20:26"
+            "time": "2017-04-28 04:31:19"
         },
         {
             "name": "extpoint/yii2-megamenu",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ExtPoint/yii2-megamenu.git",
-                "reference": "e5975c1018c2405ba4587e2aab999a91bd922062"
+                "reference": "a1bf02fdddc4d7a29caae207a443a5fd8d6381e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ExtPoint/yii2-megamenu/zipball/e5975c1018c2405ba4587e2aab999a91bd922062",
-                "reference": "e5975c1018c2405ba4587e2aab999a91bd922062",
+                "url": "https://api.github.com/repos/ExtPoint/yii2-megamenu/zipball/a1bf02fdddc4d7a29caae207a443a5fd8d6381e7",
+                "reference": "a1bf02fdddc4d7a29caae207a443a5fd8d6381e7",
                 "shasum": ""
             },
             "require": {
@@ -593,7 +593,7 @@
                 "navigation",
                 "yii2"
             ],
-            "time": "2017-04-12 06:34:51"
+            "time": "2017-04-27 08:52:08"
         },
         {
             "name": "ezyang/htmlpurifier",

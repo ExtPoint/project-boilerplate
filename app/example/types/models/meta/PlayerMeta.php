@@ -3,11 +3,13 @@
 namespace app\example\types\models\meta;
 
 use app\core\base\AppModel;
+use app\profile\enums\UserRole;
 
 /**
  * @property string $id
  * @property string $name
  * @property string $email
+ * @property string $role
  */
 abstract class PlayerMeta extends AppModel
 {
@@ -20,7 +22,7 @@ abstract class PlayerMeta extends AppModel
     {
         return [
             [['name', 'email'], 'required'],
-            [['name', 'email'], 'string'],
+            [['name', 'email', 'role'], 'string'],
         ];
     }
 
@@ -45,6 +47,13 @@ abstract class PlayerMeta extends AppModel
                 'showInTable' => true,
                 'showInView' => true,
                 'stringType' => 'email'
+            ],
+            'role' => [
+                'label' => 'Роль',
+                'appType' => 'enum',
+                'showInForm' => true,
+                'showInView' => true,
+                'enumClassName' => UserRole::className()
             ]
         ];
     }

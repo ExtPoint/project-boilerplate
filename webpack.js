@@ -9,7 +9,7 @@ require('extpoint-yii2/webpack')
     .styles('./app/*/admin/style/index.less', 'admin')
 
     // Other css
-    .styles('./app/landing/style/index-*.less')
+    .styles('./app/*/style/index-*.less')
 
     // Widgets. Only widgets with php file. Filter /path/MY_WIDGET/MY_WIDGET.js
     .widgets('./app/*/widgets')

@@ -7,6 +7,7 @@ use extpoint\yii2\file\models\File;
 use app\example\types\models\Player;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
+use app\example\types\enums\GameGenre;
 use yii\db\ActiveQuery;
 
 /**
@@ -26,6 +27,7 @@ use yii\db\ActiveQuery;
  * @property integer $creatorId
  * @property string $saleFrom
  * @property string $saleTo
+ * @property string $genre
  * @property-read File $logo
  * @property-read File[] $photos
  * @property-read File $winExe
@@ -49,7 +51,7 @@ abstract class GameMeta extends AppModel
     {
         return [
             [['createTime', 'updateTime', 'tillDate', 'photoIds', 'documentIds', 'playersIds', 'saleFrom', 'saleTo'], 'safe'],
-            [['title', 'shortDescription', 'fullDescription'], 'string'],
+            [['title', 'shortDescription', 'fullDescription', 'genre'], 'string'],
             [['rating', 'logoId', 'winExeId', 'macDmgId', 'creatorId'], 'integer'],
             [['isDisabled'], 'boolean'],
             [['price'], 'number'],
@@ -100,8 +102,8 @@ abstract class GameMeta extends AppModel
      */
     public function getPhotos()
     {
-        return $this->hasMany(File::className(), ['id' => 'gameId'])
-            ->viaTable('example_types_games_photos', ['fileId' => 'photoIds']);
+        return $this->hasMany(File::className(), ['id' => 'fileId'])
+            ->viaTable('example_types_games_photos', ['gameId' => 'photoIds']);
     }
 
     /**
@@ -125,8 +127,8 @@ abstract class GameMeta extends AppModel
      */
     public function getDocuments()
     {
-        return $this->hasMany(File::className(), ['id' => 'gameId'])
-            ->viaTable('example_types_games_documents', ['fileId' => 'documentIds']);
+        return $this->hasMany(File::className(), ['id' => 'fileId'])
+            ->viaTable('example_types_games_documents', ['gameId' => 'documentIds']);
     }
 
     /**
@@ -142,8 +144,8 @@ abstract class GameMeta extends AppModel
      */
     public function getPlayers()
     {
-        return $this->hasMany(Player::className(), ['id' => 'gameId'])
-            ->viaTable('example_types_games_players', ['playerId' => 'id']);
+        return $this->hasMany(Player::className(), ['id' => 'playerId'])
+            ->viaTable('example_types_games_players', ['gameId' => 'id']);
     }
 
     public static function meta()
@@ -267,6 +269,14 @@ abstract class GameMeta extends AppModel
                 'showInView' => true,
                 'subAppType' => 'date',
                 'refAttribute' => 'saleTo'
+            ],
+            'genre' => [
+                'label' => 'Жанр',
+                'appType' => 'enum',
+                'showInForm' => true,
+                'showInTable' => true,
+                'showInView' => true,
+                'enumClassName' => GameGenre::className()
             ]
         ];
     }

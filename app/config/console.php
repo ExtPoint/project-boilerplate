@@ -2,7 +2,8 @@
 
 use extpoint\yii2\components\ModuleLoader;
 
-Yii::setAlias('@tests', dirname(__DIR__) . '/tests');
+Yii::setAlias('@tests', dirname(dirname(__DIR__)) . '/tests');
+Yii::setAlias('@webroot', dirname(dirname(__DIR__)) . '/public');
 
 return \yii\helpers\ArrayHelper::merge(
     require 'main.php',
