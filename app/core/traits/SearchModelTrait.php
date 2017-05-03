@@ -2,12 +2,13 @@
 
 namespace app\core\traits;
 
+use extpoint\yii2\base\Model;
 use yii\data\ActiveDataProvider;
 use yii\db\ActiveQuery;
 use yii\helpers\ArrayHelper;
 
-trait SearchModelTrait {
-
+trait SearchModelTrait
+{
     /**
      * @param array $params
      * @return ActiveDataProvider
@@ -43,7 +44,9 @@ trait SearchModelTrait {
     /**
      * @return ActiveQuery
      */
-    public function createQuery() {
+    public function createQuery()
+    {
+        /** @var Model $className */
         $className = get_parent_class(static::className());
         return $className::find();
     }
@@ -51,14 +54,16 @@ trait SearchModelTrait {
     /**
      * @return ActiveDataProvider|array
      */
-    public function createProvider() {
+    public function createProvider()
+    {
         return [];
     }
 
     /**
      * @param ActiveQuery $query
      */
-    public function prepare($query) {
+    public function prepare($query)
+    {
 
     }
 

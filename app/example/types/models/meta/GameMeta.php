@@ -52,6 +52,7 @@ abstract class GameMeta extends AppModel
         return [
             [['createTime', 'updateTime', 'tillDate', 'photoIds', 'documentIds', 'playersIds', 'saleFrom', 'saleTo'], 'safe'],
             [['title', 'shortDescription', 'fullDescription', 'genre'], 'string'],
+            [['rating'], 'required'],
             [['rating', 'logoId', 'winExeId', 'macDmgId', 'creatorId'], 'integer'],
             [['isDisabled'], 'boolean'],
             [['price'], 'number'],
@@ -191,6 +192,8 @@ abstract class GameMeta extends AppModel
             'rating' => [
                 'label' => 'Рейтинг',
                 'appType' => 'integer',
+                'required' => true,
+                'defaultValue' => '0',
                 'showInForm' => true,
                 'showInView' => true
             ],

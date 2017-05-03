@@ -91,7 +91,7 @@ class CrudControls extends Widget
             if (!isset($this->buttons[$key])) {
                 $this->buttons[$key] = [];
             }
-            $this->buttons[$key] = array_merge($this->buttons[$key], $item);
+            $this->buttons[$key] = array_merge($item, $this->buttons[$key]);
         }
     }
 
