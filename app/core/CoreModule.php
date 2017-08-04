@@ -4,11 +4,10 @@ namespace app\core;
 
 use app\core\base\WebApplication;
 use app\core\base\AppModule;
-use yii\base\ActionEvent;
+use extpoint\megamenu\middleware\AccessMiddleware;
+use extpoint\yii2\middleware\AjaxResponseMiddleware;
 use yii\helpers\FormatConverter;
 use yii\web\Application;
-use yii\web\Controller;
-use yii\web\ForbiddenHttpException;
 
 class CoreModule extends AppModule
 {
@@ -22,31 +21,11 @@ class CoreModule extends AppModule
         FormatConverter::$juiFallbackDatePatterns['short']['date'] = 'd/m/Y';
 
         if ($app instanceof Application) {
-            $app->on(Controller::EVENT_BEFORE_ACTION, [$this, 'onControllerBeforeAction']);
+            AccessMiddleware::register($app);
+            AjaxResponseMiddleware::register($app);
         }
 
         parent::bootstrap($app);
     }
 
-    /**
-     * @param ActionEvent $event
-     */
-    public function onControllerBeforeAction($event)
-    {
-        // Skip debug module
-        if ($event->action->controller->module->id === 'debug') {
-            return;
-        }
-
-        // Check access
-        $item = \Yii::$app->megaMenu->getActiveItem();
-        if (!$item || !$item->checkVisible($item->normalizedUrl)) {
-            if (\Yii::$app->user->isGuest) {
-                \Yii::$app->user->loginRequired();
-            }
-            // TODO Show 403?
-            //\Yii::$app->response->redirect(\Yii::$app->homeUrl);
-            $event->isValid = false;
-        }
-    }
 }

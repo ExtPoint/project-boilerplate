@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<% if (htmlWebpackPlugin.options.TEMPLATE_NAMES) { %>
+
+    <div class="container">
+        <h2>Available stands pages</h2>
+        <ul>
+            <% htmlWebpackPlugin.options.TEMPLATE_NAMES.forEach(name => { %>
+            <li>
+                <a href="<%- name %>.html"><%- name %>.html</a>
+            </li>
+            <% }) %>
+        </ul>
+    </div>
+<% } else { %>
+    <% htmlWebpackPlugin.options.FILES_TO_REQUIRE.forEach(path => { %>
+        <%= require('raw!./' + path.substr(2)) %>
+    <% }) %>
+<% } %>
+
+<script src="/static/1.0/assets/bundle-index.js"></script>
+<script src="/static/1.0/assets/bundle-style.js"></script>
+<% if (htmlWebpackPlugin.options.BUNDLE_NAME) { %>
+<script src="/static/1.0/assets/bundle-<%- htmlWebpackPlugin.options.BUNDLE_NAME %>.js"></script>
+<% } %>
+
+</body>
+</html>

@@ -15,12 +15,13 @@
         "yiisoft/yii2-jui": "^2.0",
         "kartik-v/yii2-widgets": "*",
         "yiisoft/yii2-imagine": "^2.0",
-        "extpoint/yii2-core": "*",
+        "extpoint/yii2-core": "^2.0",
         "2amigos/yii2-ckeditor-widget": "^2.0",
         "extpoint/yii2-megamenu": "*",
         "yiisoft/yii2-authclient": "^2.1",
-        "extpoint/yii2-gii": "^1.0",
-        "extpoint/yii2-file": "^1.0"
+        "extpoint/yii2-gii": "^2.0",
+        "extpoint/yii2-file": "^1.0",
+        "yiisoft/yii2-gii": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

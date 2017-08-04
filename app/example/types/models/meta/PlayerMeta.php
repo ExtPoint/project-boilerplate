@@ -3,13 +3,14 @@
 namespace app\example\types\models\meta;
 
 use app\core\base\AppModel;
+use extpoint\yii2\validators\WordsValidator;
 use app\profile\enums\UserRole;
 
 /**
  * @property string $id
  * @property string $name
- * @property string $email
  * @property string $role
+ * @property string $email
  */
 abstract class PlayerMeta extends AppModel
 {
@@ -18,11 +19,20 @@ abstract class PlayerMeta extends AppModel
         return 'example_types_players';
     }
 
+    public function fields()
+    {
+        return [
+        ];
+    }
+
     public function rules()
     {
         return [
-            [['name', 'email'], 'required'],
-            [['name', 'email', 'role'], 'string'],
+            [['name', 'email'], 'string', 'max' => 255],
+            [['name', 'name', 'email', 'email'], 'required'],
+            ['name', WordsValidator::className()],
+            ['role', 'in', 'range' => UserRole::getKeys()],
+            ['email', 'email'],
         ];
     }
 
@@ -38,15 +48,8 @@ abstract class PlayerMeta extends AppModel
                 'required' => true,
                 'showInForm' => true,
                 'showInTable' => true,
-                'showInView' => true
-            ],
-            'email' => [
-                'label' => 'Email',
-                'required' => true,
-                'showInForm' => true,
-                'showInTable' => true,
                 'showInView' => true,
-                'stringType' => 'email'
+                'stringType' => 'words'
             ],
             'role' => [
                 'label' => 'Роль',
@@ -54,6 +57,11 @@ abstract class PlayerMeta extends AppModel
                 'showInForm' => true,
                 'showInView' => true,
                 'enumClassName' => UserRole::className()
+            ],
+            'email' => [
+                'label' => 'Email',
+                'appType' => 'email',
+                'required' => true
             ]
         ];
     }

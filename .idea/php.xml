@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/2amigos/yii2-ckeditor-widget" />
+      <path value="$PROJECT_DIR$/vendor/cebe/markdown" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-authclient" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-composer" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-debug" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-jui" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-imagine" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-faker" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-httpclient" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-growl" />
+      <path value="$PROJECT_DIR$/vendor/bariew/yii2-module-migration-controller" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-touchspin" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widgets" />
+      <path value="$PROJECT_DIR$/vendor/bower/punycode" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-depdrop" />
+      <path value="$PROJECT_DIR$/vendor/bower/yii2-pjax" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-activeform" />
+      <path value="$PROJECT_DIR$/vendor/bower/jquery-ui" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-sidenav" />
+      <path value="$PROJECT_DIR$/vendor/bower/jquery.inputmask" />
+      <path value="$PROJECT_DIR$/vendor/bower/bootstrap" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-alert" />
+      <path value="$PROJECT_DIR$/vendor/bower/jquery" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-spinner" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-typeahead" />
+      <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/bootstrap-fileinput" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-affix" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-select2" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-timepicker" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-datetimepicker" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/bootstrap-star-rating" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/dependent-dropdown" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-rangeinput" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-rating" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-colorinput" />
+      <path value="$PROJECT_DIR$/vendor/ezyang/htmlpurifier" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-krajee-base" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-fileinput" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-datepicker" />
+      <path value="$PROJECT_DIR$/vendor/fzaninotto/faker" />
+      <path value="$PROJECT_DIR$/vendor/imagine/imagine" />
+      <path value="$PROJECT_DIR$/vendor/arogachev/yii2-many-to-many" />
+      <path value="$PROJECT_DIR$/vendor/kartik-v/yii2-widget-switchinput" />
+      <path value="$PROJECT_DIR$/vendor/extpoint/yii2-core" />
+      <path value="$PROJECT_DIR$/vendor/extpoint/yii2-gii" />
+      <path value="$PROJECT_DIR$/vendor/ckeditor/ckeditor" />
+      <path value="$PROJECT_DIR$/vendor/extpoint/yii2-megamenu" />
+      <path value="$PROJECT_DIR$/vendor/extpoint/yii2-file" />
+      <path value="$PROJECT_DIR$/vendor/yiisoft/yii2-gii" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/php-diff" />
+      <path value="$PROJECT_DIR$/vendor/bower/typeahead.js" />
+      <path value="$PROJECT_DIR$/vendor/extpoint2/yii2-gii" />
+      <path value="$PROJECT_DIR$/vendor/extpoint2/yii2-file" />
+      <path value="$PROJECT_DIR$/vendor/extpoint2/yii2-core" />
+      <path value="$PROJECT_DIR$/vendor/extpoint2/yii2-megamenu" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
+  <component name="PhpUnit">
+    <phpunit_settings>
+      <PhpUnitSettings load_method="CUSTOM_LOADER" custom_loader_path="/Users/affka/Documents/projects/carscats-parser/tests/unit/bootstrap.php" phpunit_phar_path="" />
+    </phpunit_settings>
+  </component>
+</project>

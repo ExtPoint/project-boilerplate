@@ -27,7 +27,7 @@
     "valid-jsdoc": [
       "warn",
       {
-        "requireReturnType": false,
+        "requireReturn": false,
         "requireParamDescription": false,
         "requireReturnDescription": false
       }

@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    APP_CONFIG = {
+        "locale": {"language": "ru", "backendTimeZone": "+00:00"},
+        "types": {
+            "config": {
+                "autoTime": {"field": {"component": "DateTimeField"}},
+                "boolean": {"field": {"component": "CheckboxField"}},
+                "dateTime": {"field": {"component": "DateTimeField"}},
+                "date": {"field": {"component": "DateField"}},
+                "double": {"field": {"component": "NumberField"}},
+                "email": {"field": {"component": "EmailField"}},
+                "enum": {"field": {"component": "DropDownField", "multiple": true}},
+                "files": {"field": {"component": "FileField", "multiple": true}},
+                "file": {"field": {"component": "FileField"}},
+                "html": {
+                    "field": {
+                        "component": "HtmlField",
+                        "editorConfig": {"contentsCss": "/static/1.0/assets/bundle-style.js"}
+                    }
+                },
+                "integer": {"field": {"component": "NumberField"}},
+                "money": {"field": {"component": "MoneyField"}},
+                "password": {"field": {"component": "PasswordField"}},
+                "phone": {"field": {"component": "PhoneField"}},
+                "primaryKey": {"field": {"component": "HiddenField"}},
+                "range": {"field": {"component": "RangeField", "refAttributeOptions": ["refAttribute"]}},
+                "relation": {"field": {"component": "DropDownField", "autoComplete": {}}},
+                "string": {"field": {"component": "StringField"}},
+                "text": {"field": {"component": "TextAreaField"}}
+            }, "fetchUrl": "/api/form/fetch", "autoCompleteUrl": "/api/form/auto-complete"
+        }
+    };
+</script>
+
+<br/>
+<br/>
+<div id="root"></div>

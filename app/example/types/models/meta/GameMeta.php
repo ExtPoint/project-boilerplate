@@ -3,11 +3,12 @@
 namespace app\example\types\models\meta;
 
 use app\core\base\AppModel;
+use extpoint\yii2\validators\WordsValidator;
+use app\example\types\enums\GameGenre;
 use extpoint\yii2\file\models\File;
 use app\example\types\models\Player;
 use extpoint\yii2\behaviors\TimestampBehavior;
 use arogachev\ManyToMany\behaviors\ManyToManyBehavior;
-use app\example\types\enums\GameGenre;
 use yii\db\ActiveQuery;
 
 /**
@@ -47,15 +48,38 @@ abstract class GameMeta extends AppModel
         return 'example_types_games';
     }
 
+    public function fields()
+    {
+        return [
+            'id',
+            'createTime',
+            'updateTime',
+            'title',
+            'shortDescription',
+            'fullDescription',
+            'rating',
+            'isDisabled',
+            'price',
+            'tillDate',
+            'logoId',
+            'photoIds',
+            'genre',
+        ];
+    }
+
     public function rules()
     {
         return [
-            [['createTime', 'updateTime', 'tillDate', 'photoIds', 'documentIds', 'playersIds', 'saleFrom', 'saleTo'], 'safe'],
-            [['title', 'shortDescription', 'fullDescription', 'genre'], 'string'],
-            [['rating'], 'required'],
-            [['rating', 'logoId', 'winExeId', 'macDmgId', 'creatorId'], 'integer'],
-            [['isDisabled'], 'boolean'],
-            [['price'], 'number'],
+            ['title', 'string', 'max' => 255],
+            ['title', WordsValidator::className()],
+            [['shortDescription', 'fullDescription'], 'string'],
+            [['rating', 'logoId', 'winExeId', 'macDmgId'], 'integer'],
+            ['rating', 'required'],
+            ['isDisabled', 'boolean'],
+            ['price', 'number'],
+            [['tillDate', 'saleFrom', 'saleTo'], 'date', 'format' => 'php:Y-m-d'],
+            [['photoIds', 'documentIds'], 'each', 'rule' => ['integer']],
+            ['genre', 'in', 'range' => GameGenre::getKeys()],
             ['logo', 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['logoId' => 'id']],
             ['winExe', 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['winExeId' => 'id']],
             ['macDmg', 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['macDmgId' => 'id']],
@@ -155,30 +179,36 @@ abstract class GameMeta extends AppModel
             'id' => [
                 'label' => 'ID',
                 'appType' => 'primaryKey',
+                'publishToFrontend' => true,
                 'showInTable' => true,
                 'showInView' => true
             ],
             'createTime' => [
                 'label' => 'Дата создания',
                 'appType' => 'autoTime',
+                'publishToFrontend' => true,
                 'showInTable' => true,
                 'showInView' => true
             ],
             'updateTime' => [
                 'label' => 'Дата обновления',
                 'appType' => 'autoTime',
+                'publishToFrontend' => true,
                 'showInView' => true,
                 'touchOnUpdate' => true
             ],
             'title' => [
                 'label' => 'Название',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInTable' => true,
-                'showInView' => true
+                'showInView' => true,
+                'stringType' => 'words'
             ],
             'shortDescription' => [
                 'label' => 'Краткое описание',
                 'appType' => 'text',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInTable' => true,
                 'showInView' => true
@@ -186,6 +216,7 @@ abstract class GameMeta extends AppModel
             'fullDescription' => [
                 'label' => 'Полное описание',
                 'appType' => 'html',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInView' => true
             ],
@@ -194,18 +225,21 @@ abstract class GameMeta extends AppModel
                 'appType' => 'integer',
                 'required' => true,
                 'defaultValue' => '0',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInView' => true
             ],
             'isDisabled' => [
                 'label' => 'Отключен?',
                 'appType' => 'boolean',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInView' => true
             ],
             'price' => [
                 'label' => 'Цена (руб)',
                 'appType' => 'money',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInTable' => true,
                 'showInView' => true,
@@ -214,6 +248,7 @@ abstract class GameMeta extends AppModel
             'tillDate' => [
                 'label' => 'Активен "до"',
                 'appType' => 'date',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInView' => true,
                 'format' => 'php:Y.d.m'
@@ -221,6 +256,7 @@ abstract class GameMeta extends AppModel
             'logoId' => [
                 'label' => 'Логотип',
                 'appType' => 'file',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInTable' => true,
                 'showInView' => true
@@ -228,6 +264,7 @@ abstract class GameMeta extends AppModel
             'photoIds' => [
                 'label' => 'Фотографии',
                 'appType' => 'files',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInView' => true,
                 'relationName' => 'photos'
@@ -256,14 +293,16 @@ abstract class GameMeta extends AppModel
                 'appType' => 'relation',
                 'showInForm' => true,
                 'showInView' => true,
-                'relationName' => 'creator'
+                'relationName' => 'creator',
+                'listRelationName' => 'players'
             ],
             'playersIds' => [
                 'label' => 'Игроки',
                 'appType' => 'relation',
                 'showInForm' => true,
                 'showInView' => true,
-                'relationName' => 'players'
+                'relationName' => 'players',
+                'listRelationName' => 'players'
             ],
             'saleFrom' => [
                 'label' => 'Период скидки',
@@ -276,6 +315,7 @@ abstract class GameMeta extends AppModel
             'genre' => [
                 'label' => 'Жанр',
                 'appType' => 'enum',
+                'publishToFrontend' => true,
                 'showInForm' => true,
                 'showInTable' => true,
                 'showInView' => true,

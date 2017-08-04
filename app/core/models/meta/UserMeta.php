@@ -3,8 +3,8 @@
 namespace app\core\models\meta;
 
 use app\core\base\AppModel;
-use yii\db\ActiveQuery;
 use extpoint\yii2\file\models\File;
+use yii\db\ActiveQuery;
 
 /**
  * @property string $id
@@ -32,6 +32,20 @@ abstract class UserMeta extends AppModel
         return 'users';
     }
 
+    public function fields()
+    {
+        return [
+        ];
+    }
+
+    public function rules()
+    {
+        return [
+            [['id', 'email', 'name', 'role', 'photo', 'password', 'salt', 'authKey', 'accessToken', 'recoveryKey', 'createTime', 'updateTime', 'firstName', 'lastName', 'birthday', 'phone'], 'string', 'max' => 255],
+            ['photo', 'exist', 'skipOnError' => true, 'targetClass' => File::className(), 'targetAttribute' => ['photo' => 'id']],
+        ];
+    }
+
     /**
      * @return ActiveQuery
      */
@@ -45,30 +59,30 @@ abstract class UserMeta extends AppModel
         return [
             'id' => [
                 'label' => 'Id',
+                'showInTable' => true,
+                'showInView' => true,
                 'dbType' => 'pk',
-                'notNull' => 'true',
-                'showInTable' => 'true',
-                'showInView' => 'true'
+                'notNull' => true
             ],
             'email' => [
                 'label' => 'Email',
-                'notNull' => 'true',
-                'showInForm' => 'true',
-                'showInTable' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInTable' => true,
+                'showInView' => true,
+                'notNull' => true
             ],
             'name' => [
                 'label' => 'Имя',
-                'showInForm' => 'true',
-                'showInTable' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInTable' => true,
+                'showInView' => true
             ],
             'role' => [
                 'label' => 'Роль',
-                'notNull' => 'true',
-                'showInForm' => 'true',
-                'showInTable' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInTable' => true,
+                'showInView' => true,
+                'notNull' => true
             ],
             'photo' => [
                 'label' => 'Фото'
@@ -90,36 +104,36 @@ abstract class UserMeta extends AppModel
             ],
             'createTime' => [
                 'label' => 'Дата регистрации',
+                'showInTable' => true,
+                'showInView' => true,
                 'dbType' => 'datetime',
-                'notNull' => 'true',
-                'showInTable' => 'true',
-                'showInView' => 'true'
+                'notNull' => true
             ],
             'updateTime' => [
                 'label' => 'Update Time',
                 'dbType' => 'datetime',
-                'notNull' => 'true'
+                'notNull' => true
             ],
             'firstName' => [
                 'label' => 'Имя',
-                'showInForm' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInView' => true
             ],
             'lastName' => [
                 'label' => 'Фамилия',
-                'showInForm' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInView' => true
             ],
             'birthday' => [
                 'label' => 'Дата рождения',
-                'dbType' => 'date',
-                'showInForm' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInView' => true,
+                'dbType' => 'date'
             ],
             'phone' => [
                 'label' => 'Телефон',
-                'showInForm' => 'true',
-                'showInView' => 'true'
+                'showInForm' => true,
+                'showInView' => true
             ]
         ];
     }

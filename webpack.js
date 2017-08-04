@@ -17,3 +17,6 @@ require('extpoint-yii2/webpack')
     .widgets('./vendor/extpoint/yii2-gii/lib/widgets')
     .widgets('./vendor/extpoint/yii2-file/lib/widgets')
 
+    // User interface stands for development
+    .stands('./dev/stands')
+
